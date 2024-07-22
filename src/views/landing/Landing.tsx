@@ -67,7 +67,7 @@ Digital Safety...`}
           </Col>
         </Row>
       </Card>
-      <Card>
+      <Card style={{ backgroundColor: 'rgb(218 220 224)' }}>
         <Space style={{ display: 'flex', justifyContent: 'center' }} size={100} align="center">
           <motion.div initial="offscreen" whileInView="onscreen" variants={cardVariants}>
             <Card style={{ width: 400 }} cover={<Image src={Investigate} preview={false} />}>

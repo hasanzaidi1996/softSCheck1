@@ -1,5 +1,5 @@
 import { Layout, Image, Typography, Grid, Row, Col, Dropdown, Skeleton } from 'antd';
-import LogoMark from '../../assets/img/logo.png';
+import LogoMark from '../../assets/icons/logo-white.svg';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -20,7 +20,7 @@ import isAuthorized from 'authorization/RouteAuthorized';
 import { branding } from 'config/branding';
 
 const { Header, Content, Footer, Sider } = Layout;
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
 const { useBreakpoint } = Grid;
 
@@ -163,13 +163,19 @@ const DashboardLayout: React.FC = () => {
                 }
                 return navigate('/');
               }}>
-              <Image
-                src={LogoMark}
-                preview={false}
-                height={branding.BRAND_LOGO_NAVBAR_HEIGHT}
-                width={branding.BRAND_LOGO_NAVBAR_WIDTH}
-              />
-              &nbsp;&nbsp;{branding.BRAND_NAME}
+              <Row gutter={[5, 5]}>
+                <Col>
+                  <Image
+                    src={LogoMark}
+                    preview={false}
+                    height={branding.BRAND_LOGO_NAVBAR_HEIGHT}
+                    width={branding.BRAND_LOGO_NAVBAR_WIDTH}
+                  />
+                </Col>
+                <Col>
+                  <Text style={{ fontSize: 20, color: '#ffffff' }}>{branding.BRAND_NAME}</Text>
+                </Col>
+              </Row>
             </div>
           ) : (
             <div className="logo logo-collapsed">

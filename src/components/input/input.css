@@ -1,11 +1,11 @@
 .input {
   padding: 0 10px;
   border: 1px solid #dce3ff;
-  background-color: #dde2f8;
+  background-color: rgb(218 220 224);
 }
 
 .input > .ant-input {
-  background-color: #dde2f8;
+  background-color: rgb(218 220 224);
 }
 
 .ant-input::placeholder {

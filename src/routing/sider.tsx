@@ -21,6 +21,22 @@ export const siderClientRoutes: Array<SiderRoutes> = [
     id: 'Dashboard',
     icon: ProfileCog,
     authenticatedUsers: [UserRoles.Client]
+  },
+  {
+    path: 'mitre',
+    component: <></>,
+    label: 'Mitre',
+    id: 'Mitre',
+    icon: ProfileCog,
+    authenticatedUsers: [UserRoles.Client]
+  },
+  {
+    path: 'test',
+    component: <></>,
+    label: 'Test',
+    id: 'Test',
+    icon: ProfileCog,
+    authenticatedUsers: [UserRoles.Client]
   }
 ];
 
