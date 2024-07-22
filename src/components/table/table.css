@@ -1,0 +1,124 @@
+/* .tbody-primary
+  > .ant-spin-nested-loading
+  > .ant-spin-container
+  > .ant-table
+  > .ant-table-container
+  > .ant-table-content
+  > table
+  > .ant-table-tbody
+  > tr
+  > td {
+  border-bottom: 1px solid;
+  border-image: linear-gradient(90deg, #f15b5d 0%, #e0228f 53.98%, #9b278f 99.96%) 1;
+} */
+.ant-table-tbody > tr > td {
+  font-size: 14px;
+}
+.thead-primary
+  > .ant-spin-nested-loading
+  > .ant-spin-container
+  > .ant-table
+  > .ant-table-container
+  > .ant-table-content
+  > table
+  > .ant-table-thead
+  > tr
+  > th {
+  background: transparent;
+  border: 0px;
+}
+.ant-table-thead > tr > th {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.icon-btn > span {
+  font-size: 14px;
+}
+
+.icon-btn > .anticon {
+  font-size: 18px;
+  align-items: center;
+}
+
+.table-container {
+  padding: 10px;
+  /* padding-top: 20px; */
+  padding-left: 20px;
+}
+.table-container .ant-card-body {
+  padding-right: 0px;
+  padding-bottom: 0px;
+}
+.icon-table-data {
+  font-size: 20px;
+}
+.table-break-anywhere {
+  overflow-wrap: anywhere;
+}
+@media screen and (max-width: 1000px) {
+  .table-container {
+    padding: 5px;
+  }
+  .icon-btn > span,
+  .table-link-btn,
+  .ant-table-tbody > tr > td {
+    font-size: 12px;
+  }
+
+  .ant-table-thead > tr > th {
+    font-size: 14px;
+    font-weight: 900;
+  }
+
+  .icon-btn > .anticon {
+    font-size: 16px;
+  }
+  .icon-table-data {
+    font-size: 18px;
+  }
+}
+
+.toolbar-container .ant-col-sm-8 {
+  flex: 0 0 80.333333%;
+  max-width: 80.333333%;
+}
+
+.toolbar-container .ant-col-sm-16 {
+  flex: 0 0 19.66666667%;
+  max-width: 19.666667%;
+}
+
+.ant-table-thead .ant-table-cell {
+  
+  &::before {
+    content: none; 
+    display: none;
+  }
+}
+
+.tbody-primary
+  > .ant-spin-nested-loading
+  > .ant-spin-container
+  > .ant-table
+  > .ant-table-container
+  > .ant-table-content
+  > table
+  > .ant-table-tbody
+  > tr
+  > td {
+    border-bottom: 1px solid;
+    border-image: linear-gradient(90deg, #A873AE 0%, #A873AE 47.19%, #77bbdd 100%) 1;
+  }
+
+  .ant-table-content::-webkit-scrollbar {
+    height: 6px;
+    background-color: rgba(128, 128, 128, 0.5);
+  }
+  
+  /* Target the scrollbar thumb (might vary based on browser) */
+  .ant-table-content::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background-image: linear-gradient(to right,#A873AE 47.19%, #77bbdd 100% );
+  }
+  

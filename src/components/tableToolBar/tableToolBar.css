@@ -1,0 +1,33 @@
+.toolbar-container {
+  margin-bottom: 3%;
+  padding-right: 25px;
+}
+
+.toolbar-container .ant-row-space-around {
+  justify-content: flex-end;
+}
+
+.toolbar-container .ant-row-space-around button {
+  margin-right: 20px; 
+}
+.toolbar-search {
+  display: flex;
+  align-items: center;
+}
+
+.toolbar-search > .ant-input-group > .ant-input {
+  background-color: #877B7B;
+  border: 0;
+}
+
+.ant-input-search-button {
+  background-color: #877B7B;
+  border: 0;
+}
+.toolbar-additional-xs-col {
+  padding-top: 5px;
+}
+
+.ant-row-space-around {
+  justify-content: space-evenly;
+}

@@ -11,20 +11,22 @@ import { ReactComponent as ProfileCog } from '../assets/icons/InfoCustom.svg';
 
 import { UserRoles } from 'types';
 import { Dashboard } from 'views';
+import Report from 'views/report';
 
 type MenuItem = Required<MenuProps>['items'][number];
+
 export const siderClientRoutes: Array<SiderRoutes> = [
   {
-    path: 'dashboard',
-    component: <Dashboard />,
-    label: 'Dashboard',
-    id: 'Dashboard',
+    path: 'reports',
+    component: <Report />,
+    label: 'Reports',
+    id: 'reports',
     icon: ProfileCog,
     authenticatedUsers: [UserRoles.Client]
   },
   {
     path: 'mitre',
-    component: <></>,
+    component: <Dashboard />,
     label: 'Mitre',
     id: 'Mitre',
     icon: ProfileCog,

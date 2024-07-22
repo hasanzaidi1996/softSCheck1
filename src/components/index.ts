@@ -9,6 +9,7 @@ import Alert from './alert';
 import ErrorBoundary from './errorBoundary';
 import * as NoDataPlaceHolder from './empty';
 import Legend from './legend';
+import TopCountCard from './topCountCard';
 export {
   ScalableButton,
   ScalableInput,
@@ -20,5 +21,6 @@ export {
   Alert,
   ErrorBoundary,
   NoDataPlaceHolder,
-  Legend
+  Legend,
+  TopCountCard
 };
