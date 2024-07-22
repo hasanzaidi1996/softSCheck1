@@ -1,0 +1,14 @@
+.form-subtitle {
+  font-size: 16px;
+  display: block;
+}
+
+.form-item-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.payload-form-submit-btn {
+  margin: 0 auto;
+}

@@ -1,0 +1,24 @@
+/*----------------------------------------------------------------
+Common styles
+*/
+@import './common/Form.css';
+@import './common/Overview.css';
+
+/* ----------------------------------------------------------------
+Component styles
+*/
+@import '../../components/button/button.css';
+@import '../../components/input/input.css';
+@import '../../components/link/link.css';
+@import '../../components/menu/menu.css';
+
+@import '../../components/legend/legend.css';
+
+/* ----------------------------------------------------------------
+View styles
+*/
+@import './AuthForms.css';
+@import './AuthLayout.css';
+@import './DashboardLayout.css';
+@import './NotFound.css';
+@import './Walkthrough.css';

@@ -1,0 +1,31 @@
+.lnk {
+  padding: 0;
+  font-weight: 700;
+  height: auto;
+}
+
+.lnk-underline {
+  text-decoration: underline;
+}
+
+.lnk-sameline {
+  display: inline-block;
+  overflow: unset;
+  vertical-align: bottom;
+}
+
+.lg-scalable-lnk {
+  font-size: 18px;
+}
+
+.md-scalable-lnk {
+  font-size: 18px;
+}
+
+.sm-scalable-lnk {
+  font-size: 18px;
+}
+
+.ant-anchor-ink {
+  display: none;
+}

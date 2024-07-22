@@ -1,0 +1,28 @@
+.overview-parent-container-row {
+  margin-top: 3rem;
+}
+
+/* Makes col cards equal height*/
+.overview-parent-container-row > .ant-col {
+  display: flex;
+}
+
+@keyframes blink {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+
+.ant-typography pre {
+  background-color: transparent;
+  border: 0;
+  border-color: transparent;
+}
+
+.type-writer::after {
+  content: '_';
+  animation: blink 1s infinite;
+}

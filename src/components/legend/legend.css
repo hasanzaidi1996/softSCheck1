@@ -1,0 +1,27 @@
+.legend-color {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.legend-text {
+  display: inline-block;
+  margin: 0px 6px;
+  vertical-align: middle;
+  font-size: 12px;
+}
+
+.heat-map-legend-text {
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  font-size: 12px;
+}
+
+.heat-map-legend-end-text { 
+  color: #111c4e;
+  font-weight: bold;
+  vertical-align: text-top;
+  margin: 3px;
+  font-size: 12px;
+}
+

@@ -1,0 +1,104 @@
+.custom-menu .sider-menu {
+  background-color: #111c4e;
+}
+
+.custom-menu .ant-menu-vertical {
+  border: 0;
+}
+
+.custom-menu .ant-menu-inline {
+  border-right: 1px solid #111c4e;
+}
+
+.custom-menu .ant-layout-sider-children {
+  background-color: #111c4e;
+}
+
+/* Please keep order of following three selectors. */
+
+.custom-menu .ant-menu-inline.ant-menu-root .ant-menu-submenu-title > .ant-menu-title-content,
+.ant-menu-item,
+.ant-menu-item .ant-menu-title-content a,
+.ant-menu-submenu-arrow {
+  color: #bdbdbd;
+}
+
+/* Please keep order of following three selectors. */
+
+.custom-menu .ant-menu-inline.ant-menu-root .ant-menu-submenu-title > .ant-menu-title-content,
+.ant-menu-item,
+.ant-menu-item .ant-menu-title-content a,
+.ant-menu-submenu-arrow {
+  color: #bdbdbd;
+}
+
+/* Please keep order of following three selectors. */
+
+.custom-menu .ant-menu-inline.ant-menu-root .ant-menu-submenu-title > .ant-menu-title-content,
+.ant-menu-item,
+.ant-menu-item .ant-menu-title-content a,
+.ant-menu-submenu-arrow {
+  color: #bdbdbd;
+}
+
+/*
+  Menu button hover color
+*/
+
+.custom-menu .ant-menu-item-selected,
+.ant-menu-item-selected .ant-menu-title-content a {
+  color: black;
+}
+
+/* Side bar links start*/
+.custom-menu .ant-menu-item-selected path {
+  fill: #111c4e;
+}
+
+.custom-menu
+  .ant-menu.ant-menu-inline-collapsed
+  > .ant-menu-submenu
+  > .ant-menu-submenu-title
+  .anticon,
+.ant-menu-submenu-title .ant-menu-item-icon,
+.ant-menu-item svg {
+  font-size: 25px;
+}
+
+/* Side bar links end */
+
+.custom-menu .ant-menu-item-selected:hover,
+.custom-menu .ant-menu-item-selected .ant-menu-title-content a:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/* --------------------------------------------- */
+
+.custom-menu .ant-menu-item {
+  display: flex;
+  align-items: center;
+  width: 90%;
+}
+
+.custom-menu .sider-spacer {
+  height: 30px;
+}
+
+/*
+  for sub menus parent
+*/
+/* .ant-menu-submenu-open > .ant-menu-submenu-title > .ant-menu-title-content > a,
+.ant-menu-submenu-open > .ant-menu-submenu-title > .ant-menu-title-content,
+.ant-menu-submenu-open > .ant-menu-submenu-title > .anticon,
+.ant-menu-submenu-open > .ant-menu-submenu-title > .active-icon > .anticon,
+.ant-menu-submenu-open > .ant-menu-submenu-title > .ant-menu-submenu-arrow {
+  color: #111c4e !important;
+} */
+
+/* .ant-menu-submenu-open > .ant-menu-submenu-title, */
+.custom-menu .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-color: #dde2f8;
+  border: 1px solid #fff;
+  border-image: linear-gradient(180deg, #ff595a 0%, #e50695 47.19%, #9d1d96 100%) 1 1 1;
+  border-left: 5px solid #9d1d96;
+}

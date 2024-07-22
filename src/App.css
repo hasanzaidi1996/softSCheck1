@@ -1,0 +1,18 @@
+@import './theme/theme-customized.css';
+@import 'assets/css/index.css';
+
+body,
+#root,
+.App {
+  width: 100%;
+  height: 100%;
+  font-family: 'Chakra Petch';
+}
+
+.white {
+  color: #fff;
+}
+
+.ant-card .ant-card-body {
+  transition: height 0.7s all;
+}

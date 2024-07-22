@@ -1,0 +1,72 @@
+.input {
+  padding: 0 10px;
+  border: 1px solid #dce3ff;
+  background-color: #dde2f8;
+}
+
+.input > .ant-input {
+  background-color: #dde2f8;
+}
+
+.ant-input::placeholder {
+  opacity: 1;
+}
+
+/** White background  Start, .white-background-input > .ant-input is for password field */
+.white-background-input > .ant-input,
+.white-background-input {
+  background-color: #fff;
+}
+/** White background  End*/
+
+/** Input.Search css start **/
+
+.input.ant-input-group-wrapper:hover {
+  border-color: #232f5c;
+}
+.input.ant-input-group-wrapper:focus {
+  box-shadow: 0 0 0 2px rgba(17, 28, 78, 0.2);
+  border-right-width: 1px;
+  outline: 0;
+}
+
+.input.ant-input-group-wrapper .ant-input:focus {
+  box-shadow: none;
+}
+
+.sm-scalable-input,
+.md-scalable-input.ant-input-group-wrapper .ant-input {
+  font-size: 15px;
+}
+
+/** Input.Search css end **/
+
+.lg-scalable-input {
+  height: 40px;
+  font-size: 16px;
+}
+
+.md-scalable-input {
+  height: 35px;
+  font-size: 15px;
+}
+
+.sm-scalable-input {
+  height: 30px;
+  font-size: 15px;
+}
+
+/* For Password Filed*/
+.lg-scalable-input > input {
+  font-size: 16px;
+}
+
+/* For Password Filed*/
+.md-scalable-input > input {
+  font-size: 15px;
+}
+
+/* For Password Filed*/
+.sm-scalable-input > input {
+  font-size: 15px;
+}
