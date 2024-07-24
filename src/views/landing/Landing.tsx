@@ -10,6 +10,8 @@ import TypingAnimation from './components/TypingAnimation';
 import { motion } from 'framer-motion';
 import { FacebookOutlined, InstagramOutlined, TwitterOutlined } from '@ant-design/icons';
 import Meta from 'antd/lib/card/Meta';
+import CyberAttackBar from './components/CyberAttackBar';
+import CommonAttackPie from './components/CommonAttackPie';
 
 const { Title } = Typography;
 
@@ -35,7 +37,7 @@ const Landing: React.FC = () => {
     <LandingLayout>
       <Card>
         <Row>
-          <Col span={12}>
+          <Col sm={24} md={12} lg={12} xl={12} xxl={12} span={12}>
             <Title color="#ffffff">
               <TypingAnimation
                 content={`Digital Transformation
@@ -62,13 +64,16 @@ Digital Safety...`}
               </motion.div>
             </Space>
           </Col>
-          <Col span={12}>
+          <Col sm={24} md={12} lg={12} xl={12} xxl={12} span={12}>
             <Image preview={false} src={LandingPerson} />
           </Col>
         </Row>
       </Card>
       <Card style={{ backgroundColor: 'rgb(218 220 224)' }}>
-        <Space style={{ display: 'flex', justifyContent: 'center' }} size={100} align="center">
+        <Space
+          style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}
+          size={100}
+          align="center">
           <motion.div initial="offscreen" whileInView="onscreen" variants={cardVariants}>
             <Card style={{ width: 400 }} cover={<Image src={Investigate} preview={false} />}>
               <Meta
@@ -93,6 +98,18 @@ Digital Safety...`}
           </motion.div>
         </Space>
       </Card>
+      <Row gutter={[10, 10]}>
+        <Col sm={24} md={24} lg={12} xl={12}>
+          <motion.div initial="offscreen" whileInView="onscreen" variants={cardVariants}>
+            <CyberAttackBar />
+          </motion.div>
+        </Col>
+        <Col sm={24} md={24} lg={12} xl={12}>
+          <motion.div initial="offscreen" whileInView="onscreen" variants={cardVariants}>
+            <CommonAttackPie />
+          </motion.div>
+        </Col>
+      </Row>
     </LandingLayout>
   );
 };

@@ -5,7 +5,7 @@ import { ThunkAction } from 'redux-thunk';
 import { Environment } from 'types';
 // Reducers
 import appReducer, { rootReducer } from './reducers';
-import Socket from './middleware/socket/socketMiddleware';
+// import Socket from './middleware/socket/socketMiddleware';
 
 /**
  *    REDUX TOOL KIT CONFIGURED HERE
@@ -17,9 +17,9 @@ export type AppThunk = ThunkAction<void, RootState, unknown, Action<string>>;
 
 const store = configureStore({
   reducer: rootReducer as Reducer,
-  middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware({ serializableCheck: false }).concat([Socket.SocketMiddleware()]);
-  },
+  // middleware: (getDefaultMiddleware) => {
+  //   return getDefaultMiddleware({ serializableCheck: false }).concat([Socket.SocketMiddleware()]);
+  // },
   devTools: env === Environment.Development
 });
 

@@ -4,6 +4,11 @@ import { io, Socket } from 'socket.io-client';
 import { RootState, AppDispatch } from '../../store';
 import { Middleware } from 'redux';
 
+/**
+ * NOTE: there was not enough time for realtime socket implementation
+ * however code will be like this.
+ * TODO for future use
+ */
 const socket: Socket = io();
 type CallBack = (...args: Array<any>) => void;
 

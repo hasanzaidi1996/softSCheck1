@@ -12,6 +12,8 @@ import { ReactComponent as Lock } from 'assets/icons/Lock.svg';
 import { ReactComponent as Microsoft } from 'assets/icons/Microsoft.svg';
 import { ReactComponent as Secure } from 'assets/icons/Secure.svg';
 import { ReactComponent as Check } from 'assets/icons/Check.svg';
+import { ReactComponent as Australia } from 'assets/icons/Australia.svg';
+
 export {
   InfoCustom,
   SuccessIcon,
@@ -26,5 +28,6 @@ export {
   Fingerprint,
   Lock,
   Microsoft,
-  Secure
+  Secure,
+  Australia
 };

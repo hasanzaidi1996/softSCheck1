@@ -37,7 +37,7 @@ const LandingLayout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
     const items = isAuthorized(location.pathname, authState.user)
       ? [
           getItem(
-            <NavLink to={'/user/reports'}>
+            <NavLink to={'/user'}>
               <Button icon={<UserOutlined />} block>
                 Dashboard
               </Button>

@@ -3,7 +3,7 @@ import { handlerError } from '../../utils/ErrorHandler';
 import { updateAlert } from './alertAction';
 import { userLogout } from 'utils/Logout';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { DISCONNECT_SOCKET } from 'appRedux/middleware/socket/events';
+// import { DISCONNECT_SOCKET } from 'appRedux/middleware/socket/events';
 
 // types
 import type {
@@ -60,7 +60,6 @@ export const Login = createAsyncThunk(
     try {
       const res = await BackendInstance.post('user/login', body, config);
       const responseData = res.data.data as ILoginResponseData;
-
       dispatch(loginSuccess());
       dispatch(loadUser());
       return responseData;
@@ -157,9 +156,9 @@ export const logout = createAsyncThunk('auth/logout', async (_, { dispatch }) =>
       dispatch action so that user 
       states are clear and token is removed
       */
-    dispatch({
-      type: DISCONNECT_SOCKET
-    });
+    // dispatch({
+    //   type: DISCONNECT_SOCKET
+    // });
     dispatch({ type: RESET });
     dispatch(authReset());
     dispatch(clearSession());

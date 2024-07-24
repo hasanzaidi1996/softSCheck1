@@ -21,18 +21,18 @@ const TypingAnimation = ({ content, speed }: ITypingAnimation) => {
     Create a new setInterval and store its id
     */
     const animKey = setInterval(() => {
-      setIndex((index) => {
+      setIndex((idx) => {
         /*
-        This setState function will set the index
-        to index+1 if there is more content otherwise
+        This setState function will set the idx
+        to idx+1 if there is more content otherwise
         it will destory this animation
         */
 
-        if (index >= content.length - 1) {
+        if (idx >= content.length - 1) {
           clearInterval(animKey);
-          return index;
+          return idx;
         }
-        return index + 1;
+        return idx + 1;
       });
     }, 20);
   }, []);
