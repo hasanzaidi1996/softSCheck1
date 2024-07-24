@@ -4,7 +4,7 @@ import '@fontsource/chakra-petch';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { siderClientRoutes } from './routing';
 import { SiderRoutes } from './routing/types';
-import { AuthLayout, DashboardLayout, VerifyEmail } from 'views';
+import { AuthLayout, DashboardLayout, Login, SignUp, VerifyEmail } from 'views';
 
 // redux
 import { Provider } from 'react-redux';
@@ -34,7 +34,11 @@ const App: React.FC = () => {
    */
   const developRoutes = (routes: Array<SiderRoutes>): React.ReactNode => {
     return routes.map((route, key) => {
-      return <Route path={route.path} index={route.index} element={route.component} key={key} />;
+      return route.index ? (
+        <Route path={''} index={route.index} element={route.component} key={key} />
+      ) : (
+        <Route path={route.path} index={route.index} element={route.component} key={key} />
+      );
     });
   };
 
@@ -44,8 +48,11 @@ const App: React.FC = () => {
         <div className="App">
           <Alert />
           <Routes>
-            <Route path="/login" element={<AuthLayout />} />
-            <Route path="*" element={<Landing />} />
+            <Route path="auth" element={<AuthLayout />}>
+              <Route path={'signup'} element={<SignUp />} />
+              <Route path={'login'} element={<Login />} />
+            </Route>
+
             <Route path="verify-email/:tokenId" element={<VerifyEmail />} />
             <Route
               path="user"
@@ -56,6 +63,7 @@ const App: React.FC = () => {
               }>
               {developRoutes(siderClientRoutes)}
             </Route>
+            <Route path="*" element={<Landing />} />
           </Routes>
         </div>
       </BrowserRouter>

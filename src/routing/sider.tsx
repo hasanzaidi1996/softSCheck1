@@ -2,16 +2,17 @@ import getItem from './getMenuItem';
 import { Link } from 'react-router-dom';
 import Icon from '@ant-design/icons';
 import type { MenuProps } from 'antd';
+
+import { UserRoles } from 'types';
+import Report from 'views/report';
+import AppWhiteListing from 'views/appWhiteListing';
 import { SiderRoutes } from './types';
+import { ReactComponent as ProfileCog } from '../assets/icons/InfoCustom.svg';
+import { Check, Fingerprint, Lock, Microsoft, Monitor, Secure } from 'assets/icons';
 
 /**
  * Icons
  */
-import { ReactComponent as ProfileCog } from '../assets/icons/InfoCustom.svg';
-
-import { UserRoles } from 'types';
-import { Dashboard } from 'views';
-import Report from 'views/report';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -21,23 +22,56 @@ export const siderClientRoutes: Array<SiderRoutes> = [
     component: <Report />,
     label: 'Reports',
     id: 'reports',
+    index: true, // index will create it first route when navigating
     icon: ProfileCog,
     authenticatedUsers: [UserRoles.Client]
   },
   {
-    path: 'mitre',
-    component: <Dashboard />,
-    label: 'Mitre',
-    id: 'Mitre',
-    icon: ProfileCog,
+    path: 'app-whitelisting',
+    component: <AppWhiteListing />,
+    label: 'App Whitelisting',
+    id: 'App Whitelisting',
+    icon: Monitor,
     authenticatedUsers: [UserRoles.Client]
   },
   {
-    path: 'test',
+    path: 'patch-app',
     component: <></>,
-    label: 'Test',
-    id: 'Test',
-    icon: ProfileCog,
+    label: 'Patch App',
+    id: 'App Whitelisting',
+    icon: Secure,
+    authenticatedUsers: [UserRoles.Client]
+  },
+  {
+    path: 'ms-macro',
+    component: <></>,
+    label: 'Macro MS Office',
+    id: 'Macro MS Office',
+    icon: Microsoft,
+    authenticatedUsers: [UserRoles.Client]
+  },
+  {
+    path: 'app-hardening',
+    component: <></>,
+    label: 'App Hardening',
+    id: 'App Hardening',
+    icon: Lock,
+    authenticatedUsers: [UserRoles.Client]
+  },
+  {
+    path: 'mfa',
+    component: <></>,
+    label: 'MFA',
+    id: 'MFA',
+    icon: Fingerprint,
+    authenticatedUsers: [UserRoles.Client]
+  },
+  {
+    path: 'patch-os',
+    component: <></>,
+    label: 'Patch OS',
+    id: 'Patch OS',
+    icon: Check,
     authenticatedUsers: [UserRoles.Client]
   }
 ];
@@ -46,6 +80,7 @@ export const siderClientRoutes: Array<SiderRoutes> = [
  * SVG css is in routesMenu.css
  */
 export const siderClientMenu: MenuItem[] = siderClientRoutes.map((route, index) => {
+  // index will have default route so must be replaced
   return getItem(
     <Link id={route.id} to={`/user/${route.index ? '' : route.path}`}>
       {route.label}

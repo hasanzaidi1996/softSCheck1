@@ -5,6 +5,25 @@ interface IAlertTypes {
   [key: string]: CSSProperties;
 }
 
+interface IColorType {
+  [key: string]: string;
+}
+
+const color: IColorType = {
+  completed: 'green',
+  pending: 'blue',
+  failed: 'red'
+};
+
+/**
+ *
+ * @param {string} value value to get color of
+ * @returns {string} color specifc to value
+ */
+export const getColor = (value: string): string => {
+  return color[value];
+};
+
 // alert styles
 const getAlertColors: IAlertTypes = {
   success: {

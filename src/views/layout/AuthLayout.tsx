@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 import { AuthSelector } from 'appRedux/reducers';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { branding } from 'config/branding';
-import { Landing } from 'views/landing/Landing';
+// import { Landing } from 'views/landing/Landing';
 
 const { useBreakpoint } = Grid;
 const { Content } = Layout;
@@ -128,9 +128,10 @@ const AuthLayout: React.FC = () => {
       </Col>
       <Col xs={22} sm={22} md={15} className="form-container">
         <Routes>
-          <Route path="landing" element={<Landing />} />
-          <Route path="/" element={<Login />} />
+          {/* <Route path="landing" element={<Landing />} /> */}
+
           <Route path={'signup'} element={<SignUp />} />
+          <Route path={'login'} element={<Login />} />
           <Route path="*" element={<NotFoundLayout />} />
         </Routes>
       </Col>

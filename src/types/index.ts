@@ -49,3 +49,9 @@ export interface ICustomValidationParams {
   formData: any;
   showErrorMessage: { [string: string]: boolean };
 }
+
+export enum ReportStatus {
+  Pending = 'pending',
+  Completed = 'completed',
+  Failed = 'failed'
+}

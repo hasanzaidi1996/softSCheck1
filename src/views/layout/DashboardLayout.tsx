@@ -32,12 +32,11 @@ const { useBreakpoint } = Grid;
 const DashboardLayout: React.FC = () => {
   const { md } = useBreakpoint();
   const navigate = useNavigate();
-  const [collapsed, setCollapsed] = useState(true); // mobile first approach
-  const [brand, setBrand] = useState(''); // mobile first approach
-  const [selectedKey, setSelectedKey] = useState(''); // default selected key
+  const [collapsed, setCollapsed] = useState(true);
+  const [brand, setBrand] = useState('');
+  const [selectedKey, setSelectedKey] = useState('');
   const location = useLocation();
-  const zero = 0;
-  // const one = 1;
+
   const unAvailable = -1;
 
   const authState = useSelector(AuthSelector);
@@ -65,29 +64,34 @@ const DashboardLayout: React.FC = () => {
        */
       currentWindow = currentWindow.replace('/user', '');
     }
-    if (!brand && !selectedKey) {
-      let brandFound = false;
 
-      if (authState.role === UserRoles.Client) {
-        let label = '';
-        siderClientRoutes.forEach((route, index) => {
-          const path = route.path.split('/:id')[zero];
-          if (currentWindow.indexOf(path.replace('/*', '')) !== unAvailable) {
-            setSelectedKey(index.toString());
-            label += `${route.label} `;
-            brandFound = true;
-          }
-        });
+    /**
+     * Configuration of routing and brand name
+     */
 
-        if (brandFound && label) {
-          setBrand(label);
+    let brandFound = false;
+
+    if (authState.role === UserRoles.Client) {
+      let label = '';
+      siderClientRoutes.forEach((route, index) => {
+        const path = route.path;
+        console.log('here');
+        if (currentWindow.indexOf(path) !== unAvailable) {
+          console.log('index', index);
+          setSelectedKey(index.toString());
+          label += `${route.label} `;
+          brandFound = true;
         }
-      }
+      });
 
-      if (!brandFound) {
-        setBrand('Dashboard');
-        setSelectedKey('0');
+      if (brandFound && label) {
+        setBrand(label);
       }
+    }
+
+    if (!brandFound) {
+      setBrand('Reports');
+      setSelectedKey('0');
     }
   }, [location.pathname]);
 

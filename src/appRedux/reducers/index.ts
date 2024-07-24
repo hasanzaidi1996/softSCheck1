@@ -5,13 +5,15 @@ import { CombinedState, combineReducers } from '@reduxjs/toolkit';
 // reducers
 import authReducer, { AuthSelector } from './authReducer';
 import alertReducer, { AlertSelector } from './alertReducer';
+import reportReducer, { ReportSelector } from './reportReducer';
 
 const appReducer = combineReducers({
   auth: authReducer,
-  alert: alertReducer
+  alert: alertReducer,
+  report: reportReducer
 });
 
-export { AuthSelector, AlertSelector };
+export { AuthSelector, AlertSelector, ReportSelector };
 
 export type RootState = ReturnType<typeof appReducer>;
 
