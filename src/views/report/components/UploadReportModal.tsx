@@ -1,10 +1,11 @@
-import { Modal, Button, UploadFile, UploadProps } from 'antd';
+import { Modal, Button, UploadFile, UploadProps, Typography, Space } from 'antd';
 import React, { useState } from 'react';
 import { IUploadModalProps } from './types';
 import { FileUploader } from 'components';
 import { useAppDispatch } from 'appRedux/store';
 import { getTemplate, uploadReports } from 'appRedux/actions/reportAction';
 import { RcFile } from 'antd/lib/upload';
+import { InfoCircleTwoTone } from '@ant-design/icons';
 
 /**
  * Modal to upload report
@@ -54,19 +55,25 @@ const UploadReportModal: React.FC<IUploadModalProps> = (props: IUploadModalProps
   return (
     <Modal
       open={props.open}
-      title="Title"
+      title="Upload Report"
       onCancel={closeModal}
       footer={[
         <Button key="submit" type="primary" loading={loading} onClick={submitReport}>
           Submit
         </Button>
       ]}>
-      <Button
-        onClick={() => {
-          dispatch(getTemplate());
-        }}>
-        Download Template
-      </Button>
+      <Space>
+        <InfoCircleTwoTone twoToneColor={'#fcbc3e'} style={{ fontSize: 25 }} />
+        <Typography.Text type="warning">
+          Download the template by clicking the button, fill out and upload it
+        </Typography.Text>
+        <Button
+          onClick={() => {
+            dispatch(getTemplate());
+          }}>
+          Download Template
+        </Button>
+      </Space>
       <FileUploader
         draggerText={`Support for a single file upload or Drag and Drop file can be uploaded`}
         accept=".xlsx"

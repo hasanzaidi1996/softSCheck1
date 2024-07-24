@@ -24,7 +24,8 @@ export const siderClientRoutes: Array<SiderRoutes> = [
     id: 'reports',
     index: true, // index will create it first route when navigating
     icon: ProfileCog,
-    authenticatedUsers: [UserRoles.Client]
+    authenticatedUsers: [UserRoles.Client],
+    disabled: false
   },
   {
     path: 'app-whitelisting',
@@ -32,7 +33,8 @@ export const siderClientRoutes: Array<SiderRoutes> = [
     label: 'App Whitelisting',
     id: 'App Whitelisting',
     icon: Monitor,
-    authenticatedUsers: [UserRoles.Client]
+    authenticatedUsers: [UserRoles.Client],
+    disabled: false
   },
   {
     path: 'patch-app',
@@ -40,7 +42,8 @@ export const siderClientRoutes: Array<SiderRoutes> = [
     label: 'Patch App',
     id: 'App Whitelisting',
     icon: Secure,
-    authenticatedUsers: [UserRoles.Client]
+    authenticatedUsers: [UserRoles.Client],
+    disabled: true
   },
   {
     path: 'ms-macro',
@@ -48,7 +51,8 @@ export const siderClientRoutes: Array<SiderRoutes> = [
     label: 'Macro MS Office',
     id: 'Macro MS Office',
     icon: Microsoft,
-    authenticatedUsers: [UserRoles.Client]
+    authenticatedUsers: [UserRoles.Client],
+    disabled: true
   },
   {
     path: 'app-hardening',
@@ -56,7 +60,8 @@ export const siderClientRoutes: Array<SiderRoutes> = [
     label: 'App Hardening',
     id: 'App Hardening',
     icon: Lock,
-    authenticatedUsers: [UserRoles.Client]
+    authenticatedUsers: [UserRoles.Client],
+    disabled: true
   },
   {
     path: 'mfa',
@@ -64,7 +69,8 @@ export const siderClientRoutes: Array<SiderRoutes> = [
     label: 'MFA',
     id: 'MFA',
     icon: Fingerprint,
-    authenticatedUsers: [UserRoles.Client]
+    authenticatedUsers: [UserRoles.Client],
+    disabled: true
   },
   {
     path: 'patch-os',
@@ -72,7 +78,8 @@ export const siderClientRoutes: Array<SiderRoutes> = [
     label: 'Patch OS',
     id: 'Patch OS',
     icon: Check,
-    authenticatedUsers: [UserRoles.Client]
+    authenticatedUsers: [UserRoles.Client],
+    disabled: true
   }
 ];
 
@@ -87,6 +94,8 @@ export const siderClientMenu: MenuItem[] = siderClientRoutes.map((route, index) 
     </Link>,
     index.toString(),
     <Icon className="icon active-icon" component={route.icon}></Icon>,
-    null
+    null,
+    undefined,
+    route.disabled
   );
 });

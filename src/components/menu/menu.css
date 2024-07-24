@@ -23,6 +23,16 @@
   color: #bdbdbd;
 }
 
+.ant-menu-item-disabled a,
+.ant-menu-submenu-disabled a {
+  color: #bdbdbd !important;
+}
+
+.ant-menu-item-disabled,
+.ant-menu-submenu-disabled {
+  color: #bdbdbd !important;
+}
+
 /* Please keep order of following three selectors. */
 
 .custom-menu .ant-menu-inline.ant-menu-root .ant-menu-submenu-title > .ant-menu-title-content,

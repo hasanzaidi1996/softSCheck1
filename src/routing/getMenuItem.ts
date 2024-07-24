@@ -19,7 +19,7 @@ export default function getItem(
   key?: React.Key | null,
   icon?: React.ReactNode | null,
   id?: string | null,
-  type?: 'group',
+  type?: 'group' | 'disabled',
   disabled?: boolean
 ): MenuItem {
   return {

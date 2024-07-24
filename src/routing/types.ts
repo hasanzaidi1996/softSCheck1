@@ -11,6 +11,7 @@ interface SiderRoutes {
   index?: boolean;
   authenticatedUsers?: Array<UserRoles>;
   display?: boolean;
+  disabled: boolean;
 }
 
 export type { SiderRoutes };

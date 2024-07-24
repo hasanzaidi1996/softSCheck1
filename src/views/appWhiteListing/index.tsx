@@ -1,4 +1,4 @@
-import { Col, Row, Select } from 'antd';
+import { Col, Row, Select, Typography } from 'antd';
 import React, { useEffect, useState } from 'react';
 import PieChart from './pieChart';
 import { useAppDispatch } from 'appRedux/store';
@@ -115,14 +115,17 @@ const AppWhiteListing: React.FC = () => {
     <>
       <Row gutter={[20, 20]}>
         <Col span={24}>
-          <Select
-            options={items}
-            onChange={(val) => {
-              setId(val);
-            }}
-            defaultValue={id}
-            style={{ width: '200px' }}
-          />
+          <Typography.Title level={5}>
+            Report:{' '}
+            <Select
+              options={items}
+              onChange={(val) => {
+                setId(val);
+              }}
+              defaultValue={id}
+              style={{ width: '250px' }}
+            />
+          </Typography.Title>
         </Col>
         <Col span={12}>
           <PieChart
