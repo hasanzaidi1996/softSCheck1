@@ -74,7 +74,7 @@ const Landing: React.FC = () => {
     <LandingLayout>
       <Card>
         <Row>
-          <Col sm={24} md={12} lg={12} xl={12} xxl={12} span={12}>
+          <Col xs={24} md={12} lg={12} xl={12} xxl={12} span={12}>
             <Title color="#ffffff">
               <TypingAnimation
                 content={`Digital Transformation
@@ -101,20 +101,20 @@ Digital Safety...`}
               </motion.div>
             </Space>
           </Col>
-          <Col sm={24} md={12} lg={12} xl={12} xxl={12} span={12}>
+          <Col xs={24} md={12} lg={12} xl={12} xxl={12}>
             <Image preview={false} src={LandingPerson} />
           </Col>
         </Row>
       </Card>
-      <Row gutter={[20, 20]}>
-        <Col span={8}>
+      <Row gutter={10} justify={'center'}>
+        <Col xs={24} md={12} lg={8} xl={6}>
           <Card style={{ backgroundColor: '#f0f2f5' }}>
             {/* <Space
           style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}
           size={100}
           align="center"> */}
             <motion.div initial="offscreen" whileInView="onscreen" variants={cardVariants}>
-              <Carousel autoplay style={{ width: 400 }}>
+              <Carousel autoplay style={{ width: '100%', maxWidth: '400px' }}>
                 <Card cover={<Image src={Investigate} preview={false} />}>
                   <Meta
                     title="Easy Preview "
@@ -138,7 +138,7 @@ Digital Safety...`}
           </Card>
         </Col>
 
-        <Col span={16}>
+        <Col xs={24} md={12} lg={16} xl={18}>
           <motion.div initial="offscreen" whileInView="onscreen" variants={cardVariants}>
             <Card
               title="Cyber Attacks in Australia"

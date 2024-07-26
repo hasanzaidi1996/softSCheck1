@@ -79,7 +79,7 @@ const Report: React.FC = () => {
       <Row gutter={[20, 20]}>
         {topCards.map((card, index) => {
           return (
-            <Col key={index} span={6}>
+            <Col key={index} xs={24} sm={12} md={12} lg={6}>
               <TopCountCard
                 title={card.title}
                 value={card.value}

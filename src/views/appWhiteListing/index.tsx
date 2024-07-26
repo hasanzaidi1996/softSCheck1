@@ -131,7 +131,7 @@ const AppWhiteListing: React.FC = () => {
             />
           </Typography.Title>
         </Col>
-        <Col span={12}>
+        <Col sm={24} md={24} lg={12} xl={12} xxl={12}>
           <PieChart
             data={whitelistData}
             title={'Application by whitelisting status'}
@@ -139,7 +139,7 @@ const AppWhiteListing: React.FC = () => {
             loading={loading}
           />
         </Col>
-        <Col span={12}>
+        <Col sm={24} md={24} lg={12} xl={12} xxl={12}>
           <PieChart
             data={criticalityData}
             title={'Criticality Count'}
@@ -147,7 +147,7 @@ const AppWhiteListing: React.FC = () => {
             loading={loading}
           />
         </Col>
-        <Col span={12}>
+        <Col sm={24} md={24} lg={12} xl={12} xxl={12}>
           <BarChart
             data={maturityData}
             title={'Maturity Level By App Count'}
