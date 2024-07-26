@@ -1,5 +1,5 @@
-import { Button, Card, Carousel, Col, Image, Row, Segmented, Space, Typography } from 'antd';
-import React, { useState } from 'react';
+import { Button, Card, Carousel, Col, Image, Row, Space, Typography } from 'antd';
+import React from 'react';
 import LandingPerson from '../../assets/img/Landing-Page-Person.jpg';
 import IdentifyProblemImage from '../../assets/img/problem-identification.jpg';
 import Investigate from '../../assets/img/analytics-identify.jpg';
@@ -8,37 +8,15 @@ import SecureInfrastructure from '../../assets/img/secure.jpg';
 import LandingLayout from 'views/layout/LandingLayout';
 import TypingAnimation from './components/TypingAnimation';
 import { motion } from 'framer-motion';
-import {
-  BarChartOutlined,
-  FacebookOutlined,
-  InstagramOutlined,
-  PieChartOutlined,
-  TwitterOutlined
-} from '@ant-design/icons';
+import { FacebookOutlined, InstagramOutlined, TwitterOutlined } from '@ant-design/icons';
 import Meta from 'antd/lib/card/Meta';
-import CyberAttackBar from './components/CyberAttackBar';
-import CommonAttackPie from './components/CommonAttackPie';
 
-const { Title } = Typography;
+const { Title, Paragraph, Text } = Typography;
 
 /**
  * @returns {React.FC} - User Profile Card Component
  */
 const Landing: React.FC = () => {
-  const segmentOptions = [
-    {
-      label: 'Major Attacks',
-      value: 0,
-      icon: <BarChartOutlined />
-    },
-    {
-      label: 'Common Type',
-      value: 1,
-      icon: <PieChartOutlined />
-    }
-  ];
-  const [type, setType] = useState(0);
-
   const cardVariants = {
     offscreen: {
       y: 300
@@ -53,28 +31,11 @@ const Landing: React.FC = () => {
     }
   };
 
-  /**
-   * Render chart according to type
-   *
-   * @param {number} type type chart
-   * @returns {React.FC} component to render
-   */
-  const previewChart = (type: number) => {
-    switch (type) {
-      case 0:
-        return <CyberAttackBar />;
-      case 1:
-        return <CommonAttackPie />;
-      default:
-        return <></>;
-    }
-  };
-
   return (
     <LandingLayout>
       <Card>
         <Row>
-          <Col sm={24} md={12} lg={12} xl={12} xxl={12} span={12}>
+          <Col xs={24} md={12} lg={12} xl={12} xxl={12} span={12}>
             <Title color="#ffffff">
               <TypingAnimation
                 content={`Digital Transformation
@@ -101,20 +62,35 @@ Digital Safety...`}
               </motion.div>
             </Space>
           </Col>
-          <Col sm={24} md={12} lg={12} xl={12} xxl={12} span={12}>
+          <Col xs={24} md={12} lg={12} xl={12} xxl={12}>
             <Image preview={false} src={LandingPerson} />
           </Col>
         </Row>
       </Card>
-      <Row gutter={[20, 20]}>
-        <Col span={8}>
+      <Card style={{ padding: '80px', backgroundColor: '#ffd15c' }}>
+        <Row>
+          <Col span={12}>
+            <Title>With the Right Advice Great Things Can Happen</Title>
+          </Col>
+          <Col span={12}>
+            <Paragraph>
+              <Text strong>Connecting Dots...</Text> we stand at the intersection of innovation and
+              reliability, dedicated to driving growth and efficiency for our partners, Join us in
+              embracing the future as we leverage our extensive expertise to illuminate new
+              possibilities in the ever-evolving digital landscape
+            </Paragraph>
+            <Paragraph>
+              Contact us today to learn about how we can help your business succeed in the digital
+              age!
+            </Paragraph>
+          </Col>
+        </Row>
+      </Card>
+      <Row gutter={10} justify={'center'}>
+        <Col xs={24} md={12} lg={8} xl={6}>
           <Card style={{ backgroundColor: '#f0f2f5' }}>
-            {/* <Space
-          style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}
-          size={100}
-          align="center"> */}
             <motion.div initial="offscreen" whileInView="onscreen" variants={cardVariants}>
-              <Carousel autoplay style={{ width: 400 }}>
+              <Carousel autoplay style={{ width: '100%', maxWidth: '400px' }}>
                 <Card cover={<Image src={Investigate} preview={false} />}>
                   <Meta
                     title="Easy Preview "
@@ -133,26 +109,7 @@ Digital Safety...`}
                 </Card>
               </Carousel>
             </motion.div>
-
-            {/* </Space> */}
           </Card>
-        </Col>
-
-        <Col span={16}>
-          <motion.div initial="offscreen" whileInView="onscreen" variants={cardVariants}>
-            <Card
-              title="Cyber Attacks in Australia"
-              extra={
-                <Segmented
-                  options={segmentOptions}
-                  onChange={(chart) => {
-                    setType(chart as number);
-                  }}
-                />
-              }>
-              {previewChart(type)}
-            </Card>
-          </motion.div>
         </Col>
       </Row>
     </LandingLayout>

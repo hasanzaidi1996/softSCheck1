@@ -1,22 +1,27 @@
 import {
+  BarChartOutlined,
   CaretDownFilled,
   LoginOutlined,
   LogoutOutlined,
+  PieChartOutlined,
   UserAddOutlined,
   UserOutlined
 } from '@ant-design/icons';
 import Icon from '@ant-design/icons/lib/components/Icon';
-import { Button, Col, Dropdown, Layout, Row, Space, Typography } from 'antd';
+import { Button, Card, Col, Dropdown, Layout, Row, Segmented, Space, Typography } from 'antd';
+import Sider from 'antd/lib/layout/Sider';
 import { logout } from 'appRedux/actions/authAction';
 import { AuthSelector } from 'appRedux/reducers';
 import store from 'appRedux/store';
 import { LogoIcon } from 'assets/icons';
 import isAuthorized from 'authorization/RouteAuthorized';
 import { CustomMenu, ScalableButton } from 'components';
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 import getItem from 'routing/getMenuItem';
+import CyberAttackBar from './components/CyberAttackBar';
+import CommonAttackPie from './components/CommonAttackPie';
 const { Header, Content } = Layout;
 const { Title } = Typography;
 
@@ -33,6 +38,36 @@ interface ILayoutProps {
 const LandingLayout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
   const location = useLocation();
   const authState = useSelector(AuthSelector);
+  const segmentOptions = [
+    {
+      label: 'Major Attacks',
+      value: 0,
+      icon: <BarChartOutlined />
+    },
+    {
+      label: 'Common Type',
+      value: 1,
+      icon: <PieChartOutlined />
+    }
+  ];
+  const [type, setType] = useState(0);
+
+  /**
+   * Render chart according to type
+   *
+   * @param {number} type type chart
+   * @returns {React.FC} component to render
+   */
+  const previewChart = (type: number) => {
+    switch (type) {
+      case 0:
+        return <CyberAttackBar />;
+      case 1:
+        return <CommonAttackPie />;
+      default:
+        return <></>;
+    }
+  };
 
   /**
    * Account Tab
@@ -114,7 +149,25 @@ const LandingLayout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
           </Col>
         </Row>
       </Header>
-      <Content>{props.children}</Content>
+      <Layout hasSider>
+        <Layout>
+          <Content>{props.children}</Content>
+        </Layout>
+        <Sider width={'25%'} className="landing-sider">
+          <Card
+            style={{ height: '100%', borderRight: 0 }}
+            extra={
+              <Segmented
+                options={segmentOptions}
+                onChange={(chart) => {
+                  setType(chart as number);
+                }}
+              />
+            }>
+            {previewChart(type)}
+          </Card>
+        </Sider>
+      </Layout>
     </Layout>
   );
 };

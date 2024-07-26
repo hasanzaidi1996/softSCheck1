@@ -1,5 +1,5 @@
 import Icon from '@ant-design/icons/lib/components/Icon';
-import { Bar } from '@ant-design/plots';
+import { Column } from '@ant-design/plots';
 import { Typography } from 'antd';
 import { Australia } from 'assets/icons';
 import React from 'react';
@@ -18,8 +18,8 @@ const CyberAttackBar: React.FC = () => {
       { label: 'Malware', count: 8 },
       { label: 'Ransomware', count: 3 }
     ],
-    xField: 'count',
-    yField: 'label',
+    xField: 'label',
+    yField: 'count',
     seriesField: 'label',
     color: '#b12514',
     legends: false
@@ -30,7 +30,7 @@ const CyberAttackBar: React.FC = () => {
         Criminal Phishing trips <Icon component={Australia} style={{ fontSize: 16 }} />
       </Typography.Text>
 
-      <Bar {...config} />
+      <Column {...config} />
     </>
   );
 };
