@@ -1,5 +1,6 @@
+import Icon from '@ant-design/icons/lib/components/Icon';
 import { Bar } from '@ant-design/plots';
-import { Card, Space } from 'antd';
+import { Typography } from 'antd';
 import { Australia } from 'assets/icons';
 import React from 'react';
 
@@ -24,15 +25,13 @@ const CyberAttackBar: React.FC = () => {
     legends: false
   };
   return (
-    <Card
-      title={
-        <Space>
-          {'Criminal Phishing trips: Cyber Attack in Australia  '}
-          <Australia height={20} width={20} />
-        </Space>
-      }>
+    <>
+      <Typography.Text>
+        Criminal Phishing trips <Icon component={Australia} style={{ fontSize: 16 }} />
+      </Typography.Text>
+
       <Bar {...config} />
-    </Card>
+    </>
   );
 };
 

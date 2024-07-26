@@ -1,5 +1,7 @@
+import Icon from '@ant-design/icons/lib/components/Icon';
 import { Pie } from '@ant-design/plots';
-import { Card } from 'antd';
+import { Typography } from 'antd';
+import { Australia } from 'assets/icons';
 
 /**
  *
@@ -61,9 +63,12 @@ const CommonAttackPie = () => {
     ]
   };
   return (
-    <Card title={'OWASP Top 10, Most common Attack in Australia'}>
+    <>
+      <Typography.Text>
+        Common Attacks <Icon component={Australia} style={{ fontSize: 16 }} />
+      </Typography.Text>
       <Pie {...config} />
-    </Card>
+    </>
   );
 };
 

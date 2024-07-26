@@ -5,4 +5,5 @@ export interface IBarChartProps {
   }[];
   title: string;
   color: string[];
+  loading: boolean;
 }

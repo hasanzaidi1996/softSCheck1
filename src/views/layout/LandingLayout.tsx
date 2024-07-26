@@ -1,12 +1,18 @@
-import { CaretDownFilled, LogoutOutlined, UserOutlined } from '@ant-design/icons';
+import {
+  CaretDownFilled,
+  LoginOutlined,
+  LogoutOutlined,
+  UserAddOutlined,
+  UserOutlined
+} from '@ant-design/icons';
 import Icon from '@ant-design/icons/lib/components/Icon';
-import { Button, Col, Dropdown, Layout, Row, Typography } from 'antd';
+import { Button, Col, Dropdown, Layout, Row, Space, Typography } from 'antd';
 import { logout } from 'appRedux/actions/authAction';
 import { AuthSelector } from 'appRedux/reducers';
 import store from 'appRedux/store';
 import { LogoIcon } from 'assets/icons';
 import isAuthorized from 'authorization/RouteAuthorized';
-import { CustomMenu } from 'components';
+import { CustomMenu, ScalableButton } from 'components';
 import React, { ReactNode } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
@@ -34,46 +40,28 @@ const LandingLayout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
    * @returns {React.FC} returns tab for account
    */
   const accountMenu = () => {
-    const items = isAuthorized(location.pathname, authState.user)
-      ? [
-          getItem(
-            <NavLink to={'/user'}>
-              <Button icon={<UserOutlined />} block>
-                Dashboard
-              </Button>
-            </NavLink>,
-            '0'
-          ),
-          getItem(
-            <Button
-              icon={<LogoutOutlined />}
-              onClick={() => {
-                store.dispatch(logout());
-              }}
-              block>
-              Logout
-            </Button>,
-            '3'
-          )
-        ]
-      : [
-          getItem(
-            <NavLink to={'/auth/login'}>
-              <Button icon={<UserOutlined />} block>
-                Login
-              </Button>
-            </NavLink>,
-            '0'
-          ),
-          getItem(
-            <NavLink to={'/auth/signup'}>
-              <Button icon={<UserOutlined />} block>
-                Signup
-              </Button>
-            </NavLink>,
-            '0'
-          )
-        ];
+    const items = [
+      getItem(
+        <NavLink to={'/user'}>
+          <Button icon={<UserOutlined />} block>
+            Dashboard
+          </Button>
+        </NavLink>,
+        '0'
+      ),
+      getItem(
+        <Button
+          icon={<LogoutOutlined />}
+          onClick={() => {
+            store.dispatch(logout());
+          }}
+          block>
+          Logout
+        </Button>,
+        '3'
+      )
+    ];
+
     return <CustomMenu defaultSelectedKeys={['-1']} items={items} onClick={(val) => {}} />;
   };
 
@@ -105,9 +93,24 @@ const LandingLayout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
           </Col>
           <Col span={12} className="navbar-right">
             {/* {authState.role === UserRoles.Client && <Notification />} */}
-            <Dropdown className="align-center navbar-padding" overlay={accountMenu}>
-              <AccountTab />
-            </Dropdown>
+            {isAuthorized(location.pathname, authState.user) ? (
+              <Dropdown className="align-center navbar-padding" overlay={accountMenu}>
+                <AccountTab />
+              </Dropdown>
+            ) : (
+              <Space>
+                <NavLink to={'/auth/login'}>
+                  <ScalableButton icon={<LoginOutlined />} block>
+                    Login
+                  </ScalableButton>
+                </NavLink>
+                <NavLink to={'/auth/signup'}>
+                  <ScalableButton icon={<UserAddOutlined />} block type="primary">
+                    Register
+                  </ScalableButton>
+                </NavLink>
+              </Space>
+            )}
           </Col>
         </Row>
       </Header>

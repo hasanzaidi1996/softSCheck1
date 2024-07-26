@@ -5,4 +5,5 @@ export interface IPieChartProps {
   }[];
   title: string;
   color: string[];
+  loading: boolean;
 }

@@ -1,5 +1,5 @@
-import { Button, Card, Col, Image, Row, Space, Typography } from 'antd';
-import React from 'react';
+import { Button, Card, Carousel, Col, Image, Row, Segmented, Space, Typography } from 'antd';
+import React, { useState } from 'react';
 import LandingPerson from '../../assets/img/Landing-Page-Person.jpg';
 import IdentifyProblemImage from '../../assets/img/problem-identification.jpg';
 import Investigate from '../../assets/img/analytics-identify.jpg';
@@ -8,7 +8,13 @@ import SecureInfrastructure from '../../assets/img/secure.jpg';
 import LandingLayout from 'views/layout/LandingLayout';
 import TypingAnimation from './components/TypingAnimation';
 import { motion } from 'framer-motion';
-import { FacebookOutlined, InstagramOutlined, TwitterOutlined } from '@ant-design/icons';
+import {
+  BarChartOutlined,
+  FacebookOutlined,
+  InstagramOutlined,
+  PieChartOutlined,
+  TwitterOutlined
+} from '@ant-design/icons';
 import Meta from 'antd/lib/card/Meta';
 import CyberAttackBar from './components/CyberAttackBar';
 import CommonAttackPie from './components/CommonAttackPie';
@@ -19,6 +25,20 @@ const { Title } = Typography;
  * @returns {React.FC} - User Profile Card Component
  */
 const Landing: React.FC = () => {
+  const segmentOptions = [
+    {
+      label: 'Major Attacks',
+      value: 0,
+      icon: <BarChartOutlined />
+    },
+    {
+      label: 'Common Type',
+      value: 1,
+      icon: <PieChartOutlined />
+    }
+  ];
+  const [type, setType] = useState(0);
+
   const cardVariants = {
     offscreen: {
       y: 300
@@ -30,6 +50,23 @@ const Landing: React.FC = () => {
         bounce: 0.4,
         duration: 0.8
       }
+    }
+  };
+
+  /**
+   * Render chart according to type
+   *
+   * @param {number} type type chart
+   * @returns {React.FC} component to render
+   */
+  const previewChart = (type: number) => {
+    switch (type) {
+      case 0:
+        return <CyberAttackBar />;
+      case 1:
+        return <CommonAttackPie />;
+      default:
+        return <></>;
     }
   };
 
@@ -69,44 +106,52 @@ Digital Safety...`}
           </Col>
         </Row>
       </Card>
-      <Card style={{ backgroundColor: 'rgb(218 220 224)' }}>
-        <Space
+      <Row gutter={[20, 20]}>
+        <Col span={8}>
+          <Card style={{ backgroundColor: '#f0f2f5' }}>
+            {/* <Space
           style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}
           size={100}
-          align="center">
-          <motion.div initial="offscreen" whileInView="onscreen" variants={cardVariants}>
-            <Card style={{ width: 400 }} cover={<Image src={Investigate} preview={false} />}>
-              <Meta
-                title="Easy Preview "
-                description="Get Analytics relavant to your device protection"
-              />
-            </Card>
-          </motion.div>
-          <motion.div initial="offscreen" whileInView="onscreen" variants={cardVariants}>
-            <Card
-              style={{ width: 400 }}
-              cover={<Image src={IdentifyProblemImage} preview={false} />}>
-              <Meta title="Identify" description="Identify Problems according to Compliance" />
-            </Card>
-          </motion.div>
-          <motion.div initial="offscreen" whileInView="onscreen" variants={cardVariants}>
-            <Card
-              style={{ width: 400 }}
-              cover={<Image src={SecureInfrastructure} preview={false} />}>
-              <Meta title="Mitigate" description="Secure Your Infrastructure, ensuring policies" />
-            </Card>
-          </motion.div>
-        </Space>
-      </Card>
-      <Row gutter={[10, 10]}>
-        <Col sm={24} md={24} lg={12} xl={12}>
-          <motion.div initial="offscreen" whileInView="onscreen" variants={cardVariants}>
-            <CyberAttackBar />
-          </motion.div>
+          align="center"> */}
+            <motion.div initial="offscreen" whileInView="onscreen" variants={cardVariants}>
+              <Carousel autoplay style={{ width: 400 }}>
+                <Card cover={<Image src={Investigate} preview={false} />}>
+                  <Meta
+                    title="Easy Preview "
+                    description="Get Analytics relavant to your device protection"
+                  />
+                </Card>
+                <Card cover={<Image src={IdentifyProblemImage} preview={false} />}>
+                  <Meta title="Identify" description="Identify Problems according to Compliance" />
+                </Card>
+
+                <Card cover={<Image src={SecureInfrastructure} preview={false} />}>
+                  <Meta
+                    title="Mitigate"
+                    description="Secure Your Infrastructure, ensuring policies"
+                  />
+                </Card>
+              </Carousel>
+            </motion.div>
+
+            {/* </Space> */}
+          </Card>
         </Col>
-        <Col sm={24} md={24} lg={12} xl={12}>
+
+        <Col span={16}>
           <motion.div initial="offscreen" whileInView="onscreen" variants={cardVariants}>
-            <CommonAttackPie />
+            <Card
+              title="Cyber Attacks in Australia"
+              extra={
+                <Segmented
+                  options={segmentOptions}
+                  onChange={(chart) => {
+                    setType(chart as number);
+                  }}
+                />
+              }>
+              {previewChart(type)}
+            </Card>
           </motion.div>
         </Col>
       </Row>

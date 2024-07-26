@@ -21,7 +21,7 @@ const AppWhiteListing: React.FC = () => {
   const { search } = useLocation();
 
   const query = new URLSearchParams(search);
-
+  const [loading, setLoading] = useState(false);
   const {
     criticalityCount,
     criticalityCountLoading,
@@ -77,11 +77,15 @@ const AppWhiteListing: React.FC = () => {
    * When Id is changed fetch new reports
    */
   useEffect(() => {
-    if (id) {
-      dispatch(getCriticalityCount(id));
-      dispatch(getWhitelistedCount(id));
-      dispatch(getMaturityLevel(id));
-    }
+    (async () => {
+      if (id) {
+        setLoading(true);
+        dispatch(getCriticalityCount(id));
+        dispatch(getWhitelistedCount(id));
+        dispatch(getMaturityLevel(id));
+        setLoading(false);
+      }
+    })();
   }, [id]);
 
   /**
@@ -132,6 +136,7 @@ const AppWhiteListing: React.FC = () => {
             data={whitelistData}
             title={'Application by whitelisting status'}
             color={['#0c5720', '#0c3a57']}
+            loading={loading}
           />
         </Col>
         <Col span={12}>
@@ -139,6 +144,7 @@ const AppWhiteListing: React.FC = () => {
             data={criticalityData}
             title={'Criticality Count'}
             color={['#94481c', '#570f0c', '#c4b331', '#316616']}
+            loading={loading}
           />
         </Col>
         <Col span={12}>
@@ -146,6 +152,7 @@ const AppWhiteListing: React.FC = () => {
             data={maturityData}
             title={'Maturity Level By App Count'}
             color={['#c4b331', '#316616', '#570f0c', '#94481c']}
+            loading={loading}
           />
         </Col>
       </Row>

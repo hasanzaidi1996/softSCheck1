@@ -1,8 +1,9 @@
 import React from 'react';
 import { Bar } from '@ant-design/plots';
-import { Card } from 'antd';
+import { Card, Skeleton } from 'antd';
 import { NoDataPlaceHolder } from 'components';
 import { IBarChartProps } from './types';
+import { DotChartOutlined } from '@ant-design/icons';
 
 /**
  * Render Chart
@@ -22,7 +23,11 @@ const BarChart: React.FC<IBarChartProps> = (props: IBarChartProps) => {
   };
   return (
     <Card title={props.title}>
-      {Array.isArray(props.data) && props.data.length > 0 ? (
+      {props.loading ? (
+        <Skeleton.Node active={true} style={{ height: chartSize, width: 500 }}>
+          <DotChartOutlined style={{ fontSize: chartSize, color: '#bfbfbf' }} />
+        </Skeleton.Node>
+      ) : Array.isArray(props.data) && props.data.length > 0 ? (
         <Bar {...config} />
       ) : (
         <NoDataPlaceHolder.ChartPlaceholder height={chartSize} />

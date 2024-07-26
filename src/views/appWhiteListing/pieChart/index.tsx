@@ -1,8 +1,9 @@
 import React from 'react';
 import { Pie } from '@ant-design/plots';
 import { IPieChartProps } from './types';
-import { Card } from 'antd';
+import { Card, Skeleton } from 'antd';
 import { NoDataPlaceHolder } from 'components';
+import { DotChartOutlined } from '@ant-design/icons';
 
 /**
  * Render Chart
@@ -35,7 +36,11 @@ const PieChart: React.FC<IPieChartProps> = (props: IPieChartProps) => {
   };
   return (
     <Card title={props.title}>
-      {Array.isArray(props.data) && props.data.length > 0 ? (
+      {props.loading ? (
+        <Skeleton.Node active={true} style={{ height: chartSize, width: 500 }}>
+          <DotChartOutlined style={{ fontSize: chartSize, color: '#bfbfbf' }} />
+        </Skeleton.Node>
+      ) : Array.isArray(props.data) && props.data.length > 0 ? (
         <Pie {...config} />
       ) : (
         <NoDataPlaceHolder.ChartPlaceholder height={chartSize} />

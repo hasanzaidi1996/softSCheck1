@@ -48,12 +48,13 @@ const App: React.FC = () => {
         <div className="App">
           <Alert />
           <Routes>
+            <Route path="verify-email/:tokenId" element={<VerifyEmail />} />
+
             <Route path="auth" element={<AuthLayout />}>
               <Route path={'signup'} element={<SignUp />} />
               <Route path={'login'} element={<Login />} />
             </Route>
 
-            <Route path="verify-email/:tokenId" element={<VerifyEmail />} />
             <Route
               path="user"
               element={
