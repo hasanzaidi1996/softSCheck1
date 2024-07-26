@@ -80,9 +80,9 @@ const AppWhiteListing: React.FC = () => {
     (async () => {
       if (id) {
         setLoading(true);
-        dispatch(getCriticalityCount(id));
-        dispatch(getWhitelistedCount(id));
-        dispatch(getMaturityLevel(id));
+        await dispatch(getCriticalityCount(id));
+        await dispatch(getWhitelistedCount(id));
+        await dispatch(getMaturityLevel(id));
         setLoading(false);
       }
     })();
