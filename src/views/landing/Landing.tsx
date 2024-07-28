@@ -36,7 +36,6 @@ const Landing: React.FC = () => {
       <Card>
         <Row>
           <Col xs={24} md={12} lg={12} xl={12} xxl={12} span={12}>
-          <Col xs={24} md={12} lg={12} xl={12} xxl={12} span={12}>
             <Title color="#ffffff">
               <TypingAnimation
                 content={`Digital Transformation
@@ -63,7 +62,6 @@ Digital Safety...`}
               </motion.div>
             </Space>
           </Col>
-          <Col xs={24} md={12} lg={12} xl={12} xxl={12}>
           <Col xs={24} md={12} lg={12} xl={12} xxl={12}>
             <Image preview={false} src={LandingPerson} />
           </Col>
@@ -92,7 +90,6 @@ Digital Safety...`}
         <Col xs={24} md={12} lg={8} xl={6}>
           <Card style={{ backgroundColor: '#f0f2f5' }}>
             <motion.div initial="offscreen" whileInView="onscreen" variants={cardVariants}>
-              <Carousel autoplay style={{ width: '100%', maxWidth: '400px' }}>
               <Carousel autoplay style={{ width: '100%', maxWidth: '400px' }}>
                 <Card cover={<Image src={Investigate} preview={false} />}>
                   <Meta
