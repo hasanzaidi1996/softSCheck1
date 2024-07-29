@@ -22,6 +22,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import getItem from 'routing/getMenuItem';
 import CyberAttackBar from './components/CyberAttackBar';
 import CommonAttackPie from './components/CommonAttackPie';
+import { Footer } from 'antd/lib/layout/layout';
 const { Header, Content } = Layout;
 const { Title } = Typography;
 
@@ -168,6 +169,18 @@ const LandingLayout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
           </Card>
         </Sider>
       </Layout>
+      <Footer>
+        <Card
+          title={
+            <Title className="align-center navbar-padding" level={4}>
+              <Icon component={LogoIcon} /> Connecting Dots ...
+            </Title>
+          }
+          className="card-nobody"
+          style={{ padding: '0px', backgroundColor: '#ffd15c' }}
+          bodyStyle={{ display: 'none' }}
+        />
+      </Footer>
     </Layout>
   );
 };
