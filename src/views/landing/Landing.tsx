@@ -14,6 +14,7 @@ import {
   PlusCircleOutlined,
   TwitterOutlined
 } from '@ant-design/icons';
+import { NavLink } from 'react-router-dom';
 
 // import Meta from 'antd/lib/card/Meta';
 
@@ -139,9 +140,11 @@ Digital Safety...`}
             <Title level={2}>Assess Your Organizations Cyber Security Maturity </Title>
           </Col>
           <Col span={7} offset={11}>
-            <Button type="primary" size="large">
-              Get Started
-            </Button>
+            <NavLink to={'/auth/signup'}>
+              <Button type="primary" size="large">
+                Get Started
+              </Button>
+            </NavLink>
           </Col>
         </Row>
       </Card>
@@ -288,9 +291,11 @@ Digital Safety...`}
         title="Our List of Services does not end here. We'll adapt to your particular needs."
         style={{ padding: '-30px' }}
         extra={
-          <Button type="primary" size="large">
-            Start Now
-          </Button>
+          <NavLink to={'/auth/signup'}>
+            <Button type="primary" size="large">
+              Start Now
+            </Button>
+          </NavLink>
         }
       />
 
