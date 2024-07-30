@@ -162,9 +162,9 @@ const DashboardLayout: React.FC = () => {
             <div
               className="logo"
               onClick={() => {
-                if (authState.user?._id) {
-                  return navigate('/user');
-                }
+                // if (authState.user?._id) {
+                //   return navigate('/user');
+                // }
                 return navigate('/');
               }}>
               <Row gutter={[5, 5]}>
