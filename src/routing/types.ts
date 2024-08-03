@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { UserRoles } from 'types';
-import { ReactComponent as DashboardSvg } from '../assets/icons/Dashboard.svg';
+import DashboardSvg from '../assets/icons/Dashboard.svg?react';
 
 interface SiderRoutes {
   path: string;

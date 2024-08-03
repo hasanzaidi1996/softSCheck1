@@ -7,7 +7,7 @@ import { UserRoles } from 'types';
 import Report from 'views/report';
 import AppWhiteListing from 'views/appWhiteListing';
 import { SiderRoutes } from './types';
-import { ReactComponent as ProfileCog } from '../assets/icons/InfoCustom.svg';
+import ProfileCog from '../assets/icons/InfoCustom.svg?react';
 import { Check, Fingerprint, Lock, Microsoft, Monitor, Secure } from 'assets/icons';
 
 /**

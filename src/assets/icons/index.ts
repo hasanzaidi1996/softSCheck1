@@ -1,18 +1,20 @@
-import { ReactComponent as FileUploaderSvg } from 'assets/icons/FileUploader.svg';
-import { ReactComponent as InfoCustom } from './InfoCustom.svg';
-import { ReactComponent as SuccessIcon } from 'assets/icons/SuccessIcon.svg';
-import { ReactComponent as WarningIcon } from 'assets/icons/WarningIcon.svg';
-import { ReactComponent as LogoIcon } from 'assets/icons/logo.svg';
-import { ReactComponent as SearchCustom } from 'assets/icons/SearchCustom.svg';
-import { ReactComponent as RefreshCustom } from 'assets/icons/RefreshCustom.svg';
-import { ReactComponent as AddCustom } from 'assets/icons/AddCustom.svg';
-import { ReactComponent as Monitor } from 'assets/icons/Monitor.svg';
-import { ReactComponent as Fingerprint } from 'assets/icons/Fingerprint.svg';
-import { ReactComponent as Lock } from 'assets/icons/Lock.svg';
-import { ReactComponent as Microsoft } from 'assets/icons/Microsoft.svg';
-import { ReactComponent as Secure } from 'assets/icons/Secure.svg';
-import { ReactComponent as Check } from 'assets/icons/Check.svg';
-import { ReactComponent as Australia } from 'assets/icons/Australia.svg';
+/// <reference types="vite-plugin-svgr/client" />
+
+import FileUploaderSvg from 'assets/icons/FileUploader.svg?react';
+import InfoCustom from './InfoCustom.svg?react';
+import SuccessIcon from 'assets/icons/SuccessIcon.svg?react';
+import WarningIcon from 'assets/icons/WarningIcon.svg?react';
+import LogoIcon from 'assets/icons/logo.svg?react';
+import SearchCustom from 'assets/icons/SearchCustom.svg?react';
+import RefreshCustom from 'assets/icons/RefreshCustom.svg?react';
+import AddCustom from 'assets/icons/AddCustom.svg?react';
+import Monitor from 'assets/icons/Monitor.svg?react';
+import Fingerprint from 'assets/icons/Fingerprint.svg?react';
+import Lock from 'assets/icons/Lock.svg?react';
+import Microsoft from 'assets/icons/Microsoft.svg?react';
+import Secure from 'assets/icons/Secure.svg?react';
+import Check from 'assets/icons/Check.svg?react';
+import Australia from 'assets/icons/Australia.svg?react';
 
 export {
   InfoCustom,

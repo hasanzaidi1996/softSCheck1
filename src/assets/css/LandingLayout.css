@@ -13,19 +13,19 @@
 }
 
 .pattern-circle {
-  background-image: url('assets/img/pattern-2.jpg');
+  background-image: url('/src/assets/img/pattern-2.jpg');
   background-size: 100%;
   height: 200px;
 }
 
 .pattern-3 {
-  background-image: url('assets/img/pattern-5.jpg');
+  background-image: url('/src/assets/img/pattern-5.jpg');
   background-size: 100%;
   height: 200px;
 }
 
 .pattern-4 {
-  background-image: url('assets/img/pattern-4.jpg');
+  background-image: url('/src/assets/img/pattern-4.jpg');
   background-size: 100%;
   height: 200px;
 }
