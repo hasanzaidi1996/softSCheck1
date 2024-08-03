@@ -9,7 +9,11 @@ import LandingLayout from 'views/layout/LandingLayout';
 import TypingAnimation from './components/TypingAnimation';
 import { motion } from 'framer-motion';
 import {
+  CodeSandboxOutlined,
+  DatabaseOutlined,
+  DeploymentUnitOutlined,
   FacebookOutlined,
+  GlobalOutlined,
   InstagramOutlined,
   PlusCircleOutlined,
   TwitterOutlined
@@ -75,6 +79,7 @@ Digital Safety...`}
           </Col>
         </Row>
       </Card>
+
       <Card style={{ padding: '80px', backgroundColor: '#ffd15c' }}>
         <Row>
           <Col span={12}>
@@ -96,40 +101,52 @@ Digital Safety...`}
       </Card>
       <Card title={<Title level={2}>Our Expertise</Title>}>
         <Row gutter={[20, 20]}>
-          <Col span={9}>
-            <Card
-              className="pattern-circle"
-              style={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
-              <Title level={4} style={{ color: '#fff' }}>
+          <Col span={11} className="same-height-col">
+            <Card className="services-offer">
+              <Title level={4}>
+                <CodeSandboxOutlined />
                 Digital & Technology consulting
               </Title>
+              <Text>
+                Providing strategic guidance to enhance your digital footprint and optimize
+                technological solutions for sustained growth and innovation.
+              </Text>
             </Card>
           </Col>
-          <Col span={15}>
-            <Card
-              className="pattern-3"
-              style={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
-              <Title level={4} style={{ color: '#fff' }}>
+          <Col span={13} className="same-height-col">
+            <Card className="services-offer">
+              <Title level={4}>
+                <GlobalOutlined />
                 Cyber Security
               </Title>
+              <Text>
+                Safeguarding your digital assets with cutting-edge security measures, threat
+                mitigation strategies, and comprehensive risk assessments.
+              </Text>
             </Card>
           </Col>
-          <Col span={15}>
-            <Card
-              className="pattern-4"
-              style={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
-              <Title level={4} style={{ color: '#fff' }}>
+          <Col span={15} className="same-height-col">
+            <Card className="services-offer">
+              <Title level={4}>
+                <DatabaseOutlined />
                 Data Analytics & Business Intelligence
               </Title>
+              <Text>
+                Transforming raw data into actionable insights to drive informed decision-making and
+                achieve business objectives.
+              </Text>
             </Card>
           </Col>
-          <Col span={9}>
-            <Card
-              className="pattern-circle"
-              style={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
-              <Title level={4} style={{ color: '#fff' }}>
+          <Col span={9} className="same-height-col">
+            <Card className="services-offer">
+              <Title level={4}>
+                <DeploymentUnitOutlined />
                 Artificial Intelligence
               </Title>
+              <Text>
+                Leveraging AI technologies to automate processes, enhance customer experiences, and
+                deliver advanced predictive analytics for smarter business solutions.
+              </Text>
             </Card>
           </Col>
         </Row>
@@ -198,6 +215,18 @@ Digital Safety...`}
           </Col>
         </Row>
       </Card>
+      <Card
+        className="card-nobody"
+        title="Our List of Services does not end here. We'll adapt to your particular needs."
+        style={{ padding: '-30px' }}
+        extra={
+          <NavLink to={'/auth/signup'}>
+            <Button type="primary" size="large">
+              Start Now
+            </Button>
+          </NavLink>
+        }
+      />
       <Card className="faq-card">
         <Space
           className="faq-title"
@@ -215,7 +244,12 @@ Digital Safety...`}
             <Collapse
               style={{ width: '100%' }}
               expandIcon={({ isActive }) => {
-                return <PlusCircleOutlined style={{ fontSize: 20 }} rotate={isActive ? 90 : 0} />;
+                return (
+                  <PlusCircleOutlined
+                    style={{ fontSize: 20, color: '#ffd15c' }}
+                    rotate={isActive ? 90 : 0}
+                  />
+                );
               }}>
               <Panel key={1} header="How does good cyber security Operate" className="faq-panel">
                 <p>
@@ -249,10 +283,16 @@ Digital Safety...`}
               </Panel>
             </Collapse>
           </Col>
+
           <Col span={12}>
             <Collapse
               expandIcon={({ isActive }) => {
-                return <PlusCircleOutlined style={{ fontSize: 20 }} rotate={isActive ? 90 : 0} />;
+                return (
+                  <PlusCircleOutlined
+                    style={{ fontSize: 20, color: '#ffd15c' }}
+                    rotate={isActive ? 90 : 0}
+                  />
+                );
               }}>
               <Panel key={1} header="What is Cyber Security" className="faq-panel">
                 <p>
@@ -285,19 +325,6 @@ Digital Safety...`}
           </Col>
         </Row>
       </Card>
-
-      <Card
-        className="card-nobody"
-        title="Our List of Services does not end here. We'll adapt to your particular needs."
-        style={{ padding: '-30px' }}
-        extra={
-          <NavLink to={'/auth/signup'}>
-            <Button type="primary" size="large">
-              Start Now
-            </Button>
-          </NavLink>
-        }
-      />
 
       {/* <Row gutter={10} justify={'center'}>
         <Col xs={24} md={12} lg={8} xl={6}>
