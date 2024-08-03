@@ -1,4 +1,4 @@
-import { Button, Card, Col, Collapse, Image, Row, Space, Typography } from 'antd';
+import { Button, Card, Col, Collapse, Grid, Image, Row, Space, Typography } from 'antd';
 import React from 'react';
 import LandingPerson from '../../assets/img/Landing-Page-Person.jpg';
 // import IdentifyProblemImage from '../../assets/img/problem-identification.jpg';
@@ -19,6 +19,7 @@ import {
   TwitterOutlined
 } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
+const { useBreakpoint } = Grid;
 
 // import Meta from 'antd/lib/card/Meta';
 
@@ -29,6 +30,7 @@ const { Panel } = Collapse;
  * @returns {React.FC} - User Profile Card Component
  */
 const Landing: React.FC = () => {
+  const { sm, md } = useBreakpoint();
   // const cardVariants = {
   //   offscreen: {
   //     y: 300
@@ -80,12 +82,12 @@ Digital Safety...`}
         </Row>
       </Card>
 
-      <Card style={{ padding: '80px', backgroundColor: '#ffd15c' }}>
+      <Card style={{ padding: sm ? '20px' : md ? '80px' : '80px', backgroundColor: '#ffd15c' }}>
         <Row>
-          <Col span={12}>
+          <Col sm={24} lg={12}>
             <Title>With the Right Advice Great Things Can Happen</Title>
           </Col>
-          <Col span={12}>
+          <Col sm={24} lg={12}>
             <Paragraph>
               <Text strong>Connecting Dots...</Text> we stand at the intersection of innovation and
               reliability, dedicated to driving growth and efficiency for our partners, Join us in
@@ -101,7 +103,7 @@ Digital Safety...`}
       </Card>
       <Card title={<Title level={2}>Our Expertise</Title>}>
         <Row gutter={[20, 20]}>
-          <Col span={11} className="same-height-col">
+          <Col sm={24} lg={11} className="same-height-col">
             <Card className="services-offer">
               <Title level={4}>
                 <CodeSandboxOutlined />
@@ -113,7 +115,7 @@ Digital Safety...`}
               </Text>
             </Card>
           </Col>
-          <Col span={13} className="same-height-col">
+          <Col sm={24} lg={13} className="same-height-col">
             <Card className="services-offer">
               <Title level={4}>
                 <GlobalOutlined />
@@ -125,7 +127,7 @@ Digital Safety...`}
               </Text>
             </Card>
           </Col>
-          <Col span={15} className="same-height-col">
+          <Col sm={24} lg={12} className="same-height-col">
             <Card className="services-offer">
               <Title level={4}>
                 <DatabaseOutlined />
@@ -137,7 +139,7 @@ Digital Safety...`}
               </Text>
             </Card>
           </Col>
-          <Col span={9} className="same-height-col">
+          <Col sm={24} lg={12} className="same-height-col">
             <Card className="services-offer">
               <Title level={4}>
                 <DeploymentUnitOutlined />
@@ -168,7 +170,7 @@ Digital Safety...`}
       <Card className="services-container">
         <Title level={3}>Cyber Security Made Easy</Title>
         <Row>
-          <Col span={20} offset={4}>
+          <Col sm={{ span: 24 }} lg={{ span: 20, offset: 4 }}>
             <div className="service service1">
               <Row>
                 <Col span={2}>
@@ -183,7 +185,7 @@ Digital Safety...`}
               </Row>
             </div>
           </Col>
-          <Col span={18} offset={6}>
+          <Col sm={{ span: 24 }} lg={{ span: 18, offset: 6 }}>
             <div className="service service2">
               <Row>
                 <Col span={2}>
@@ -198,7 +200,7 @@ Digital Safety...`}
               </Row>
             </div>
           </Col>
-          <Col span={16} offset={8}>
+          <Col sm={{ span: 24 }} lg={{ span: 16, offset: 8 }}>
             <div className="service service3">
               <Row>
                 <Col span={2}>
@@ -240,7 +242,7 @@ Digital Safety...`}
           <Title level={2}>Frequently Asked Questions</Title>
         </Space>
         <Row>
-          <Col span={12}>
+          <Col sm={24} md={12}>
             <Collapse
               style={{ width: '100%' }}
               expandIcon={({ isActive }) => {
@@ -284,8 +286,9 @@ Digital Safety...`}
             </Collapse>
           </Col>
 
-          <Col span={12}>
+          <Col sm={24} md={12}>
             <Collapse
+              style={{ width: '100%' }}
               expandIcon={({ isActive }) => {
                 return (
                   <PlusCircleOutlined

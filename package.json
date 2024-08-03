@@ -62,7 +62,7 @@
     "lint:fix": "eslint --fix",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
     "less": "lessc --js src/theme/theme-customized.less src/theme/theme-customized.css",
-    "dev": "npm run less && cross-env GENERATE_SOURCEMAP=false REACT_APP_ENVIRONMENT=\"development\" vite"
+    "dev": "npm run less && cross-env GENERATE_SOURCEMAP=false REACT_APP_ENVIRONMENT=\"development\" vite --host"
   },
   "eslintConfig": {
     "extends": [

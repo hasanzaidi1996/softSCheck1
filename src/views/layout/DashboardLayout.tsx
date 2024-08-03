@@ -75,9 +75,7 @@ const DashboardLayout: React.FC = () => {
       let label = '';
       siderClientRoutes.forEach((route, index) => {
         const path = route.path;
-        console.log('here');
         if (currentWindow.indexOf(path) !== unAvailable) {
-          console.log('index', index);
           setSelectedKey(index.toString());
           label += `${route.label} `;
           brandFound = true;

@@ -1,7 +1,7 @@
 .auth-parent-container {
   height: 100vh;
   background-color: #6e6e6e; /* 0b1115 */
-  background-image: url('assets/img/bg-pattern.svg');
+  background-image: url('/src/assets/img/bg-pattern.svg');
   background-size: 100%;
   background-position: left top;
   background-repeat: unset;

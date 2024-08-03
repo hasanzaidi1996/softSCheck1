@@ -7,7 +7,7 @@
   height: 100vh;
   position: sticky;
   /* Modal in 20*/
-  /* z-index: 19; */
+  z-index: 19;
   top: 0;
   right: 0;
 }
@@ -22,7 +22,7 @@
 
 .services-container {
   background-color: #242527;
-  padding: 40px;
+  padding: 0px;
   background-image: url('/src/assets/img/zig-zag.svg');
   background-repeat: no-repeat;
   background-size: 200px;
@@ -38,7 +38,7 @@
   color: #000;
   padding: 20px;
   border-radius: 10px;
-  width: 550px;
+  max-width: 550px;
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -81,6 +81,7 @@
 
 .faq-panel {
   background-color: #171717;
+  width: 100%;
 }
 
 .faq-panel span {
@@ -105,4 +106,43 @@
 .same-height-card,
 .same-height-col {
   display: flex;
+}
+
+/*
+Infinite Scroll
+*/
+
+/* Vertical Auto-Scrolling */
+.vertical-marquee {
+  height: 200px; /* Adjust based on your needs */
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.marquee-content {
+  position: absolute;
+  top: 2%;
+  animation: vertical-marquee 20s linear infinite;
+}
+
+.vertical-marquee p {
+  padding: 0;
+  height: 40px;
+  margin: 0;
+}
+
+@keyframes vertical-marquee {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: -300%; /* Adjust based on the number of lines */
+  }
+}
+
+/* Pause on Hover */
+.marquee:hover p,
+.vertical-marquee:hover .marquee-content {
+  animation-play-state: paused;
 }

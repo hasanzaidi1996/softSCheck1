@@ -1,14 +1,14 @@
 import {
-  BarChartOutlined,
   CaretDownFilled,
+  CaretLeftOutlined,
+  CaretRightOutlined,
   LoginOutlined,
   LogoutOutlined,
-  PieChartOutlined,
   UserAddOutlined,
   UserOutlined
 } from '@ant-design/icons';
 import Icon from '@ant-design/icons/lib/components/Icon';
-import { Button, Card, Col, Dropdown, Layout, Row, Segmented, Space, Typography } from 'antd';
+import { Button, Card, Col, Dropdown, Grid, Layout, Row, Space, Typography } from 'antd';
 import Sider from 'antd/lib/layout/Sider';
 import { logout } from 'appRedux/actions/authAction';
 import { AuthSelector } from 'appRedux/reducers';
@@ -16,15 +16,15 @@ import store from 'appRedux/store';
 import { LogoIcon } from 'assets/icons';
 import isAuthorized from 'authorization/RouteAuthorized';
 import { CustomMenu, ScalableButton } from 'components';
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 import getItem from 'routing/getMenuItem';
 import CyberAttackBar from './components/CyberAttackBar';
-import CommonAttackPie from './components/CommonAttackPie';
 import { Footer } from 'antd/lib/layout/layout';
 const { Header, Content } = Layout;
 const { Title } = Typography;
+const { useBreakpoint } = Grid;
 
 interface ILayoutProps {
   children: ReactNode;
@@ -37,38 +37,45 @@ interface ILayoutProps {
  * @returns {React.FC<ILayoutProps>} layout for landing
  */
 const LandingLayout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
+  const { md, sm } = useBreakpoint();
+
   const location = useLocation();
   const authState = useSelector(AuthSelector);
-  const segmentOptions = [
-    {
-      label: 'Major Attacks',
-      value: 0,
-      icon: <BarChartOutlined />
-    },
-    {
-      label: 'Common Type',
-      value: 1,
-      icon: <PieChartOutlined />
-    }
-  ];
-  const [type, setType] = useState(0);
+  const [collapsed, setCollapsed] = useState(true);
 
-  /**
-   * Render chart according to type
-   *
-   * @param {number} type type chart
-   * @returns {React.FC} component to render
-   */
-  const previewChart = (type: number) => {
-    switch (type) {
-      case 0:
-        return <CyberAttackBar />;
-      case 1:
-        return <CommonAttackPie />;
-      default:
-        return <></>;
-    }
-  };
+  useEffect(() => {
+    md ? setCollapsed(false) : setCollapsed(true);
+  }, [md]);
+  // const segmentOptions = [
+  //   {
+  //     label: 'Major Attacks',
+  //     value: 0,
+  //     icon: <BarChartOutlined />
+  //   },
+  //   {
+  //     label: 'Common Type',
+  //     value: 1,
+  //     icon: <PieChartOutlined />
+  //   }
+  // ];
+  // const [type, setType] = useState(0);
+
+  // /**
+  //  * Render chart according to type
+  //  *
+  //  * @param {number} type type chart
+  //  * @returns {React.FC} component to render
+  //  */
+  // const previewChart = (type: number) => {
+  //   switch (type) {
+  //     case 0:
+  //       return <CyberAttackBar />;
+  //     case 1:
+  //       return <CommonAttackPie />;
+  //     default:
+  //       return <></>;
+  //   }
+  // };
 
   /**
    * Account Tab
@@ -117,7 +124,6 @@ const LandingLayout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
       </>
     );
   };
-
   return (
     <Layout className={`site-layout`}>
       <Header className="site-layout-background">
@@ -154,19 +160,44 @@ const LandingLayout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
         <Layout>
           <Content>{props.children}</Content>
         </Layout>
-        <Sider width={'25%'} className="landing-sider">
-          <Card
-            style={{ height: '100%', borderRight: 0 }}
-            extra={
-              <Segmented
-                options={segmentOptions}
-                onChange={(chart) => {
-                  setType(chart as number);
-                }}
-              />
-            }>
-            {previewChart(type)}
-          </Card>
+        <Sider
+          width={'25%'}
+          collapsedWidth={20}
+          style={!sm ? { display: 'none' } : {}}
+          className="landing-sider"
+          collapsed={collapsed}
+          breakpoint="lg">
+          {collapsed ? (
+            <CaretLeftOutlined
+              style={{ color: '#fff', fontSize: 20 }}
+              onClick={() => {
+                setCollapsed(false);
+              }}
+            />
+          ) : (
+            <CaretRightOutlined
+              style={{ color: '#fff', fontSize: 20 }}
+              onClick={() => {
+                setCollapsed(true);
+              }}
+            />
+          )}
+
+          {!collapsed && (
+            <Card
+              style={{ height: '100%', borderRight: 0 }}
+              // extra={
+              //   <Segmented
+              //     options={segmentOptions}
+              //     onChange={(chart) => {
+              //       setType(chart as number);
+              //     }}
+              //   />
+              // }
+            >
+              <CyberAttackBar />
+            </Card>
+          )}
         </Sider>
       </Layout>
       <Footer>
