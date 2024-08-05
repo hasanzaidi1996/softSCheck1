@@ -114,7 +114,8 @@ Infinite Scroll
 
 /* Vertical Auto-Scrolling */
 .vertical-marquee {
-  height: 200px; /* Adjust based on your needs */
+  min-height: 200px; /* Adjust based on your needs */
+  height: 500px; /* Adjust based on your needs */
   overflow: hidden;
   position: relative;
   box-sizing: border-box;
