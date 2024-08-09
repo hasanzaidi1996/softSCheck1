@@ -37,7 +37,7 @@ interface ILayoutProps {
  * @returns {React.FC<ILayoutProps>} layout for landing
  */
 const LandingLayout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
-  const { md, sm } = useBreakpoint();
+  const { md, lg } = useBreakpoint();
 
   const location = useLocation();
   const authState = useSelector(AuthSelector);
@@ -124,6 +124,9 @@ const LandingLayout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
       </>
     );
   };
+
+  const smExpandedLayoutOpacity = 0.3;
+  const mdUpExpandedLayoutOpacity = 1;
   return (
     <Layout className={`site-layout`}>
       <Header className="site-layout-background">
@@ -157,13 +160,15 @@ const LandingLayout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
         </Row>
       </Header>
       <Layout hasSider>
-        <Layout>
+        <Layout
+          style={{
+            opacity: !md && !collapsed ? smExpandedLayoutOpacity : mdUpExpandedLayoutOpacity
+          }}>
           <Content>{props.children}</Content>
         </Layout>
         <Sider
-          width={'25%'}
+          width={lg ? '25%' : md ? '45%' : '100%'}
           collapsedWidth={20}
-          style={!sm ? { display: 'none' } : {}}
           className="landing-sider"
           collapsed={collapsed}
           breakpoint="lg">

@@ -30,7 +30,7 @@ const { Panel } = Collapse;
  * @returns {React.FC} - User Profile Card Component
  */
 const Landing: React.FC = () => {
-  const { sm, md } = useBreakpoint();
+  const { sm, md, xs } = useBreakpoint();
   // const cardVariants = {
   //   offscreen: {
   //     y: 300
@@ -82,7 +82,8 @@ Digital Safety...`}
         </Row>
       </Card>
 
-      <Card style={{ padding: sm ? '20px' : md ? '80px' : '80px', backgroundColor: '#ffd15c' }}>
+      <Card
+        style={{ padding: md ? '80px' : sm || xs ? '15px' : '80px', backgroundColor: '#ffd15c' }}>
         <Row>
           <Col sm={24} lg={12}>
             <Title>With the Right Advice Great Things Can Happen</Title>
