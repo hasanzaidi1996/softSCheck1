@@ -184,17 +184,7 @@ const LandingLayout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
           )}
 
           {!collapsed && (
-            <Card
-              style={{ height: '100%', borderRight: 0 }}
-              // extra={
-              //   <Segmented
-              //     options={segmentOptions}
-              //     onChange={(chart) => {
-              //       setType(chart as number);
-              //     }}
-              //   />
-              // }
-            >
+            <Card style={{ borderRight: 0 }}>
               <CyberAttackBar />
             </Card>
           )}

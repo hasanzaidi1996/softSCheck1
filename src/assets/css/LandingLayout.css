@@ -4,7 +4,7 @@
 
 .landing-sider {
   /* overflow: auto; */
-  height: 100vh;
+  height: 100%;
   position: sticky;
   /* Modal in 20*/
   z-index: 19;
@@ -115,7 +115,7 @@ Infinite Scroll
 /* Vertical Auto-Scrolling */
 .vertical-marquee {
   min-height: 200px; /* Adjust based on your needs */
-  height: 500px; /* Adjust based on your needs */
+  height: 240px; /* Adjust based on your needs */
   overflow: hidden;
   position: relative;
   box-sizing: border-box;
