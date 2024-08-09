@@ -34,7 +34,7 @@ const AppWhiteListing: React.FC = () => {
   } = useSelector(ReportSelector);
   const dispatch = useAppDispatch();
   const [id, setId] = useState<string | undefined>(() => {
-    return query.get('id') || undefined;
+    return query.get('id') ?? reports?.[0]._id ?? undefined;
   });
 
   const items =

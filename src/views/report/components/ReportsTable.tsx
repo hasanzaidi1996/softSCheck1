@@ -17,7 +17,6 @@ import UploadReportModal from './UploadReportModal';
 const ReportsTable: React.FC<IReportTableProps> = (props: IReportTableProps) => {
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
   const [search, setSearch] = useState('');
 
   const tableData =
@@ -38,16 +37,14 @@ const ReportsTable: React.FC<IReportTableProps> = (props: IReportTableProps) => 
   };
   return (
     <>
-      <UploadReportModal open={modalOpen} setOpen={setModalOpen} />
+      <Card title="Upload Report">
+        <UploadReportModal />
+      </Card>
       <Card>
         <TableToolBar
           search
           refresh
-          add
           refreshEventListener={refreshReports}
-          addEventListener={() => {
-            setModalOpen(true);
-          }}
           searchFieldHandler={(e) => {
             setSearch(e.target.value);
           }}
