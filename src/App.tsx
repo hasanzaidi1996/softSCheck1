@@ -4,7 +4,7 @@ import '@fontsource/chakra-petch';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { siderClientRoutes } from './routing';
 import { SiderRoutes } from './routing/types';
-import { AuthLayout, DashboardLayout, Login, SignUp, VerifyEmail } from 'views';
+import { AuthLayout, DashboardLayout, VerifyEmail } from 'views';
 
 // redux
 import { Provider } from 'react-redux';
@@ -14,7 +14,7 @@ import store from 'appRedux/store';
 // middleware
 import RequireAuth from './utils/RequireAuth';
 import { Alert } from 'components';
-import { Landing } from 'views/landing/Landing';
+// import { Landing } from 'views/landing/Landing';
 
 /**
  * Main App
@@ -50,10 +50,7 @@ const App: React.FC = () => {
           <Routes>
             <Route path="verify-email/:tokenId" element={<VerifyEmail />} />
 
-            <Route path="auth" element={<AuthLayout />}>
-              <Route path={'signup'} element={<SignUp />} />
-              <Route path={'login'} element={<Login />} />
-            </Route>
+            <Route path="*" element={<AuthLayout />} />
 
             <Route
               path="user"
@@ -64,7 +61,7 @@ const App: React.FC = () => {
               }>
               {developRoutes(siderClientRoutes)}
             </Route>
-            <Route path="*" element={<Landing />} />
+            {/* <Route path="*" element={<Landing />} /> */}
           </Routes>
         </div>
       </BrowserRouter>

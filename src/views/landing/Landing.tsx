@@ -160,7 +160,7 @@ Digital Safety...`}
             <Title level={2}>Assess Your Organizations Cyber Security Maturity </Title>
           </Col>
           <Col span={7} offset={11}>
-            <NavLink to={'/auth/signup'}>
+            <NavLink to={'/signup'}>
               <Button type="primary" size="large">
                 Get Started
               </Button>
@@ -223,7 +223,7 @@ Digital Safety...`}
         title="Our List of Services does not end here. We'll adapt to your particular needs."
         style={{ padding: '-30px' }}
         extra={
-          <NavLink to={'/auth/signup'}>
+          <NavLink to={'/signup'}>
             <Button type="primary" size="large">
               Start Now
             </Button>

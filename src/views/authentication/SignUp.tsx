@@ -146,7 +146,7 @@ const SignUp: React.FC = () => {
           <Form.Item>
             <Row gutter={18} justify={'space-between'} align="bottom">
               <Col span={12}>
-                <NavLink to={'/auth/login'}>
+                <NavLink to={'/'}>
                   <ScalableButton block>Login</ScalableButton>
                 </NavLink>
               </Col>
