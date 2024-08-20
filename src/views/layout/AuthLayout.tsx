@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Row, Col, Image, Typography, Grid, Layout } from 'antd';
-import CyMainLogo from '../../assets/img/logo.png';
+import CyMainLogo from '../../assets/icons/LogoWithName.svg';
 import { TwitterSquareFilled, LinkedinFilled } from '@ant-design/icons';
 import { Loader } from 'components';
 import Login from '../authentication/Login';
@@ -63,7 +63,7 @@ const AuthLayout: React.FC = () => {
             <Image
               className="auth-logo-image"
               style={{
-                width: 100
+                width: 400
               }}
               src={CyMainLogo}
               preview={false}
