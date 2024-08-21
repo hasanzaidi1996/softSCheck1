@@ -1,14 +1,23 @@
-import getItem from './getMenuItem';
-import { Link } from 'react-router-dom';
 import Icon from '@ant-design/icons';
 import type { MenuProps } from 'antd';
+import { Link } from 'react-router-dom';
+import getItem from './getMenuItem';
 
+import {
+  Backup,
+  Check,
+  Fingerprint,
+  Lock,
+  Microsoft,
+  Monitor,
+  PrivilegeLogo,
+  Secure
+} from 'assets/icons';
 import { UserRoles } from 'types';
-import Report from 'views/report';
 import AppWhiteListing from 'views/appWhiteListing';
-import { SiderRoutes } from './types';
+import Report from 'views/report';
 import ProfileCog from '../assets/icons/InfoCustom.svg?react';
-import { Check, Fingerprint, Lock, Microsoft, Monitor, Secure } from 'assets/icons';
+import { SiderRoutes } from './types';
 
 /**
  * Icons
@@ -78,6 +87,24 @@ export const siderClientRoutes: Array<SiderRoutes> = [
     label: 'Patch OS',
     id: 'Patch OS',
     icon: Check,
+    authenticatedUsers: [UserRoles.Client],
+    disabled: true
+  },
+  {
+    path: 'restrict-privilege',
+    component: <></>,
+    label: 'Restrict Priviledges',
+    id: 'Restrict Priviledges',
+    icon: PrivilegeLogo,
+    authenticatedUsers: [UserRoles.Client],
+    disabled: true
+  },
+  {
+    path: 'daily-backup',
+    component: <></>,
+    label: 'Daily Backups',
+    id: 'Daily Backups',
+    icon: Backup,
     authenticatedUsers: [UserRoles.Client],
     disabled: true
   }
