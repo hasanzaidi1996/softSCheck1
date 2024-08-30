@@ -1,17 +1,17 @@
 import { Col, Row, Select, Typography } from 'antd';
-import React, { useEffect, useState } from 'react';
-import PieChart from './pieChart';
-import { useAppDispatch } from 'appRedux/store';
-import { useSelector } from 'react-redux';
-import { ReportSelector } from 'appRedux/reducers';
 import {
   getCriticalityCount,
   getMaturityLevel,
   getReports,
   getWhitelistedCount
 } from 'appRedux/actions/reportAction';
-import BarChart from './barChart';
+import { ReportSelector } from 'appRedux/reducers';
+import { useAppDispatch } from 'appRedux/store';
+import { BarChart, PieChart } from 'charts';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import { ComplianceCount } from './complianceCount/ComplianceCount';
 
 /**
  *
@@ -135,7 +135,7 @@ const AppWhiteListing: React.FC = () => {
           <PieChart
             data={whitelistData}
             title={'Application by whitelisting status'}
-            color={['#0c5720', '#0c3a57']}
+            palatte={'puOr'}
             loading={loading}
           />
         </Col>
@@ -143,7 +143,7 @@ const AppWhiteListing: React.FC = () => {
           <PieChart
             data={criticalityData}
             title={'Criticality Count'}
-            color={['#94481c', '#570f0c', '#c4b331', '#316616']}
+            palatte={'dark2'}
             loading={loading}
           />
         </Col>
@@ -154,6 +154,9 @@ const AppWhiteListing: React.FC = () => {
             color={['#c4b331', '#316616', '#570f0c', '#94481c']}
             loading={loading}
           />
+        </Col>
+        <Col sm={24} md={24} lg={12} xl={12} xxl={12}>
+          <ComplianceCount loading={loading} reportId={id} />
         </Col>
       </Row>
     </>

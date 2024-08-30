@@ -15,6 +15,7 @@ import {
 } from 'assets/icons';
 import { UserRoles } from 'types';
 import AppWhiteListing from 'views/appWhiteListing';
+import PatchApplication from 'views/patchApp';
 import Report from 'views/report';
 import ProfileCog from '../assets/icons/InfoCustom.svg?react';
 import { SiderRoutes } from './types';
@@ -47,12 +48,12 @@ export const siderClientRoutes: Array<SiderRoutes> = [
   },
   {
     path: 'patch-app',
-    component: <></>,
+    component: <PatchApplication />,
     label: 'Patch App',
-    id: 'App Whitelisting',
+    id: 'Patch App',
     icon: Secure,
     authenticatedUsers: [UserRoles.Client],
-    disabled: true
+    disabled: false
   },
   {
     path: 'ms-macro',

@@ -1,25 +1,33 @@
-import React from 'react';
-import { Bar } from '@ant-design/plots';
+import { DotChartOutlined } from '@ant-design/icons';
+import { Pie } from '@ant-design/plots';
 import { Card, Skeleton } from 'antd';
 import { NoDataPlaceHolder } from 'components';
-import { IBarChartProps } from './types';
-import { DotChartOutlined } from '@ant-design/icons';
+import React from 'react';
+import { IPieChartProps } from './types';
 
 /**
  * Render Chart
  *
- * @param {IBarChartProps} props data
+ * @param {IPieChartProps} props data
  * @returns {React.FC} chart to render
  */
-const BarChart: React.FC<IBarChartProps> = (props: IBarChartProps) => {
+const PieChart: React.FC<IPieChartProps> = (props: IPieChartProps) => {
+  const { data, loading, palatte, title, ...rest } = props;
+
   const chartSize = 300;
 
   const config = {
     data: props.data,
-    xField: 'count',
-    yField: 'label',
-    seriesField: 'label',
-    color: props.color
+    angleField: 'value',
+    colorField: 'type',
+    height: chartSize,
+    label: {
+      text: 'value',
+      style: {
+        fontWeight: 'bold'
+      }
+    },
+    scale: { color: { palette: props.palatte } }
   };
   return (
     <Card title={props.title}>
@@ -28,7 +36,7 @@ const BarChart: React.FC<IBarChartProps> = (props: IBarChartProps) => {
           <DotChartOutlined style={{ fontSize: chartSize, color: '#bfbfbf' }} />
         </Skeleton.Node>
       ) : Array.isArray(props.data) && props.data.length > 0 ? (
-        <Bar {...config} />
+        <Pie {...config} {...rest} />
       ) : (
         <NoDataPlaceHolder.ChartPlaceholder height={chartSize} />
       )}
@@ -36,4 +44,4 @@ const BarChart: React.FC<IBarChartProps> = (props: IBarChartProps) => {
   );
 };
 
-export default BarChart;
+export default PieChart;

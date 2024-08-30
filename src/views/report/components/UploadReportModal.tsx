@@ -1,10 +1,10 @@
-import { Button, UploadFile, UploadProps, Typography, Space } from 'antd';
-import React, { useState } from 'react';
-import { FileUploader } from 'components';
-import { useAppDispatch } from 'appRedux/store';
-import { getTemplate, uploadReports } from 'appRedux/actions/reportAction';
+import { CloudUploadOutlined } from '@ant-design/icons';
+import { Button, UploadFile, UploadProps } from 'antd';
 import { RcFile } from 'antd/lib/upload';
-import { CloudUploadOutlined, DownloadOutlined, InfoCircleTwoTone } from '@ant-design/icons';
+import { uploadReports } from 'appRedux/actions/reportAction';
+import { useAppDispatch } from 'appRedux/store';
+import { FileUploader } from 'components';
+import React, { useState } from 'react';
 
 /**
  * Modal to upload report
@@ -61,7 +61,7 @@ const UploadReportModal: React.FC = () => {
     //     </Button>
     //   ]}>
     <>
-      <Space>
+      {/* <Space>
         <InfoCircleTwoTone twoToneColor={'#fcbc3e'} style={{ fontSize: 25 }} />
         <Typography.Text type="warning">
           Download the template by clicking the button, fill out the required fields properly and
@@ -74,7 +74,7 @@ const UploadReportModal: React.FC = () => {
           icon={<DownloadOutlined />}>
           Download Template
         </Button>
-      </Space>
+      </Space> */}
       <FileUploader
         draggerText={`Support for a single file upload or Drag and Drop file can be uploaded`}
         accept=".xlsx"

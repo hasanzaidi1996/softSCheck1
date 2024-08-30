@@ -4,6 +4,6 @@ export interface IPieChartProps {
     value: number;
   }[];
   title: string;
-  color: string[];
+  palatte: string;
   loading: boolean;
 }
