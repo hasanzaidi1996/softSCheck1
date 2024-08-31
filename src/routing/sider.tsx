@@ -15,6 +15,7 @@ import {
 } from 'assets/icons';
 import { UserRoles } from 'types';
 import AppWhiteListing from 'views/appWhiteListing';
+import MacroMSOffice from 'views/macroMSOffice';
 import PatchApplication from 'views/patchApp';
 import Report from 'views/report';
 import ProfileCog from '../assets/icons/InfoCustom.svg?react';
@@ -57,12 +58,12 @@ export const siderClientRoutes: Array<SiderRoutes> = [
   },
   {
     path: 'ms-macro',
-    component: <></>,
+    component: <MacroMSOffice />,
     label: 'Macro MS Office',
     id: 'Macro MS Office',
     icon: Microsoft,
     authenticatedUsers: [UserRoles.Client],
-    disabled: true
+    disabled: false
   },
   {
     path: 'app-hardening',

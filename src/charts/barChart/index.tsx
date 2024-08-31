@@ -18,9 +18,9 @@ const BarChart: React.FC<IBarChartProps> = (props: IBarChartProps) => {
     data: props.data,
     xField: 'label',
     yField: 'count',
-    colorField: 'label',
+    colorField: props.colorField ?? 'label',
     legend: {
-      color: { size: 72, autoWrap: true, maxRows: 3, cols: 6 }
+      color: { size: 50, autoWrap: true, maxRows: 3, cols: 5 }
     }
   };
   return (
@@ -30,7 +30,7 @@ const BarChart: React.FC<IBarChartProps> = (props: IBarChartProps) => {
           <DotChartOutlined style={{ fontSize: chartSize, color: '#bfbfbf' }} />
         </Skeleton.Node>
       ) : Array.isArray(props.data) && props.data.length > 0 ? (
-        <Bar {...config} />
+        <Bar {...config} scale={props.palatte ? { color: { palette: props.palatte } } : {}} />
       ) : (
         <NoDataPlaceHolder.ChartPlaceholder height={chartSize} />
       )}

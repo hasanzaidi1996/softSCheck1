@@ -151,7 +151,7 @@ const AppWhiteListing: React.FC = () => {
           <BarChart
             data={maturityData}
             title={'Maturity Level By App Count'}
-            color={['#c4b331', '#316616', '#570f0c', '#94481c']}
+            palatte="set1"
             loading={loading}
           />
         </Col>

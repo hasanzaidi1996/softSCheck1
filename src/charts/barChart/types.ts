@@ -4,6 +4,7 @@ export interface IBarChartProps {
     count: number;
   }[];
   title: string;
-  color: string[];
+  palatte: string;
+  colorField?: 'label' | 'count';
   loading: boolean;
 }
