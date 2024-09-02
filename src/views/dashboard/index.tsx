@@ -4,6 +4,8 @@ import { Button, Card, Col, DatePicker, DatePickerProps, Row, Skeleton, Space } 
 import { RangePickerProps } from 'antd/lib/date-picker';
 import { PieChart } from 'charts';
 import ColumnChart from 'charts/columChart';
+import _ from 'lodash';
+import moment, { Moment } from 'moment';
 import React, { useState } from 'react';
 
 const { RangePicker } = DatePicker;
@@ -15,6 +17,7 @@ const { RangePicker } = DatePicker;
  */
 const Dashboard: React.FC = () => {
   const [loading, setLoading] = useState(false);
+  const [range, setRange] = useState<Record<string, Moment>>({});
   const chartSize = 300;
   /**
    * Sleep function for temprrary skeleton preview
@@ -30,15 +33,38 @@ const Dashboard: React.FC = () => {
   };
 
   /**
+   * Create instance of Moment
+   *
+   * @param {string} month variable
+   * @returns {Moment}
+   */
+  const monthToMoment = (month: string): Moment => {
+    return moment(month, 'MMMM');
+  };
+
+  /**
    * Update the data on seleciton of range
    *
    * @param {DatePickerProps['value'] | RangePickerProps['value']} value range selection value
    *
    */
-  const rangeSelection = async (value: DatePickerProps['value'] | RangePickerProps['value']) => {
-    setLoading(true);
-    await sleep(2000);
-    setLoading(false);
+  const rangeSelection = async (value: [Moment | null, Moment | null] | null) => {
+    if (value) {
+      setLoading(true);
+      const [start, end] = value;
+      const startMonth = start?.startOf('month');
+      const endMonth = end?.endOf('month');
+      if (startMonth && endMonth) {
+        setRange({ start: startMonth, end: endMonth });
+      } else {
+        setRange({});
+      }
+
+      await sleep(2000);
+      setLoading(false);
+    } else {
+      setRange({});
+    }
   };
 
   const complianceStatusData = [
@@ -162,8 +188,17 @@ const Dashboard: React.FC = () => {
     }
   ];
 
+  const filteredCompliance = _.isEmpty(range)
+    ? complianceStatusData
+    : complianceStatusData.filter((item) => {
+        const itemMonth = monthToMoment(item.month);
+        console.log(range.end);
+        return itemMonth.isBetween(range.start, range.end, 'month', '[]');
+      });
+
+  console.log('fill', filteredCompliance);
   const configCompliance = {
-    data: complianceStatusData,
+    data: filteredCompliance,
     xField: 'month',
     yField: 'value',
     point: {
@@ -397,7 +432,7 @@ const Dashboard: React.FC = () => {
                   <Button icon={<CalendarFilled />}>Range</Button>
                 </Col>
                 <Col span={20}>
-                  <RangePicker showTime onOk={rangeSelection} />
+                  <RangePicker showTime onChange={rangeSelection} />
                 </Col>
               </Row>
             </Space>
