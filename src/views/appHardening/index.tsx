@@ -1,8 +1,8 @@
 import { Col, Row } from 'antd';
 import { BarChart, LineChart, PieChart } from 'charts';
 import CustomTable from 'components/table';
+import { AppHardeningMaturityTableCoulums } from 'components/tableColumn';
 import React from 'react';
-import { MaturityTableCoulums } from './MaturityTableCoulums';
 
 /**
  * Componnent to render
@@ -113,7 +113,7 @@ const AppHardening: React.FC = () => {
             <CustomTable
               dataSource={tableData}
               // search={search}
-              columns={MaturityTableCoulums}
+              columns={AppHardeningMaturityTableCoulums}
               loading={false}
               pagination={false}
             />

@@ -1,8 +1,8 @@
 import { Col, Row } from 'antd';
 import { BarChart, LineChart, PieChart } from 'charts';
 import CustomTable from 'components/table';
+import { MaturityTableCoulums } from 'components/tableColumn';
 import React from 'react';
-import { MaturityTableCoulums } from './MaturityTableCoulums';
 
 /**
  * Componnent to render
