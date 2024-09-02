@@ -34,7 +34,7 @@ const LineChart: React.FC<ILineChartProps> = (props: ILineChartProps) => {
     legend: false
   };
   return (
-    <Card title={props.title}>
+    <Card title={props.title} style={{ borderRadius: 10 }}>
       {props.loading ? (
         <Skeleton.Node active={true} style={{ height: chartSize, width: 500 }}>
           <DotChartOutlined style={{ fontSize: chartSize, color: '#bfbfbf' }} />
