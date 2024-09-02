@@ -499,7 +499,7 @@ const Dashboard: React.FC = () => {
         </Col>
 
         <Col span={24}>
-          <Card title="Compliance Status By Year">
+          <Card title="Compliance Status By Year" style={{ borderRadius: 10 }}>
             {loading ? (
               <Skeleton.Node active={true} style={{ height: chartSize, width: lg ? 1220 : '100%' }}>
                 <DotChartOutlined style={{ fontSize: chartSize, color: '#bfbfbf' }} />
@@ -536,7 +536,7 @@ const Dashboard: React.FC = () => {
           />
         </Col>
         <Col span={24}>
-          <Card title="Count of Date of Implementation">
+          <Card title="Count of Date of Implementation" style={{ borderRadius: 10 }}>
             {loading ? (
               <Skeleton.Node active={true} style={{ height: chartSize, width: lg ? 1220 : '100%' }}>
                 <DotChartOutlined style={{ fontSize: chartSize, color: '#bfbfbf' }} />
