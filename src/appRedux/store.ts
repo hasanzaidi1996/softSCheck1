@@ -1,8 +1,6 @@
-import { configureStore, Action, Reducer } from '@reduxjs/toolkit';
-import { env } from 'config';
+import { Action, configureStore, Reducer } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import { ThunkAction } from 'redux-thunk';
-import { Environment } from 'types';
 // Reducers
 import appReducer, { rootReducer } from './reducers';
 // import Socket from './middleware/socket/socketMiddleware';
@@ -20,7 +18,7 @@ const store = configureStore({
   // middleware: (getDefaultMiddleware) => {
   //   return getDefaultMiddleware({ serializableCheck: false }).concat([Socket.SocketMiddleware()]);
   // },
-  devTools: env === Environment.Development
+  devTools: true
 });
 
 export type AppDispatch = typeof store.dispatch;

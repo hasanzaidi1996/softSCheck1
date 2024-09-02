@@ -262,7 +262,7 @@ const DashboardLayout: React.FC = () => {
                       onChange={(val) => {
                         dispatch(setSelectedId(val));
                       }}
-                      defaultValue={selectedReportId}
+                      value={selectedReportId}
                       style={{ width: md ? '250px' : '180px' }}
                     />
                   </Space>

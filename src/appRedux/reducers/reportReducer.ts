@@ -23,6 +23,7 @@ const ReportSlice = createSlice({
     },
     getReportsSuccess: (state, { payload }: PayloadAction<IReportState['reports']>) => {
       state.reports = payload;
+      state.selectedReportId = payload ? payload[0]._id : null;
       state.reportsLoading = false;
     },
     getReportsFailure: (state) => {
