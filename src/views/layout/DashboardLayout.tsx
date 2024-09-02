@@ -1,23 +1,26 @@
-import { Layout, Image, Typography, Grid, Row, Col, Dropdown, Skeleton } from 'antd';
-import LogoMark from '../../assets/icons/logo-white.svg';
 import {
-  MenuUnfoldOutlined,
+  CaretDownFilled,
   MenuFoldOutlined,
-  UserOutlined,
-  CaretDownFilled
+  MenuUnfoldOutlined,
+  UserOutlined
 } from '@ant-design/icons';
-import { siderClientRoutes, navAccountMenu, siderClientMenu } from '../../routing';
+import { Col, Dropdown, Grid, Image, Layout, Row, Select, Skeleton, Space, Typography } from 'antd';
 import { CustomMenu } from 'components';
-import { useLocation, Outlet, useNavigate } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { UserRoles } from 'types';
+import LogoMark from '../../assets/icons/logo-white.svg';
+import { navAccountMenu, siderClientMenu, siderClientRoutes } from '../../routing';
 
 // redux
-import { useSelector } from 'react-redux';
-import { AuthSelector } from 'appRedux/reducers';
-import { SidebarSkeleton } from 'components/skeleton';
+import { getReports } from 'appRedux/actions/reportAction';
+import { AuthSelector, ReportSelector } from 'appRedux/reducers';
+import { setSelectedId } from 'appRedux/reducers/reportReducer';
+import { useAppDispatch } from 'appRedux/store';
 import isAuthorized from 'authorization/RouteAuthorized';
+import { SidebarSkeleton } from 'components/skeleton';
 import { branding } from 'config/branding';
+import { useSelector } from 'react-redux';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { Title, Text } = Typography;
@@ -141,6 +144,23 @@ const DashboardLayout: React.FC = () => {
     );
   };
 
+  const { reports, reportsLoading, selectedReportId } = useSelector(ReportSelector);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (!reports && reportsLoading) {
+      dispatch(getReports());
+    }
+  }, [reports, reportsLoading]);
+
+  const items =
+    reports?.map((report) => {
+      return {
+        label: report.name,
+        value: report._id
+      };
+    }) || [];
+
   const smallScreenWidth = 0;
   const mdUpScreenWidth = 80;
   const smExpandedLayoutOpacity = 0.3;
@@ -214,7 +234,7 @@ const DashboardLayout: React.FC = () => {
           }}>
           <Header className="site-layout-background">
             <Row className="site-layout-row">
-              <Col span={12} className="navbar-left">
+              <Col span={6} className="navbar-left">
                 {collapsed ? (
                   <MenuUnfoldOutlined
                     className="antd-icon align-center navbar-padding"
@@ -230,7 +250,22 @@ const DashboardLayout: React.FC = () => {
                   {brand}
                 </Title>
               </Col>
-              <Col span={12} className="navbar-right">
+              <Col span={10} offset={2}>
+                <Typography.Title level={5}>
+                  <Space direction="horizontal">
+                    Report:
+                    <Select
+                      options={items}
+                      onChange={(val) => {
+                        dispatch(setSelectedId(val));
+                      }}
+                      defaultValue={selectedReportId}
+                      style={{ width: '250px' }}
+                    />
+                  </Space>
+                </Typography.Title>
+              </Col>
+              <Col span={6} className="navbar-right">
                 {/* {authState.role === UserRoles.Client && <Notification />} */}
                 <Dropdown className="align-center navbar-padding" overlay={accountMenu}>
                   <AccountTab />

@@ -2,11 +2,13 @@ import { CalendarFilled, DotChartOutlined } from '@ant-design/icons';
 import { Column, Line } from '@ant-design/plots';
 import { Button, Card, Col, DatePicker, DatePickerProps, Row, Skeleton, Space } from 'antd';
 import { RangePickerProps } from 'antd/lib/date-picker';
+import { ReportSelector } from 'appRedux/reducers';
 import { PieChart } from 'charts';
 import ColumnChart from 'charts/columChart';
 import _ from 'lodash';
 import moment, { Moment } from 'moment';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const { RangePicker } = DatePicker;
 
@@ -16,6 +18,8 @@ const { RangePicker } = DatePicker;
  * @returns {React.FC} component to render
  */
 const Dashboard: React.FC = () => {
+  const { selectedReportId } = useSelector(ReportSelector);
+
   const [loading, setLoading] = useState(false);
   const [range, setRange] = useState<Record<string, Moment>>({});
   const chartSize = 300;
@@ -31,6 +35,14 @@ const Dashboard: React.FC = () => {
       return setTimeout(r, ms);
     });
   };
+
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      await sleep(2000);
+      setLoading(false);
+    })();
+  }, [selectedReportId]);
 
   /**
    * Create instance of Moment
