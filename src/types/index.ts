@@ -1,5 +1,4 @@
 // Application Type Definitions
-import { FilePdfFilled, FileImageFilled, FileTextFilled } from '@ant-design/icons';
 
 export enum UserRoles {
   Client = 'client'
@@ -54,4 +53,12 @@ export enum ReportStatus {
   Pending = 'pending',
   Completed = 'completed',
   Failed = 'failed'
+}
+
+export enum CombinedAnalyticsMode {
+  Day = 'day',
+  Week = 'week',
+  Month = 'month',
+  SixMonths = '6months',
+  Year = 'year'
 }

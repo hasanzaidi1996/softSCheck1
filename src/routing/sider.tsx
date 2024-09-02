@@ -6,6 +6,7 @@ import getItem from './getMenuItem';
 import {
   Backup,
   Check,
+  DashboardCustom,
   Fingerprint,
   Lock,
   Microsoft,
@@ -34,8 +35,8 @@ export const siderClientRoutes: Array<SiderRoutes> = [
     component: <Dashboard />,
     label: 'Dashboard',
     id: 'dashboard',
-    index: true, // index will create it first route when navigating
-    icon: ProfileCog,
+    index: true, // index will create it first route when navigating to /
+    icon: DashboardCustom,
     authenticatedUsers: [UserRoles.Client],
     disabled: false
   },

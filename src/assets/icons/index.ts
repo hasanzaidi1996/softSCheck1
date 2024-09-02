@@ -16,12 +16,14 @@ import SuccessIcon from 'assets/icons/SuccessIcon.svg?react';
 import WarningIcon from 'assets/icons/WarningIcon.svg?react';
 import Backup from '../icons/Backup.svg?react';
 import PrivilegeLogo from '../icons/Privilege.svg?react';
+import DashboardCustom from './Dashboard.svg?react';
 import InfoCustom from './InfoCustom.svg?react';
 export {
   AddCustom,
   Australia,
   Backup,
   Check,
+  DashboardCustom,
   FileUploaderSvg,
   Fingerprint,
   InfoCustom,

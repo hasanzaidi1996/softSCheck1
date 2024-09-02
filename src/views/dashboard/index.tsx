@@ -1,14 +1,46 @@
+import { CalendarFilled, DotChartOutlined } from '@ant-design/icons';
 import { Column, Line } from '@ant-design/plots';
-import { Card, Col, Row } from 'antd';
+import { Button, Card, Col, DatePicker, DatePickerProps, Row, Skeleton, Space } from 'antd';
+import { RangePickerProps } from 'antd/lib/date-picker';
 import { PieChart } from 'charts';
 import ColumnChart from 'charts/columChart';
-import React from 'react';
+import React, { useState } from 'react';
+
+const { RangePicker } = DatePicker;
+
 /**
  * Dashboard component
  *
  * @returns {React.FC} component to render
  */
 const Dashboard: React.FC = () => {
+  const [loading, setLoading] = useState(false);
+  const chartSize = 300;
+  /**
+   * Sleep function for temprrary skeleton preview
+   *
+   * @param {number} ms
+   * @returns
+   */
+  const sleep = (ms: number) => {
+    // eslint-disable-next-line promise/param-names
+    return new Promise((r: TimerHandler) => {
+      return setTimeout(r, ms);
+    });
+  };
+
+  /**
+   * Update the data on seleciton of range
+   *
+   * @param {DatePickerProps['value'] | RangePickerProps['value']} value range selection value
+   *
+   */
+  const rangeSelection = async (value: DatePickerProps['value'] | RangePickerProps['value']) => {
+    setLoading(true);
+    await sleep(2000);
+    setLoading(false);
+  };
+
   const complianceStatusData = [
     {
       month: 'January',
@@ -136,7 +168,7 @@ const Dashboard: React.FC = () => {
     yField: 'value',
     point: {
       shapeField: 'circle',
-      sizeField: 3
+      sizeField: 5
     },
     interaction: {
       tooltip: {
@@ -144,7 +176,7 @@ const Dashboard: React.FC = () => {
       }
     },
     style: {
-      lineWidth: 0
+      lineWidth: 1
     },
     legend: { size: false },
     colorField: 'category'
@@ -353,32 +385,59 @@ const Dashboard: React.FC = () => {
     group: true,
     scale: { color: { palette: 'paired' } }
   };
+
   return (
     <>
       <Row gutter={[10, 10]}>
         <Col span={24}>
+          <Card>
+            <Space direction="horizontal" style={{ display: 'flex', justifyContent: 'center' }}>
+              <Row gutter={[20, 20]}>
+                <Col span={4}>
+                  <Button icon={<CalendarFilled />}>Range</Button>
+                </Col>
+                <Col span={20}>
+                  <RangePicker showTime onOk={rangeSelection} />
+                </Col>
+              </Row>
+            </Space>
+          </Card>
+        </Col>
+        <Col span={24}>
           <Card title="Compliance Status By Year">
-            <Line {...configCompliance} autoFit={true} height={300} />
+            {loading ? (
+              <Skeleton.Node active={true} style={{ height: chartSize, width: 1220 }}>
+                <DotChartOutlined style={{ fontSize: chartSize, color: '#bfbfbf' }} />
+              </Skeleton.Node>
+            ) : (
+              <Line {...configCompliance} autoFit={true} height={300} />
+            )}
           </Card>
         </Col>
         <Col span={9}>
           <PieChart
             data={overallStatusPercentage}
             title="Overall status percentage"
-            loading={false}
+            loading={loading}
             palatte="set2"
           />
         </Col>
         <Col span={15}>
           <ColumnChart
             {...configStatusCount}
-            loading={false}
+            loading={loading}
             title={'Count of Success and Failure Status'}
           />
         </Col>
         <Col span={24}>
           <Card title="Count of Date of Implementation">
-            <Column {...configDateOfImplementation} />
+            {loading ? (
+              <Skeleton.Node active={true} style={{ height: chartSize, width: 1220 }}>
+                <DotChartOutlined style={{ fontSize: chartSize, color: '#bfbfbf' }} />
+              </Skeleton.Node>
+            ) : (
+              <Column {...configDateOfImplementation} />
+            )}
           </Card>
         </Col>
       </Row>
