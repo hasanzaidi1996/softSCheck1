@@ -12,16 +12,16 @@ import PatchStatusGraph from './patchStatusGraph';
 const PatchApplication: React.FC = () => {
   return (
     <Row gutter={[10, 10]}>
-      <Col span={12}>
+      <Col xs={24} sm={24} md={24} lg={12}>
         <PatchStatusGraph />
       </Col>
-      <Col span={12}>
+      <Col xs={24} sm={24} md={24} lg={12}>
         <TestResultCountGraph />
       </Col>
-      <Col span={12}>
+      <Col xs={24} sm={24} md={24} lg={12}>
         <MaturityLevelByTime />
       </Col>
-      <Col span={12}>
+      <Col xs={24} sm={24} md={24} lg={12}>
         <ComplianceStatus />
       </Col>
     </Row>

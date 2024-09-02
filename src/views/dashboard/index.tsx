@@ -1,16 +1,19 @@
 import { CalendarFilled, DotChartOutlined } from '@ant-design/icons';
 import { Column, Line } from '@ant-design/plots';
-import { Button, Card, Col, DatePicker, DatePickerProps, Row, Skeleton, Space } from 'antd';
+import { Button, Card, Col, DatePicker, DatePickerProps, Grid, Row, Skeleton, Space } from 'antd';
 import { RangePickerProps } from 'antd/lib/date-picker';
 import { ReportSelector } from 'appRedux/reducers';
 import { PieChart } from 'charts';
 import ColumnChart from 'charts/columChart';
+import CustomTable from 'components/table';
+import { AppHardeningMaturityTableCoulums } from 'components/tableColumn';
 import _ from 'lodash';
 import moment, { Moment } from 'moment';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 const { RangePicker } = DatePicker;
+const { useBreakpoint } = Grid;
 
 /**
  * Dashboard component
@@ -23,6 +26,8 @@ const Dashboard: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [range, setRange] = useState<Record<string, Moment>>({});
   const chartSize = 300;
+
+  const { lg } = useBreakpoint();
   /**
    * Sleep function for temprrary skeleton preview
    *
@@ -433,6 +438,48 @@ const Dashboard: React.FC = () => {
     scale: { color: { palette: 'paired' } }
   };
 
+  const tableData = [
+    {
+      _id: '1',
+      maturityLevel: 'Level 0',
+      implementationStatus: 'Not Implemented',
+      defensiveActions: 'Disable unnecessary features and services in user applications',
+      offensiveActions:
+        'Establish basic application-level firewall rules to block unauthorized access'
+    },
+    {
+      _id: '2',
+      maturityLevel: 'Level 1',
+      implementationStatus: 'Partially Implemented',
+      defensiveActions: 'Apply security patches promptly to all user applications',
+      offensiveActions:
+        'Perform vulnerability scans to identify and fix security issues in all user applications'
+    },
+    {
+      _id: '3',
+      maturityLevel: 'Level 2',
+      implementationStatus: 'Mostly Implemented',
+      defensiveActions: 'Enforce least privilege access for all user applications',
+      offensiveActions:
+        'Conduct simulated phishing attacks to test user awareness and application resilience'
+    },
+    {
+      _id: '4',
+      maturityLevel: 'Level 3',
+      implementationStatus: 'Fully Implemented',
+      defensiveActions:
+        'Utilize advances endpoint protection solutions to miniter and protect user applications',
+      offensiveActions:
+        'Employ red teaming exercise to actively test and expolit applications for vulnerabilities'
+    }
+  ];
+  const containerStyle = {
+    height: '100%',
+    width: '100%',
+    padding: '24px',
+    background: '#fff',
+    borderRadius: '10px'
+  };
   return (
     <>
       <Row gutter={[10, 10]}>
@@ -450,10 +497,11 @@ const Dashboard: React.FC = () => {
             </Space>
           </Card>
         </Col>
+
         <Col span={24}>
           <Card title="Compliance Status By Year">
             {loading ? (
-              <Skeleton.Node active={true} style={{ height: chartSize, width: 1220 }}>
+              <Skeleton.Node active={true} style={{ height: chartSize, width: lg ? 1220 : '100%' }}>
                 <DotChartOutlined style={{ fontSize: chartSize, color: '#bfbfbf' }} />
               </Skeleton.Node>
             ) : (
@@ -461,7 +509,18 @@ const Dashboard: React.FC = () => {
             )}
           </Card>
         </Col>
-        <Col span={9}>
+        <Col span={24}>
+          <div style={containerStyle}>
+            <CustomTable
+              dataSource={tableData}
+              // search={search}
+              columns={AppHardeningMaturityTableCoulums}
+              loading={false}
+              pagination={false}
+            />
+          </div>
+        </Col>
+        <Col xs={24} sm={24} md={24} lg={9}>
           <PieChart
             data={overallStatusPercentage}
             title="Overall status percentage"
@@ -469,7 +528,7 @@ const Dashboard: React.FC = () => {
             palatte="set2"
           />
         </Col>
-        <Col span={15}>
+        <Col xs={24} sm={24} md={24} lg={15}>
           <ColumnChart
             {...configStatusCount}
             loading={loading}
@@ -479,7 +538,7 @@ const Dashboard: React.FC = () => {
         <Col span={24}>
           <Card title="Count of Date of Implementation">
             {loading ? (
-              <Skeleton.Node active={true} style={{ height: chartSize, width: 1220 }}>
+              <Skeleton.Node active={true} style={{ height: chartSize, width: lg ? 1220 : '100%' }}>
                 <DotChartOutlined style={{ fontSize: chartSize, color: '#bfbfbf' }} />
               </Skeleton.Node>
             ) : (

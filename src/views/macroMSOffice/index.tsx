@@ -67,10 +67,10 @@ const MacroMSOffice: React.FC = () => {
   return (
     <>
       <Row gutter={[10, 10]}>
-        <Col span={12}>
+        <Col xs={24} sm={24} md={24} lg={12}>
           <PieChart loading={false} palatte="set1" title="Macro Status" data={macroStatus} />
         </Col>
-        <Col span={12}>
+        <Col xs={24} sm={24} md={24} lg={12}>
           <LineChart
             loading={false}
             palatte="set1"
@@ -78,7 +78,7 @@ const MacroMSOffice: React.FC = () => {
             data={complianceStatus}
           />
         </Col>
-        <Col span={12}>
+        <Col xs={24} sm={24} md={24} lg={12}>
           <BarChart
             palatte="set1"
             loading={false}
@@ -86,7 +86,7 @@ const MacroMSOffice: React.FC = () => {
             data={macroByVendor}
           />
         </Col>
-        <Col span={12}>
+        <Col xs={24} sm={24} md={24} lg={12}>
           <BarChart
             palatte="spectral"
             loading={false}

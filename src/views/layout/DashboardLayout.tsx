@@ -136,7 +136,7 @@ const DashboardLayout: React.FC = () => {
         ) : (
           <a {...props} className="nav-account-dropdown">
             <UserOutlined className="antd-icon align-center navbar-padding navbar-badge" />
-            {`${authState.user?.firstName || ''} ${authState.user?.lastName}` || ''}{' '}
+            {md ? `${authState.user?.firstName || ''} ${authState.user?.lastName}` || '' : ''}{' '}
             <CaretDownFilled twoToneColor={'#111c4e'} />
           </a>
         )}
@@ -234,7 +234,7 @@ const DashboardLayout: React.FC = () => {
           }}>
           <Header className="site-layout-background">
             <Row className="site-layout-row">
-              <Col span={6} className="navbar-left">
+              <Col md={3} lg={5} className="navbar-left">
                 {collapsed ? (
                   <MenuUnfoldOutlined
                     className="antd-icon align-center navbar-padding"
@@ -247,25 +247,28 @@ const DashboardLayout: React.FC = () => {
                   />
                 )}
                 <Title className="align-center navbar-padding" level={4}>
-                  {brand}
+                  {md ? brand : ''}
                 </Title>
               </Col>
-              <Col span={10} offset={2}>
+              <Col
+                xs={{ span: 12, offset: 0 }}
+                md={{ span: 12, offset: 0 }}
+                lg={{ span: 10, offset: 2 }}>
                 <Typography.Title level={5}>
                   <Space direction="horizontal">
-                    Report:
+                    {md ? 'Report:' : ''}
                     <Select
                       options={items}
                       onChange={(val) => {
                         dispatch(setSelectedId(val));
                       }}
                       defaultValue={selectedReportId}
-                      style={{ width: '250px' }}
+                      style={{ width: md ? '250px' : '180px' }}
                     />
                   </Space>
                 </Typography.Title>
               </Col>
-              <Col span={6} className="navbar-right">
+              <Col md={3} lg={6} className="navbar-right">
                 {/* {authState.role === UserRoles.Client && <Notification />} */}
                 <Dropdown className="align-center navbar-padding" overlay={accountMenu}>
                   <AccountTab />
