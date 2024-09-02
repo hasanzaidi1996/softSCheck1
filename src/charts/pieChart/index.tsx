@@ -30,9 +30,14 @@ const PieChart: React.FC<IPieChartProps> = (props: IPieChartProps) => {
     scale: { color: { palette: props.palatte } }
   };
   return (
-    <Card title={props.title}>
+    <Card
+      title={props.title}
+      style={{
+        borderRadius: 10,
+        height: '100%'
+      }}>
       {props.loading ? (
-        <Skeleton.Node active={true} style={{ height: chartSize, width: 500 }}>
+        <Skeleton.Node active={true} style={{ height: chartSize, width: 500, borderRadius: 10 }}>
           <DotChartOutlined style={{ fontSize: chartSize, color: '#bfbfbf' }} />
         </Skeleton.Node>
       ) : Array.isArray(props.data) && props.data.length > 0 ? (
