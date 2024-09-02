@@ -6,6 +6,7 @@ import getItem from './getMenuItem';
 import {
   Backup,
   Check,
+  DashboardCustom,
   Fingerprint,
   Lock,
   Microsoft,
@@ -14,6 +15,7 @@ import {
   Secure
 } from 'assets/icons';
 import { UserRoles } from 'types';
+import { Dashboard } from 'views';
 import AppHardening from 'views/appHardening';
 import AppWhiteListing from 'views/appWhiteListing';
 import DailyBackups from 'views/dailyBackups';
@@ -35,11 +37,20 @@ type MenuItem = Required<MenuProps>['items'][number];
 
 export const siderClientRoutes: Array<SiderRoutes> = [
   {
+    path: 'dashboard',
+    component: <Dashboard />,
+    label: 'Dashboard',
+    id: 'dashboard',
+    index: true, // index will create it first route when navigating to /
+    icon: DashboardCustom,
+    authenticatedUsers: [UserRoles.Client],
+    disabled: false
+  },
+  {
     path: 'reports',
     component: <Report />,
     label: 'Reports',
     id: 'reports',
-    index: true, // index will create it first route when navigating
     icon: ProfileCog,
     authenticatedUsers: [UserRoles.Client],
     disabled: false
