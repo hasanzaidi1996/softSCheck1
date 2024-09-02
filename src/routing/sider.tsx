@@ -16,10 +16,16 @@ import {
 } from 'assets/icons';
 import { UserRoles } from 'types';
 import { Dashboard } from 'views';
+import AppHardening from 'views/appHardening';
 import AppWhiteListing from 'views/appWhiteListing';
+import DailyBackups from 'views/dailyBackups';
 import MacroMSOffice from 'views/macroMSOffice';
+import MFA from 'views/mfa';
 import PatchApplication from 'views/patchApp';
+
+import PatchOS from 'views/patchOS';
 import Report from 'views/report';
+import RestrictPrivilege from 'views/restrictPrivilege';
 import ProfileCog from '../assets/icons/InfoCustom.svg?react';
 import { SiderRoutes } from './types';
 
@@ -78,48 +84,48 @@ export const siderClientRoutes: Array<SiderRoutes> = [
   },
   {
     path: 'app-hardening',
-    component: <></>,
+    component: <AppHardening />,
     label: 'App Hardening',
     id: 'App Hardening',
     icon: Lock,
     authenticatedUsers: [UserRoles.Client],
-    disabled: true
+    disabled: false
   },
   {
     path: 'mfa',
-    component: <></>,
+    component: <MFA />,
     label: 'MFA',
     id: 'MFA',
     icon: Fingerprint,
     authenticatedUsers: [UserRoles.Client],
-    disabled: true
+    disabled: false
   },
   {
     path: 'patch-os',
-    component: <></>,
+    component: <PatchOS />,
     label: 'Patch OS',
     id: 'Patch OS',
     icon: Check,
     authenticatedUsers: [UserRoles.Client],
-    disabled: true
+    disabled: false
   },
   {
     path: 'restrict-privilege',
-    component: <></>,
+    component: <RestrictPrivilege />,
     label: 'Restrict Priviledges',
     id: 'Restrict Priviledges',
     icon: PrivilegeLogo,
     authenticatedUsers: [UserRoles.Client],
-    disabled: true
+    disabled: false
   },
   {
     path: 'daily-backup',
-    component: <></>,
+    component: <DailyBackups />,
     label: 'Daily Backups',
     id: 'Daily Backups',
     icon: Backup,
     authenticatedUsers: [UserRoles.Client],
-    disabled: true
+    disabled: false
   }
 ];
 
