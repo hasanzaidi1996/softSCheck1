@@ -14,6 +14,7 @@ import {
   Secure
 } from 'assets/icons';
 import { UserRoles } from 'types';
+import { Dashboard } from 'views';
 import AppWhiteListing from 'views/appWhiteListing';
 import MacroMSOffice from 'views/macroMSOffice';
 import PatchApplication from 'views/patchApp';
@@ -29,11 +30,20 @@ type MenuItem = Required<MenuProps>['items'][number];
 
 export const siderClientRoutes: Array<SiderRoutes> = [
   {
+    path: 'dashboard',
+    component: <Dashboard />,
+    label: 'Dashboard',
+    id: 'dashboard',
+    index: true, // index will create it first route when navigating
+    icon: ProfileCog,
+    authenticatedUsers: [UserRoles.Client],
+    disabled: false
+  },
+  {
     path: 'reports',
     component: <Report />,
     label: 'Reports',
     id: 'reports',
-    index: true, // index will create it first route when navigating
     icon: ProfileCog,
     authenticatedUsers: [UserRoles.Client],
     disabled: false
