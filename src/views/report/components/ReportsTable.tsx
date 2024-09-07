@@ -1,11 +1,11 @@
 import { Card } from 'antd';
+import { getReports } from 'appRedux/actions/reportAction';
+import { useAppDispatch } from 'appRedux/store';
 import CustomTable from 'components/table';
 import { ReportColumns } from 'components/tableColumn';
 import TableToolBar from 'components/tableToolBar';
 import React, { useState } from 'react';
 import { IReportTableProps } from './types';
-import { useAppDispatch } from 'appRedux/store';
-import { getReports } from 'appRedux/actions/reportAction';
 import UploadReportModal from './UploadReportModal';
 
 /**
@@ -37,7 +37,7 @@ const ReportsTable: React.FC<IReportTableProps> = (props: IReportTableProps) => 
   };
   return (
     <>
-      <Card title="Upload Report">
+      <Card title="Upload Logs">
         <UploadReportModal />
       </Card>
       <Card>

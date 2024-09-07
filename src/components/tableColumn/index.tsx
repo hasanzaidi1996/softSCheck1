@@ -65,7 +65,10 @@ export const MaturityTableCoulums: ColumnsType = [
 export const AppHardeningMaturityTableCoulums: ColumnsType = [
   {
     title: 'Maturity Level',
-    dataIndex: 'maturityLevel'
+    dataIndex: 'maturityLevel',
+    render: (level) => {
+      return <Tag color={getColor(level)}>{level}</Tag>;
+    }
   },
   {
     title: 'Implementation Status',

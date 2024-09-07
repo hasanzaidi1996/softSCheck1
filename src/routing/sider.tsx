@@ -49,8 +49,8 @@ export const siderClientRoutes: Array<SiderRoutes> = [
   {
     path: 'reports',
     component: <Report />,
-    label: 'Reports',
-    id: 'reports',
+    label: 'Logs',
+    id: 'logs',
     icon: ProfileCog,
     authenticatedUsers: [UserRoles.Client],
     disabled: false

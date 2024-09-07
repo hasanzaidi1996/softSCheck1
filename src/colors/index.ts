@@ -1,6 +1,8 @@
 /* eslint-disable no-magic-numbers */
 import { CSSProperties } from 'react';
 
+const defaultColor = '#9ea4a7';
+
 interface IAlertTypes {
   [key: string]: CSSProperties;
 }
@@ -12,7 +14,11 @@ interface IColorType {
 const color: IColorType = {
   completed: 'green',
   pending: 'blue',
-  failed: 'red'
+  failed: 'red',
+  'level 0': '#780000',
+  'level 1': '#fd8c00',
+  'level 2': '#fdc500',
+  'level 3': '#00ac46'
 };
 
 /**
@@ -20,8 +26,11 @@ const color: IColorType = {
  * @param {string} value value to get color of
  * @returns {string} color specifc to value
  */
-export const getColor = (value: string): string => {
-  return color[value];
+export const getColor = (value?: string): string => {
+  if (!value) {
+    return defaultColor;
+  }
+  return color[value.toLowerCase()];
 };
 
 // alert styles
