@@ -40,7 +40,10 @@ export const ReportColumns: ColumnsType = [
 export const MaturityTableCoulums: ColumnsType = [
   {
     title: 'Maturity Level',
-    dataIndex: 'maturityLevel'
+    dataIndex: 'maturityLevel',
+    render: (level) => {
+      return <Tag color={getColor(level)}>{level}</Tag>;
+    }
   },
   {
     title: 'Implementation Status',
