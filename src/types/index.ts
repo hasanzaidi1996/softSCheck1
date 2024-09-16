@@ -1,7 +1,10 @@
 // Application Type Definitions
 
 export enum UserRoles {
-  Client = 'client'
+  Client = 'client',
+  Mssp = 'mssp',
+  Auditor = 'auditor',
+  ServiceProvider = 'service-provider'
 }
 
 export enum Environment {

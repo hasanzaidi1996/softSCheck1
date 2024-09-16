@@ -7,15 +7,17 @@ import alertReducer, { AlertSelector } from './alertReducer';
 import authReducer, { AuthSelector } from './authReducer';
 import reportReducer, { ReportSelector } from './reportReducer';
 import subscriptionReducer, { SubscriptionSelector } from './subscriptionReducer';
+import usersReducer, { UserSelector } from './usersReducer';
 
 const appReducer = combineReducers({
   auth: authReducer,
   alert: alertReducer,
   report: reportReducer,
-  subscription: subscriptionReducer
+  subscription: subscriptionReducer,
+  usersReducer: usersReducer
 });
 
-export { AlertSelector, AuthSelector, ReportSelector, SubscriptionSelector };
+export { AlertSelector, AuthSelector, ReportSelector, SubscriptionSelector, UserSelector };
 
 export type RootState = ReturnType<typeof appReducer>;
 
