@@ -10,14 +10,19 @@ import React, { useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { UserRoles } from 'types';
 import LogoMark from '../../assets/icons/logo-white.svg';
-import { navAccountMenu, siderClientMenu, siderClientRoutes } from '../../routing';
+import {
+  navAccountMenu,
+  siderClientMenu,
+  siderClientRoutes,
+  siderMsspMenu,
+  siderMsspRoutes
+} from '../../routing';
 
 // redux
 import { getReports } from 'appRedux/actions/reportAction';
 import { AuthSelector, ReportSelector } from 'appRedux/reducers';
 import { setSelectedId } from 'appRedux/reducers/reportReducer';
 import { useAppDispatch } from 'appRedux/store';
-import isAuthorized from 'authorization/RouteAuthorized';
 import { SidebarSkeleton } from 'components/skeleton';
 import { branding } from 'config/branding';
 import { useSelector } from 'react-redux';
@@ -55,7 +60,7 @@ const DashboardLayout: React.FC = () => {
      * If not authorized simply redirect to
      * root page
      */
-    if (!isAuthorized(currentWindow, authState.user)) {
+    if (!authState.user) {
       navigate('/');
     }
 
@@ -66,6 +71,15 @@ const DashboardLayout: React.FC = () => {
        * as well
        */
       currentWindow = currentWindow.replace('/user', '');
+    }
+
+    if (currentWindow.startsWith('/mssp/')) {
+      /**
+       * Donot replace last "/" otherwise
+       * it has to be removed from route.path
+       * as well
+       */
+      currentWindow = currentWindow.replace('/mssp', '');
     }
 
     /**
@@ -88,10 +102,24 @@ const DashboardLayout: React.FC = () => {
       if (brandFound && label) {
         setBrand(label);
       }
+    } else if (authState.role === UserRoles.Mssp) {
+      let label = '';
+      siderMsspRoutes.forEach((route, index) => {
+        const path = route.path;
+        if (currentWindow.indexOf(path) !== unAvailable) {
+          setSelectedKey(index.toString());
+          label += `${route.label} `;
+          brandFound = true;
+        }
+      });
+
+      if (brandFound && label) {
+        setBrand(label);
+      }
     }
 
     if (!brandFound) {
-      setBrand('Reports');
+      // setBrand('Reports');
       setSelectedKey('0');
     }
   }, [location.pathname]);
@@ -148,8 +176,10 @@ const DashboardLayout: React.FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (!reports && reportsLoading) {
-      dispatch(getReports());
+    if (authState.role === UserRoles.Client) {
+      if (!reports && reportsLoading) {
+        dispatch(getReports());
+      }
     }
   }, [reports, reportsLoading]);
 
@@ -220,7 +250,7 @@ const DashboardLayout: React.FC = () => {
                 md ? setCollapsed(false) : setCollapsed(true);
               }}
               mode="inline"
-              items={siderClientMenu}
+              items={authState.role === UserRoles.Mssp ? siderMsspMenu : siderClientMenu}
             />
           </SidebarSkeleton>
         </Sider>
@@ -250,25 +280,31 @@ const DashboardLayout: React.FC = () => {
                   {md ? brand : ''}
                 </Title>
               </Col>
+
+              {authState.role === UserRoles.Client && (
+                <Col
+                  xs={{ span: 12, offset: 0 }}
+                  md={{ span: 12, offset: 0 }}
+                  lg={{ span: 10, offset: 2 }}>
+                  <Typography.Title level={5}>
+                    <Space direction="horizontal">
+                      {md ? 'Report:' : ''}
+                      <Select
+                        options={items}
+                        onChange={(val) => {
+                          dispatch(setSelectedId(val));
+                        }}
+                        value={selectedReportId}
+                        style={{ width: md ? '250px' : '180px' }}
+                      />
+                    </Space>
+                  </Typography.Title>
+                </Col>
+              )}
               <Col
-                xs={{ span: 12, offset: 0 }}
-                md={{ span: 12, offset: 0 }}
-                lg={{ span: 10, offset: 2 }}>
-                <Typography.Title level={5}>
-                  <Space direction="horizontal">
-                    {md ? 'Report:' : ''}
-                    <Select
-                      options={items}
-                      onChange={(val) => {
-                        dispatch(setSelectedId(val));
-                      }}
-                      value={selectedReportId}
-                      style={{ width: md ? '250px' : '180px' }}
-                    />
-                  </Space>
-                </Typography.Title>
-              </Col>
-              <Col md={3} lg={6} className="navbar-right">
+                md={authState.role === UserRoles.Client ? { span: 2 } : { span: 6, offset: 13 }}
+                lg={authState.role === UserRoles.Client ? { span: 6 } : { span: 6, offset: 13 }}
+                className="navbar-right">
                 {/* {authState.role === UserRoles.Client && <Notification />} */}
                 <Dropdown className="align-center navbar-padding" overlay={accountMenu}>
                   <AccountTab />

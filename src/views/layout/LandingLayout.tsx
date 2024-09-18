@@ -9,19 +9,18 @@ import {
 } from '@ant-design/icons';
 import Icon from '@ant-design/icons/lib/components/Icon';
 import { Button, Card, Col, Dropdown, Grid, Layout, Row, Space, Typography } from 'antd';
+import { Footer } from 'antd/lib/layout/layout';
 import Sider from 'antd/lib/layout/Sider';
 import { logout } from 'appRedux/actions/authAction';
 import { AuthSelector } from 'appRedux/reducers';
 import store from 'appRedux/store';
 import { LogoIcon } from 'assets/icons';
-import isAuthorized from 'authorization/RouteAuthorized';
 import { CustomMenu, ScalableButton } from 'components';
 import React, { ReactNode, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import getItem from 'routing/getMenuItem';
 import CyberAttackBar from './components/CyberAttackBar';
-import { Footer } from 'antd/lib/layout/layout';
 const { Header, Content } = Layout;
 const { Title } = Typography;
 const { useBreakpoint } = Grid;
@@ -39,7 +38,6 @@ interface ILayoutProps {
 const LandingLayout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
   const { md, lg } = useBreakpoint();
 
-  const location = useLocation();
   const authState = useSelector(AuthSelector);
   const [collapsed, setCollapsed] = useState(true);
 
@@ -138,7 +136,7 @@ const LandingLayout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
           </Col>
           <Col span={12} className="navbar-right">
             {/* {authState.role === UserRoles.Client && <Notification />} */}
-            {isAuthorized(location.pathname, authState.user) ? (
+            {authState.user ? (
               <Dropdown className="align-center navbar-padding" overlay={accountMenu}>
                 <AccountTab />
               </Dropdown>

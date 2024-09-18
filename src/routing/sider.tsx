@@ -36,6 +36,19 @@ import { SiderRoutes } from './types';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
+export const siderMsspRoutes: Array<SiderRoutes> = [
+  {
+    path: 'users',
+    component: <></>,
+    label: 'Users',
+    id: 'users',
+    index: true,
+    icon: DashboardCustom,
+    authenticatedUsers: [UserRoles.Mssp],
+    disabled: false
+  }
+];
+
 export const siderClientRoutes: Array<SiderRoutes> = [
   {
     path: 'dashboard',
@@ -137,6 +150,20 @@ export const siderClientMenu: MenuItem[] = siderClientRoutes.map((route, index) 
   // index will have default route so must be replaced
   return getItem(
     <Link id={route.id} to={`/user/${route.index ? '' : route.path}`}>
+      {route.label}
+    </Link>,
+    index.toString(),
+    <Icon className="icon active-icon" component={route.icon}></Icon>,
+    null,
+    undefined,
+    route.disabled
+  );
+});
+
+export const siderMsspMenu: MenuItem[] = siderMsspRoutes.map((route, index) => {
+  // index will have default route so must be replaced
+  return getItem(
+    <Link id={route.id} to={`/mssp/${route.index ? '' : route.path}`}>
       {route.label}
     </Link>,
     index.toString(),

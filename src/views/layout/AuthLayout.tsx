@@ -1,18 +1,19 @@
-import React, { useEffect } from 'react';
-import { Row, Col, Image, Typography, Grid, Layout } from 'antd';
-import CyMainLogo from '../../assets/icons/LogoWithName.svg';
-import { TwitterSquareFilled, LinkedinFilled } from '@ant-design/icons';
+import { LinkedinFilled, TwitterSquareFilled } from '@ant-design/icons';
+import { Col, Grid, Image, Layout, Row, Typography } from 'antd';
 import { Loader } from 'components';
+import React, { useEffect } from 'react';
+import { ReactTyped } from 'react-typed';
+import NotFoundLayout from 'views/notFound/NotFound';
+import CyMainLogo from '../../assets/icons/LogoWithName.svg';
 import Login from '../authentication/Login';
 import SignUp from '../authentication/SignUp';
-import NotFoundLayout from 'views/notFound/NotFound';
-import { ReactTyped } from 'react-typed';
 // REDUX
 import { useSelector } from 'react-redux';
 // import { useAppDispatch } from 'appRedux/store';
 import { AuthSelector } from 'appRedux/reducers';
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { branding } from 'config/branding';
+import { Route, Routes, useNavigate } from 'react-router-dom';
+import { UserRoles } from 'types';
 // import { Landing } from 'views/landing/Landing';
 
 const { useBreakpoint } = Grid;
@@ -32,20 +33,18 @@ const AuthLayout: React.FC = () => {
 
   // Route protection redirection
   const navigate = useNavigate();
-  const location = useLocation();
+
   const { isAuthenticated, role, loading } = useSelector(AuthSelector);
 
   useEffect(() => {
     (async () => {
       if (isAuthenticated && role) {
-        const cachedPath = location.state as string;
-
-        if (cachedPath && cachedPath.includes('user')) {
+        if (role === UserRoles.Client) {
+          navigate('/user/');
+        } else if (role === UserRoles.Mssp) {
           // If not redirect to cached state
-          navigate((location.state as string) || '/user');
+          navigate('/mssp/');
         }
-
-        navigate('/user/');
       }
     })();
     // Run it only once
