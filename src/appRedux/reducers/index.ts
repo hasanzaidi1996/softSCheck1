@@ -14,7 +14,7 @@ const appReducer = combineReducers({
   alert: alertReducer,
   report: reportReducer,
   subscription: subscriptionReducer,
-  usersReducer: usersReducer
+  user: usersReducer
 });
 
 export { AlertSelector, AuthSelector, ReportSelector, SubscriptionSelector, UserSelector };
