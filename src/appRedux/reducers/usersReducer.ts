@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IUser } from 'types/ReduxTypes/auth';
 import { IUserState } from 'types/ReduxTypes/user';
 
 const initialState: IUserState = {
@@ -14,13 +15,16 @@ const UserSlice = createSlice({
       state.users = payload;
       state.usersLoading = false;
     },
+    createUserSucces: (state, { payload }: PayloadAction<IUser>) => {
+      state.users = state.users ? [...state.users, payload] : [payload];
+    },
     getUsersFailure: (state) => {
       state.usersLoading = false;
     }
   }
 });
 
-export const { getUsersFailure, getUsersSuccess } = UserSlice.actions;
+export const { getUsersFailure, getUsersSuccess, createUserSucces } = UserSlice.actions;
 
 export default UserSlice.reducer;
 
