@@ -36,12 +36,12 @@ const ExpandIconRenderer: React.FC<RenderExpandIconProps<any>> = (
  * @returns {React.FC} returns React.Component for table
  */
 const CustomTable: React.FC<ITableProps> = (props: ITableProps) => {
-  const { size, children, dataSource, search, searchFilter, ...rest } = props;
+  const { size = 'small', children, dataSource, search, searchFilter, ...rest } = props;
   // const screens = useBreakpoint();
   const zero = 0;
   // const mdOrUp = Boolean(screens.md);
   // const tableSize = mdOrUp ? 'large' : 'small';
-  const tableSize = 'small';
+
   const [dataKeys, setDataKeys] = useState<Array<string | Record<string, string>>>([]);
 
   useEffect(() => {
@@ -66,7 +66,22 @@ const CustomTable: React.FC<ITableProps> = (props: ITableProps) => {
   return (
     <>
       <div>
-        <Table size={tableSize} rowSelection={undefined} dataSource={filteredData} {...rest}>
+        <Table
+          size={size}
+          rowSelection={undefined}
+          dataSource={filteredData}
+          {...rest}
+          style={{
+            borderRadius: '10px',
+            border: '1px solid #E9E9E9',
+            backgroundColor: 'white',
+            overflowX: 'auto',
+            overflowY: 'hidden',
+            whiteSpace: 'nowrap',
+            width: '100%',
+            height: '100%',
+            ...rest?.style
+          }}>
           {children}
         </Table>
       </div>
