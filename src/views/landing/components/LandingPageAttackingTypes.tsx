@@ -86,7 +86,7 @@ const LandingPageAttackingTypes = () => {
       </Modal>
       <div className="container py-10">
         <h1 className=" mb-2 text-4xl max-md:text-2xl max-lg:text-3xl text-center font-bold leading-[60px] text-primary">
-          Apply Cyber - Essential Eight
+          Apply Cyber Controls
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 items-center justify-center md:gap-12 gap-4">
           {preVettedTalent.map((item, index) => {

@@ -1,4 +1,4 @@
-import Icon from '@ant-design/icons';
+import Icon, { CommentOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Link } from 'react-router-dom';
 import getItem from './getMenuItem';
@@ -27,8 +27,10 @@ import AppDashboard from 'views/dashboard';
 import PatchOS from 'views/patchOS';
 import Report from 'views/report';
 import RestrictPrivilege from 'views/restrictPrivilege';
+import Users from 'views/users';
 import ProfileCog from '../assets/icons/InfoCustom.svg?react';
 import { SiderRoutes } from './types';
+import Comments from 'views/comments';
 
 /**
  * Icons
@@ -39,11 +41,21 @@ type MenuItem = Required<MenuProps>['items'][number];
 export const siderMsspRoutes: Array<SiderRoutes> = [
   {
     path: 'users',
-    component: <></>,
+    component: <Users />,
     label: 'Users',
     id: 'users',
     index: true,
     icon: DashboardCustom,
+    authenticatedUsers: [UserRoles.Mssp],
+    disabled: false
+  },
+  {
+    path: 'comments',
+    component: <Comments />,
+    label: 'Comments',
+    id: 'users',
+    // index: true,
+    icon: CommentOutlined as any,
     authenticatedUsers: [UserRoles.Mssp],
     disabled: false
   }

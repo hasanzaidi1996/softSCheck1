@@ -40,14 +40,12 @@ const LandingPagePhishedDataUsage = () => {
     }
   ];
   return (
-    <div className="bg-secondary p-8 rounded-3xl ">
+    <div className="bg-secondary p-8 ">
       <div className="container flex flex-col gap-8 max-md:gap-4">
         <h1 className="text-4xl max-md:text-2xl font-bold text-center mb-6 max-md:mb-2 text-primary">
-          Apply Cyber Main Dashboard
+          Deep Assesment Insights
         </h1>
-        <p className="text-lg max-md:text-sm leading-[20px] xl:mx-[10rem] text-center text-tertiary">
-          Apply cyber dashboard helps visulize key cyber security cmplience and maturity factors
-        </p>
+
         <div className="grid grid-cols-4 max-xl:grid-cols-2 max-md:grid-cols-1">
           {services.map((service, index: number) => {
             return (
@@ -73,12 +71,12 @@ const LandingPagePhishedDataUsage = () => {
                   }`}>
                   {service.title}
                 </h1>
-                <p
+                {/* <p
                   className={`text-xl max-md:text-sm text-center text-tertiary ${
                     active === index && ''
                   }`}>
                   {service.description}
-                </p>
+                </p> */}
               </div>
             );
           })}
