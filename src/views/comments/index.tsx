@@ -1,5 +1,8 @@
-import { Avatar, Comment } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+import { Card, Comment, Typography } from 'antd';
 import React from 'react';
+
+const { Title } = Typography;
 
 interface ICommentsProps {
   children?: React.ReactNode;
@@ -26,7 +29,7 @@ ICommentsProps) => {
     <Comment
       //   actions={[actions ? actions : null]}
       author={<a>{data?.author}</a>}
-      avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />}
+      avatar={<UserOutlined style={{ fontSize: '25px' }} />}
       content={<p>{data?.content}</p>}>
       {children}
     </Comment>
@@ -73,8 +76,8 @@ const Comments = () => {
     }
   ];
   return (
-    <div>
-      <h1>Comments</h1>
+    <Card>
+      <Title level={4}>Comments</Title>
       {allComments.map((comment, index) => {
         return (
           <ExampleComment key={comment.id} data={comment}>
@@ -84,7 +87,7 @@ const Comments = () => {
           </ExampleComment>
         );
       })}
-    </div>
+    </Card>
   );
 };
 

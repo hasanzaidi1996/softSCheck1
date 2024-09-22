@@ -2,7 +2,7 @@ import { Button, Modal } from 'antd';
 import { deleteUser } from 'appRedux/actions/userAction';
 import { useAppDispatch } from 'appRedux/store';
 import React from 'react';
-import DeleteIcon from '../../assets/img/deleteIcon.png';
+import DeleteIcon from '../../assets/img/DeleteIcon.png';
 
 /**
  * @returns {React.FC} - returns Users
