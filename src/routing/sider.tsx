@@ -23,14 +23,15 @@ import MacroMSOffice from 'views/macroMSOffice';
 import MFA from 'views/mfa';
 import PatchApplication from 'views/patchApp';
 
+import Comments from 'views/comments';
 import AppDashboard from 'views/dashboard';
 import PatchOS from 'views/patchOS';
 import Report from 'views/report';
 import RestrictPrivilege from 'views/restrictPrivilege';
+import Subscriptions from 'views/subscriptions';
 import Users from 'views/users';
 import ProfileCog from '../assets/icons/InfoCustom.svg?react';
 import { SiderRoutes } from './types';
-import Comments from 'views/comments';
 
 /**
  * Icons
@@ -53,9 +54,19 @@ export const siderMsspRoutes: Array<SiderRoutes> = [
     path: 'comments',
     component: <Comments />,
     label: 'Comments',
-    id: 'users',
+    id: 'comments',
     // index: true,
     icon: CommentOutlined as any,
+    authenticatedUsers: [UserRoles.Mssp],
+    disabled: false
+  },
+  {
+    path: 'subscriptions',
+    component: <Subscriptions />,
+    label: 'Subscriptions',
+    id: 'subscriptions',
+    // index: true,
+    icon: Fingerprint as any,
     authenticatedUsers: [UserRoles.Mssp],
     disabled: false
   }
