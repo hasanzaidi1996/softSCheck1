@@ -18,13 +18,39 @@ const UserSlice = createSlice({
     createUserSucces: (state, { payload }: PayloadAction<IUser>) => {
       state.users = state.users ? [...state.users, payload] : [payload];
     },
+
+    updateUserSucces: (state, { payload }: PayloadAction<IUser>) => {
+      state.users = state.users
+        ? state.users.map((user) => {
+            if (user._id === payload._id) {
+              return payload;
+            }
+            return user;
+          })
+        : null;
+    },
+
+    deleteUserSucces: (state, { payload }: PayloadAction<IUser>) => {
+      state.users = state.users
+        ? state.users.filter((user) => {
+            return user._id !== payload._id;
+          })
+        : null;
+    },
+
     getUsersFailure: (state) => {
       state.usersLoading = false;
     }
   }
 });
 
-export const { getUsersFailure, getUsersSuccess, createUserSucces } = UserSlice.actions;
+export const {
+  getUsersFailure,
+  getUsersSuccess,
+  createUserSucces,
+  updateUserSucces,
+  deleteUserSucces
+} = UserSlice.actions;
 
 export default UserSlice.reducer;
 

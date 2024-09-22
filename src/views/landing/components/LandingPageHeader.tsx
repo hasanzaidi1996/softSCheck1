@@ -94,7 +94,7 @@ const LandingPageHeader = () => {
               }}>
               <span>
                 <span className="text-tertiary font-serif">&</span>{' '}
-                <span className="text-primary">Maturity Tool</span>
+                <span className="text-primary">Maturity Partner</span>
               </span>
             </motion.div>
           </div>
