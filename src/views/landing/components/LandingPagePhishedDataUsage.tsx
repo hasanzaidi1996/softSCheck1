@@ -43,7 +43,7 @@ const LandingPagePhishedDataUsage = () => {
   return (
     <div className=" p-8 ">
       <div className="container flex flex-col gap-8 max-md:gap-4">
-        <h1 className="text-4xl max-md:text-2xl font-bold text-center mb-6 max-md:mb-2 text-secondary">
+        <h1 className="text-4xl max-md:text-2xl font-bold text-center mb-6 max-md:mb-2 text-secondary underline">
           Deep Assesment Insights
         </h1>
 

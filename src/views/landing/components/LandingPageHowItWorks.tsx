@@ -31,7 +31,7 @@ const LandingPageHowItWorks = () => {
   ];
   return (
     <div className="flex flex-col justify-center items-center gap-4 p-12 container">
-      <h1 className="text-4xl max-md:text-2xl font-bold text-center text-secondary">
+      <h1 className="text-4xl max-md:text-2xl font-bold text-center text-secondary underline">
         Cyber Security Maturity Levels
       </h1>
       <p className="text-lg max-md:text-sm leading-[30px] mx-20 text-center text-secondary">
