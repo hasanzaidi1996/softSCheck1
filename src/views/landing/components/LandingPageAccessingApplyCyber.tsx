@@ -42,7 +42,7 @@ const LandingPageAccessingApplyCyber = () => {
         <h1 className="text-4xl max-md:text-2xl max-lg:text-3xl text-center font-bold leading-[60px] underline">
           Accessing Apply Cyber
         </h1>
-        <div className="grid grid-cols-2 items-center justify-center">
+        <div className="grid md:grid-cols-2 grid-cols-1 items-center justify-center">
           <p className="text-3xl text-center font-medium p-8">
             Apply Cyber is designed for optimal viewing and interacrtion experince across all
             devices
