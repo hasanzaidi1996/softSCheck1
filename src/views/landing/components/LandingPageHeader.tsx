@@ -113,9 +113,8 @@ const LandingPageHeader = () => {
               }
             }}>
             <p className="text-[36px] max-md:text-[30px] max-sm:text-[20px] text-white">
-              One Stop Application for{' '}
-              <span className="text-primary">Cyber Security Compliance </span> &{' '}
-              <span className="text-primary">Maturity Levels!..</span>
+              It is one Stop Application for <span className="text-primary">Cyber Security </span> &{' '}
+              <span className="text-primary">Compliance Management!..</span>
               <ReactTyped strings={['.', '']} loop typeSpeed={100} />
             </p>
           </motion.div>

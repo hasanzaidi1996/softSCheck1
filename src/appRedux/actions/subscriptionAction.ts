@@ -60,18 +60,22 @@ export const getUserSubsciption = createAsyncThunk(
  *
  * @returns {boolean} register
  */
-export const subscribe = createAsyncThunk('subscriptions/subscribe', async (_, { dispatch }) => {
-  try {
-    const res = await BackendInstance.post('subscription/subscribe', config);
-    dispatch(subscribeSuccess(res.data.data));
-    return true;
-  } catch (err) {
-    handlerError(err).forEach((error: string) => {
-      dispatch(updateAlert({ place: 'tc', message: error, type: 'danger' }));
-    });
-    return false;
+export const subscribe = createAsyncThunk(
+  'subscriptions/subscribe',
+  async (id: string, { dispatch }) => {
+    try {
+      const data = JSON.stringify({ subscriptionId: id });
+      const res = await BackendInstance.post('subscription/subscribe', data, config);
+      dispatch(subscribeSuccess(res.data.data));
+      return true;
+    } catch (err) {
+      handlerError(err).forEach((error: string) => {
+        dispatch(updateAlert({ place: 'tc', message: error, type: 'danger' }));
+      });
+      return false;
+    }
   }
-});
+);
 
 /**
  * subscribe to subscription

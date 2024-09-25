@@ -14,24 +14,24 @@ const LandingPageHowItWorks = () => {
       color: '#FF754C'
     },
     {
-      title: 'Develop',
+      title: 'Developed',
       description: 'Organizations Develop Cyber Capabilities and Systems',
       color: '#065B69'
     },
     {
-      title: 'Manage',
+      title: 'Managed',
       description: 'Businesses manage their systems and cyber security capabilities',
       color: '#2F2F2F'
     },
     {
-      title: 'Prepare',
+      title: 'Prepared',
       description: 'Orgabizations Start to be pro-active and prepare for the future',
       color: '#2F2F2F'
     }
   ];
   return (
     <div className="flex flex-col justify-center items-center gap-4 p-12 container">
-      <h1 className="text-4xl max-md:text-2xl font-bold text-center text-secondary">
+      <h1 className="text-4xl max-md:text-2xl font-bold text-center text-secondary underline">
         Cyber Security Maturity Levels
       </h1>
       <p className="text-lg max-md:text-sm leading-[30px] mx-20 text-center text-secondary">

@@ -67,7 +67,7 @@ const LandingPageAttackingTypes = () => {
   const [activeIndex, setActiveIndex] = useState(-1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
-    <div className="bg-secondary rounded-3xl">
+    <div className=" rounded-3xl">
       <Modal
         centered
         maskClosable
@@ -85,7 +85,7 @@ const LandingPageAttackingTypes = () => {
         </div>
       </Modal>
       <div className="container py-10">
-        <h1 className=" mb-2 text-4xl max-md:text-2xl max-lg:text-3xl text-center font-bold leading-[60px] text-primary">
+        <h1 className=" mb-2 text-4xl max-md:text-2xl max-lg:text-3xl text-center font-bold leading-[60px] text-secondary underline">
           Apply Cyber Controls
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 items-center justify-center md:gap-12 gap-4">
@@ -96,7 +96,7 @@ const LandingPageAttackingTypes = () => {
                 initial={{
                   opacity: 0,
                   // if odd index card,slide from right instead of left
-                  x: index % 2 === 0 ? -100 + 20 * index : 100 - 20 * index
+                  x: index % 2 === 0 ? -100 : 100
                 }}
                 whileInView={{
                   opacity: 1,
@@ -107,7 +107,7 @@ const LandingPageAttackingTypes = () => {
                   }
                 }}>
                 <div
-                  className={`flex gap-4 my-4 p-4 max-md:p-2 rounded-xl shadow-sm w-full cursor-pointer`}
+                  className={`flex gap-4 my-4 p-4 max-md:p-2 rounded-xl w-full cursor-pointer`}
                   onClick={() => {
                     setIsModalOpen(true);
                     setActiveIndex(index);
@@ -120,7 +120,7 @@ const LandingPageAttackingTypes = () => {
                   <div className={`flex flex-col w-full text-primary`}>
                     <div className="flex justify-between flex-nowrap items-center w-full ">
                       <h1
-                        className={`text-2xl font-semibold w-full max-md:text-sm text-primary ${
+                        className={`text-2xl font-medium w-full max-md:text-sm text-primary hover:transition hover:ease-in hover:duration-300 hover:text-secondary hover:font-semibold ${
                           index % 2 === 0 ? 'text-left' : 'text-left'
                         }`}>
                         {item.title}
