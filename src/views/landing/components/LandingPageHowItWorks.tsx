@@ -14,17 +14,17 @@ const LandingPageHowItWorks = () => {
       color: '#FF754C'
     },
     {
-      title: 'Develop',
+      title: 'Developed',
       description: 'Organizations Develop Cyber Capabilities and Systems',
       color: '#065B69'
     },
     {
-      title: 'Manage',
+      title: 'Managed',
       description: 'Businesses manage their systems and cyber security capabilities',
       color: '#2F2F2F'
     },
     {
-      title: 'Prepare',
+      title: 'Prepared',
       description: 'Orgabizations Start to be pro-active and prepare for the future',
       color: '#2F2F2F'
     }

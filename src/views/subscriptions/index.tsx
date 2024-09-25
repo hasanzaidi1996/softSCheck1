@@ -1,5 +1,5 @@
 import { Button, Divider } from 'antd';
-import { getSubscriptions } from 'appRedux/actions/subscriptionAction';
+import { getSubscriptions, getUserSubsciption } from 'appRedux/actions/subscriptionAction';
 import { SubscriptionSelector } from 'appRedux/reducers';
 import { useAppDispatch } from 'appRedux/store';
 import { useEffect } from 'react';
@@ -15,13 +15,15 @@ import { ISubscription } from 'types/ReduxTypes/subscription';
  */
 const Subscriptions = () => {
   const dispatch = useAppDispatch();
-  const { subscriptions, subscriptionLoading } = useSelector(SubscriptionSelector);
+  const { subscriptions, subscriptionLoading, userSubscribed, userSubscribedLoading } =
+    useSelector(SubscriptionSelector);
   useEffect(() => {
     if (!subscriptions && subscriptionLoading) {
       dispatch(getSubscriptions());
+      dispatch(getUserSubsciption());
     }
   }, [subscriptions]);
-  console.log('@@@@', subscriptions, subscriptionLoading);
+  console.log('@@@@', subscriptions, subscriptionLoading, userSubscribed, userSubscribedLoading);
   return (
     <div className="container mb-4">
       <h1 className="text-2xl my-4">Subscriptions</h1>

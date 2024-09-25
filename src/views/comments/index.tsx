@@ -145,7 +145,7 @@ const Comments = () => {
     <div className="container">
       <h1 className="text-2xl my-4">All Comments</h1>
 
-      <div className="grid lg:grid-cols-2 gird-cols-1 gap-4">
+      <div className="grid lg:grid-cols-1 gird-cols-1 gap-4">
         {allComments.map((comment, index) => {
           return (
             <div className="bg-tertiary p-4 rounded-xl h-min" key={index}>
