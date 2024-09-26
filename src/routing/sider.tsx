@@ -32,6 +32,7 @@ import Subscriptions from 'views/subscriptions';
 import Users from 'views/users';
 import ProfileCog from '../assets/icons/InfoCustom.svg?react';
 import { SiderRoutes } from './types';
+import AddOns from 'views/addons';
 
 /**
  * Icons
@@ -65,6 +66,16 @@ export const siderMsspRoutes: Array<SiderRoutes> = [
     component: <Subscriptions />,
     label: 'Subscriptions',
     id: 'subscriptions',
+    // index: true,
+    icon: Fingerprint as any,
+    authenticatedUsers: [UserRoles.Mssp],
+    disabled: false
+  },
+  {
+    path: 'addons',
+    component: <AddOns />,
+    label: 'Add Ons',
+    id: 'addons',
     // index: true,
     icon: Fingerprint as any,
     authenticatedUsers: [UserRoles.Mssp],
