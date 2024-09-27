@@ -129,7 +129,7 @@ const AuthLayout: React.FC = () => {
         <Routes>
           {/* <Route path="landing" element={<Landing />} /> */}
           <Route path={'signup'} element={<SignUp />} />
-          <Route path={'/'} element={<Login />} />
+          <Route path={'login'} element={<Login />} />
           <Route path="*" element={<NotFoundLayout />} />
         </Routes>
       </Col>

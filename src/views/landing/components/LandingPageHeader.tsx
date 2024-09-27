@@ -1,8 +1,9 @@
+import { Button } from 'antd';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { ReactTyped } from 'react-typed';
 import HeroImage from '../../../assets/img/cybersecurity3.png';
-import { Button } from 'antd';
-import { useState } from 'react';
-import { motion } from 'framer-motion';
 /**
  * @returns {React.FC} - User Profile Card Component
  */
@@ -118,9 +119,11 @@ const LandingPageHeader = () => {
               <ReactTyped strings={['.', '']} loop typeSpeed={100} />
             </p>
           </motion.div>
-          <Button type="primary" size="large" className="bg-primary text-secondary rounded-lg">
-            Get Started
-          </Button>{' '}
+          <NavLink to={'/login'}>
+            <Button type="primary" size="large" className="bg-primary text-secondary rounded-lg">
+              Get Started
+            </Button>{' '}
+          </NavLink>
         </div>
         <div>
           <motion.div

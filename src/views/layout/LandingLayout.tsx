@@ -142,7 +142,7 @@ const LandingLayout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
               </Dropdown>
             ) : (
               <Space>
-                <NavLink to={'/'}>
+                <NavLink to={'/login'}>
                   <ScalableButton icon={<LoginOutlined />} block>
                     Login
                   </ScalableButton>

@@ -5,9 +5,6 @@ import LandingPerson from '../../assets/img/Landing-Page-Person.jpg';
 // import Investigate from '../../assets/img/analytics-identify.jpg';
 // import SecureInfrastructure from '../../assets/img/secure.jpg';
 
-import LandingLayout from 'views/layout/LandingLayout';
-import TypingAnimation from './components/TypingAnimation';
-import { motion } from 'framer-motion';
 import {
   CodeSandboxOutlined,
   DatabaseOutlined,
@@ -18,7 +15,10 @@ import {
   PlusCircleOutlined,
   TwitterOutlined
 } from '@ant-design/icons';
+import { motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
+import LandingLayout from 'views/layout/LandingLayout';
+import TypingAnimation from './components/TypingAnimation';
 const { useBreakpoint } = Grid;
 
 // import Meta from 'antd/lib/card/Meta';
@@ -160,7 +160,7 @@ Digital Safety...`}
             <Title level={2}>Assess Your Organizations Cyber Security Maturity </Title>
           </Col>
           <Col span={7} offset={11}>
-            <NavLink to={'/signup'}>
+            <NavLink to={'/login'}>
               <Button type="primary" size="large">
                 Get Started
               </Button>

@@ -71,7 +71,7 @@ const App: React.FC = () => {
               }>
               {developRoutes(siderMsspRoutes)}
             </Route>
-            <Route path="/landing" element={<LandingSaas />} />
+            <Route path="/" element={<LandingSaas />} />
             {/* <Route path="/users" element={<Users />} /> */}
           </Routes>
         </div>
