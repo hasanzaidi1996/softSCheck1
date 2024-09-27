@@ -21,6 +21,7 @@ export enum Plugins {
 }
 
 export interface ISubscription {
+  _id?: string;
   price: number;
   name: string;
   uploadLimit: number;
@@ -28,6 +29,7 @@ export interface ISubscription {
   apiAccess: boolean;
   validity: SubsciptionValidity;
   plugins: Plugins[];
+  features?: string[];
 }
 
 export interface IAddOn {
@@ -36,11 +38,11 @@ export interface IAddOn {
   description: string;
 }
 export interface IUserSubscription {
-  subscriptionId: string | ISubscription;
-  clientId: string;
-  logSubmissions: number;
-  usersCreated: number;
-  apiKey: string;
-  addons: IAddOn[];
-  validity: Date;
+  subscriptionId?: string | ISubscription;
+  clientId?: string;
+  logSubmissions?: number;
+  usersCreated?: number;
+  apiKey?: string;
+  addons?: IAddOn[];
+  validity?: Date;
 }
