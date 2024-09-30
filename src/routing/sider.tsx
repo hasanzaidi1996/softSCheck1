@@ -108,7 +108,7 @@ export const siderClientRoutes: Array<SiderRoutes> = [
       />
     ),
     authenticatedUsers: [UserRoles.Client],
-    disabled: false
+    disabled: true
   },
   {
     path: 'nist',
@@ -120,12 +120,12 @@ export const siderClientRoutes: Array<SiderRoutes> = [
       <Icon
         className="icon active-icon"
         component={() => {
-          return <Image src={NISTIcon} style={{ width: 32, borderRadius: 20 }} />;
+          return <Image src={NISTIcon} style={{ width: 37, borderRadius: 20 }} />;
         }}
       />
     ),
     authenticatedUsers: [UserRoles.Client],
-    disabled: false
+    disabled: true
   }
 ];
 
