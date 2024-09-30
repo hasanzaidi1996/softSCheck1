@@ -11,7 +11,7 @@
 }
 
 .custom-menu .ant-layout-sider-children {
-  background-color: #111c4e;
+  background-color: #141414;
 }
 
 /* Please keep order of following three selectors. */
@@ -92,6 +92,14 @@
 
 .custom-menu .sider-spacer {
   height: 30px;
+}
+
+.ant-menu,
+menu-submenu-open,
+.ant-menu-light .ant-menu-submenu-active,
+.ant-menu-light .ant-menu-submenu-title:hover,
+.ant-menu-submenu-selected {
+  color: #ffffff;
 }
 
 /*

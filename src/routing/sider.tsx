@@ -64,26 +64,36 @@ export const siderMsspRoutes: Array<SiderRoutes> = [
 ];
 
 export const siderClientRoutes: Array<SiderRoutes> = [
-  {
-    path: 'dashboard',
-    component: AppDashboard,
-    label: 'Dashboard',
-    id: 'dashboard',
-    index: true, // index will create it first route when navigating to /
-    icon: DashboardCustom,
-    authenticatedUsers: [UserRoles.Client],
-    disabled: false
-  },
+  // {
+  //   path: 'dashboard',
+  //   component: AppDashboard,
+  //   label: 'Dashboard',
+  //   id: 'dashboard',
+  //   index: true, // index will create it first route when navigating to /
+  //   icon: DashboardCustom,
+  //   authenticatedUsers: [UserRoles.Client],
+  //   disabled: false
+  // },
   {
     path: 'essential-eight',
     component: AppDashboard,
-    label: 'Essebtial Eight',
+    label: 'Essential Eight',
     id: 'essential-eight',
     // index: true, // index will create it first route when navigating to /
     icon: DashboardCustom,
     authenticatedUsers: [UserRoles.Client],
     disabled: false,
     children: essentialEightTabs
+  },
+  {
+    path: 'iso',
+    component: AppDashboard,
+    label: 'ISO 70001',
+    id: 'iso',
+    // index: true, // index will create it first route when navigating to /
+    icon: DashboardCustom,
+    authenticatedUsers: [UserRoles.Client],
+    disabled: false
   }
 ];
 
@@ -93,15 +103,19 @@ export const siderClientRoutes: Array<SiderRoutes> = [
 export const siderClientMenu: MenuItem[] = siderClientRoutes.map((route, index) => {
   // index will have default route so must be replaced
 
-  const childMenu = route.children?.map((child) => {
-    return getItem(
-      <Link className={`${child.path}`} id={child.id} to={`/user/${route.path}/${child.path}`}>
-        {child.label}
-      </Link>,
-      `${child.path}-${child.id}`,
-      <Icon className="icon active-icon" component={child.icon}></Icon>
-    );
-  });
+  const childMenu = route.children
+    ?.filter((child) => {
+      return !child.index;
+    })
+    .map((child) => {
+      return getItem(
+        <Link className={`${child.path}`} id={child.id} to={`/user/${route.path}/${child.path}`}>
+          {child.label}
+        </Link>,
+        `${child.path}-${child.id}`,
+        <Icon className="icon active-icon" component={child.icon}></Icon>
+      );
+    });
   return getItem(
     <Link id={route.id} to={`/user/${route.index ? '' : route.path}`}>
       {route.label}
