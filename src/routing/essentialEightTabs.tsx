@@ -1,3 +1,4 @@
+import Icon from '@ant-design/icons';
 import {
   Backup,
   Check,
@@ -30,7 +31,7 @@ export const essentialEightTabs: Array<SiderRoutes> = [
     label: 'Dashboard',
     id: 'dashboard',
     index: true, // index will create it first route when navigating to /
-    icon: DashboardCustom,
+    icon: <Icon className="icon active-icon" component={DashboardCustom} />,
     authenticatedUsers: [UserRoles.Client],
     disabled: false
   },
@@ -39,7 +40,7 @@ export const essentialEightTabs: Array<SiderRoutes> = [
     component: Report,
     label: 'Logs',
     id: 'logs',
-    icon: ProfileCog,
+    icon: <Icon className="icon active-icon" component={ProfileCog} />,
     authenticatedUsers: [UserRoles.Client],
     disabled: false
   },
@@ -48,7 +49,7 @@ export const essentialEightTabs: Array<SiderRoutes> = [
     component: AppWhiteListing,
     label: 'App Whitelisting',
     id: 'App Whitelisting',
-    icon: Monitor,
+    icon: <Icon className="icon active-icon" component={Monitor} />,
     authenticatedUsers: [UserRoles.Client],
     disabled: false
   },
@@ -57,7 +58,7 @@ export const essentialEightTabs: Array<SiderRoutes> = [
     component: PatchApplication,
     label: 'Patch App',
     id: 'Patch App',
-    icon: Secure,
+    icon: <Icon className="icon active-icon" component={Secure} />,
     authenticatedUsers: [UserRoles.Client],
     disabled: false
   },
@@ -66,7 +67,7 @@ export const essentialEightTabs: Array<SiderRoutes> = [
     component: MacroMSOffice,
     label: 'Macro MS Office',
     id: 'Macro MS Office',
-    icon: Microsoft,
+    icon: <Icon className="icon active-icon" component={Microsoft} />,
     authenticatedUsers: [UserRoles.Client],
     disabled: false
   },
@@ -75,7 +76,7 @@ export const essentialEightTabs: Array<SiderRoutes> = [
     component: AppHardening,
     label: 'App Hardening',
     id: 'App Hardening',
-    icon: Lock,
+    icon: <Icon className="icon active-icon" component={Lock} />,
     authenticatedUsers: [UserRoles.Client],
     disabled: false
   },
@@ -84,7 +85,7 @@ export const essentialEightTabs: Array<SiderRoutes> = [
     component: MFA,
     label: 'MFA',
     id: 'MFA',
-    icon: Fingerprint,
+    icon: <Icon className="icon active-icon" component={Fingerprint} />,
     authenticatedUsers: [UserRoles.Client],
     disabled: false
   },
@@ -93,7 +94,7 @@ export const essentialEightTabs: Array<SiderRoutes> = [
     component: PatchOS,
     label: 'Patch OS',
     id: 'Patch OS',
-    icon: Check,
+    icon: <Icon className="icon active-icon" component={Check} />,
     authenticatedUsers: [UserRoles.Client],
     disabled: false
   },
@@ -102,7 +103,7 @@ export const essentialEightTabs: Array<SiderRoutes> = [
     component: RestrictPrivilege,
     label: 'Restrict Priviledges',
     id: 'Restrict Priviledges',
-    icon: PrivilegeLogo,
+    icon: <Icon className="icon active-icon" component={PrivilegeLogo} />,
     authenticatedUsers: [UserRoles.Client],
     disabled: false
   },
@@ -111,7 +112,7 @@ export const essentialEightTabs: Array<SiderRoutes> = [
     component: DailyBackups,
     label: 'Daily Backups',
     id: 'Daily Backups',
-    icon: Backup,
+    icon: <Icon className="icon active-icon" component={Backup} />,
     authenticatedUsers: [UserRoles.Client],
     disabled: false
   }

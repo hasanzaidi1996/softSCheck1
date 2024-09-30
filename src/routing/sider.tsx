@@ -1,9 +1,9 @@
 import Icon, { CommentOutlined } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
+import { Image, type MenuProps } from 'antd';
 import { Link } from 'react-router-dom';
 import getItem from './getMenuItem';
 
-import { DashboardCustom, Fingerprint } from 'assets/icons';
+import { DashboardCustom, Essential8Png, Fingerprint, ISOIcon, NISTIcon } from 'assets/icons';
 import { UserRoles } from 'types';
 
 import AddOns from 'views/addons';
@@ -11,6 +11,7 @@ import Comments from 'views/comments';
 import AppDashboard from 'views/dashboard';
 import Subscriptions from 'views/subscriptions';
 import Users from 'views/users';
+
 import { essentialEightTabs } from './essentialEightTabs';
 import { SiderRoutes } from './types';
 
@@ -27,7 +28,7 @@ export const siderMsspRoutes: Array<SiderRoutes> = [
     label: 'Users',
     id: 'users',
     index: true,
-    icon: DashboardCustom,
+    icon: <Icon className="icon active-icon" component={DashboardCustom} />,
     authenticatedUsers: [UserRoles.Mssp],
     disabled: false
   },
@@ -37,7 +38,7 @@ export const siderMsspRoutes: Array<SiderRoutes> = [
     label: 'Comments',
     id: 'comments',
     // index: true,
-    icon: CommentOutlined as any,
+    icon: <CommentOutlined />,
     authenticatedUsers: [UserRoles.Mssp],
     disabled: false
   },
@@ -47,7 +48,7 @@ export const siderMsspRoutes: Array<SiderRoutes> = [
     label: 'Subscriptions',
     id: 'subscriptions',
     // index: true,
-    icon: Fingerprint as any,
+    icon: <Icon className="icon active-icon" component={Fingerprint} />,
     authenticatedUsers: [UserRoles.Mssp],
     disabled: false
   },
@@ -57,7 +58,7 @@ export const siderMsspRoutes: Array<SiderRoutes> = [
     label: 'Add Ons',
     id: 'addons',
     // index: true,
-    icon: Fingerprint as any,
+    icon: <Icon className="icon active-icon" component={Fingerprint} />,
     authenticatedUsers: [UserRoles.Mssp],
     disabled: false
   }
@@ -70,7 +71,7 @@ export const siderClientRoutes: Array<SiderRoutes> = [
   //   label: 'Dashboard',
   //   id: 'dashboard',
   //   index: true, // index will create it first route when navigating to /
-  //   icon: DashboardCustom,
+  //   icon: <Icon className="icon active-icon" component={DashboardCustom} />,
   //   authenticatedUsers: [UserRoles.Client],
   //   disabled: false
   // },
@@ -80,7 +81,14 @@ export const siderClientRoutes: Array<SiderRoutes> = [
     label: 'Essential Eight',
     id: 'essential-eight',
     // index: true, // index will create it first route when navigating to /
-    icon: DashboardCustom,
+    icon: (
+      <Icon
+        className="icon active-icon"
+        component={() => {
+          return <Image src={Essential8Png} style={{ width: 32, borderRadius: 20 }} />;
+        }}
+      />
+    ),
     authenticatedUsers: [UserRoles.Client],
     disabled: false,
     children: essentialEightTabs
@@ -91,7 +99,31 @@ export const siderClientRoutes: Array<SiderRoutes> = [
     label: 'ISO 70001',
     id: 'iso',
     // index: true, // index will create it first route when navigating to /
-    icon: DashboardCustom,
+    icon: (
+      <Icon
+        className="icon active-icon"
+        component={() => {
+          return <Image src={ISOIcon} style={{ width: 37 }} />;
+        }}
+      />
+    ),
+    authenticatedUsers: [UserRoles.Client],
+    disabled: false
+  },
+  {
+    path: 'nist',
+    component: AppDashboard,
+    label: 'NIST',
+    id: 'nist',
+    // index: true, // index will create it first route when navigating to /
+    icon: (
+      <Icon
+        className="icon active-icon"
+        component={() => {
+          return <Image src={NISTIcon} style={{ width: 32, borderRadius: 20 }} />;
+        }}
+      />
+    ),
     authenticatedUsers: [UserRoles.Client],
     disabled: false
   }
@@ -113,7 +145,7 @@ export const siderClientMenu: MenuItem[] = siderClientRoutes.map((route, index) 
           {child.label}
         </Link>,
         `${child.path}-${child.id}`,
-        <Icon className="icon active-icon" component={child.icon}></Icon>
+        child.icon
       );
     });
   return getItem(
@@ -121,7 +153,7 @@ export const siderClientMenu: MenuItem[] = siderClientRoutes.map((route, index) 
       {route.label}
     </Link>,
     index.toString(),
-    <Icon className="icon active-icon" component={route.icon}></Icon>,
+    route.icon,
     null,
     undefined,
     route.disabled,
@@ -136,7 +168,7 @@ export const siderMsspMenu: MenuItem[] = siderMsspRoutes.map((route, index) => {
       {route.label}
     </Link>,
     index.toString(),
-    <Icon className="icon active-icon" component={route.icon}></Icon>,
+    route.icon,
     null,
     undefined,
     route.disabled
