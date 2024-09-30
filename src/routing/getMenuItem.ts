@@ -12,6 +12,7 @@ type MenuItem = Required<MenuProps>['items'][number];
  * @param {string | null} id - id of the menu item
  * @param {string} type - type of the menu item
  * @param {boolean} disabled - whether the menu item is disabled
+ * @param {MenuItem[]} children - children to show
  * @returns {MenuItem} returns MenuItem object
  */
 export default function getItem(
@@ -20,7 +21,8 @@ export default function getItem(
   icon?: React.ReactNode | null,
   id?: string | null,
   type?: 'group' | 'disabled',
-  disabled?: boolean
+  disabled?: boolean,
+  children?: MenuItem[]
 ): MenuItem {
   return {
     id: id,
@@ -28,6 +30,7 @@ export default function getItem(
     icon: icon,
     label: label,
     type: type,
-    disabled: disabled
+    disabled: disabled,
+    children: children
   } as MenuItem;
 }

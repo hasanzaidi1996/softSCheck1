@@ -36,9 +36,13 @@ const App: React.FC = () => {
   const developRoutes = (routes: Array<SiderRoutes>): React.ReactNode => {
     return routes.map((route, key) => {
       return route.index ? (
-        <Route path={''} index={route.index} element={route.component} key={key} />
+        <Route path={''} index={route.index} element={<route.component />} key={key} />
+      ) : route.children ? (
+        <Route path={route.path} index={route.index} key={key}>
+          {route.children ? developRoutes(route.children) : ''}
+        </Route>
       ) : (
-        <Route path={route.path} index={route.index} element={route.component} key={key} />
+        <Route path={route.path} index={route.index} element={<route.component />} key={key} />
       );
     });
   };

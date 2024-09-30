@@ -3,36 +3,16 @@ import type { MenuProps } from 'antd';
 import { Link } from 'react-router-dom';
 import getItem from './getMenuItem';
 
-import {
-  Backup,
-  Check,
-  DashboardCustom,
-  Fingerprint,
-  Lock,
-  Microsoft,
-  Monitor,
-  PrivilegeLogo,
-  Secure
-} from 'assets/icons';
+import { DashboardCustom, Fingerprint } from 'assets/icons';
 import { UserRoles } from 'types';
 
-import AppHardening from 'views/appHardening';
-import AppWhiteListing from 'views/appWhiteListing';
-import DailyBackups from 'views/dailyBackups';
-import MacroMSOffice from 'views/macroMSOffice';
-import MFA from 'views/mfa';
-import PatchApplication from 'views/patchApp';
-
+import AddOns from 'views/addons';
 import Comments from 'views/comments';
 import AppDashboard from 'views/dashboard';
-import PatchOS from 'views/patchOS';
-import Report from 'views/report';
-import RestrictPrivilege from 'views/restrictPrivilege';
 import Subscriptions from 'views/subscriptions';
 import Users from 'views/users';
-import ProfileCog from '../assets/icons/InfoCustom.svg?react';
+import { essentialEightTabs } from './essentialEightTabs';
 import { SiderRoutes } from './types';
-import AddOns from 'views/addons';
 
 /**
  * Icons
@@ -43,7 +23,7 @@ type MenuItem = Required<MenuProps>['items'][number];
 export const siderMsspRoutes: Array<SiderRoutes> = [
   {
     path: 'users',
-    component: <Users />,
+    component: Users,
     label: 'Users',
     id: 'users',
     index: true,
@@ -53,7 +33,7 @@ export const siderMsspRoutes: Array<SiderRoutes> = [
   },
   {
     path: 'comments',
-    component: <Comments />,
+    component: Comments,
     label: 'Comments',
     id: 'comments',
     // index: true,
@@ -63,7 +43,7 @@ export const siderMsspRoutes: Array<SiderRoutes> = [
   },
   {
     path: 'subscriptions',
-    component: <Subscriptions />,
+    component: Subscriptions,
     label: 'Subscriptions',
     id: 'subscriptions',
     // index: true,
@@ -73,7 +53,7 @@ export const siderMsspRoutes: Array<SiderRoutes> = [
   },
   {
     path: 'addons',
-    component: <AddOns />,
+    component: AddOns,
     label: 'Add Ons',
     id: 'addons',
     // index: true,
@@ -86,7 +66,7 @@ export const siderMsspRoutes: Array<SiderRoutes> = [
 export const siderClientRoutes: Array<SiderRoutes> = [
   {
     path: 'dashboard',
-    component: <AppDashboard />,
+    component: AppDashboard,
     label: 'Dashboard',
     id: 'dashboard',
     index: true, // index will create it first route when navigating to /
@@ -95,85 +75,15 @@ export const siderClientRoutes: Array<SiderRoutes> = [
     disabled: false
   },
   {
-    path: 'reports',
-    component: <Report />,
-    label: 'Logs',
-    id: 'logs',
-    icon: ProfileCog,
+    path: 'essential-eight',
+    component: AppDashboard,
+    label: 'Essebtial Eight',
+    id: 'essential-eight',
+    // index: true, // index will create it first route when navigating to /
+    icon: DashboardCustom,
     authenticatedUsers: [UserRoles.Client],
-    disabled: false
-  },
-  {
-    path: 'app-whitelisting',
-    component: <AppWhiteListing />,
-    label: 'App Whitelisting',
-    id: 'App Whitelisting',
-    icon: Monitor,
-    authenticatedUsers: [UserRoles.Client],
-    disabled: false
-  },
-  {
-    path: 'patch-app',
-    component: <PatchApplication />,
-    label: 'Patch App',
-    id: 'Patch App',
-    icon: Secure,
-    authenticatedUsers: [UserRoles.Client],
-    disabled: false
-  },
-  {
-    path: 'ms-macro',
-    component: <MacroMSOffice />,
-    label: 'Macro MS Office',
-    id: 'Macro MS Office',
-    icon: Microsoft,
-    authenticatedUsers: [UserRoles.Client],
-    disabled: false
-  },
-  {
-    path: 'app-hardening',
-    component: <AppHardening />,
-    label: 'App Hardening',
-    id: 'App Hardening',
-    icon: Lock,
-    authenticatedUsers: [UserRoles.Client],
-    disabled: false
-  },
-  {
-    path: 'mfa',
-    component: <MFA />,
-    label: 'MFA',
-    id: 'MFA',
-    icon: Fingerprint,
-    authenticatedUsers: [UserRoles.Client],
-    disabled: false
-  },
-  {
-    path: 'patch-os',
-    component: <PatchOS />,
-    label: 'Patch OS',
-    id: 'Patch OS',
-    icon: Check,
-    authenticatedUsers: [UserRoles.Client],
-    disabled: false
-  },
-  {
-    path: 'restrict-privilege',
-    component: <RestrictPrivilege />,
-    label: 'Restrict Priviledges',
-    id: 'Restrict Priviledges',
-    icon: PrivilegeLogo,
-    authenticatedUsers: [UserRoles.Client],
-    disabled: false
-  },
-  {
-    path: 'daily-backup',
-    component: <DailyBackups />,
-    label: 'Daily Backups',
-    id: 'Daily Backups',
-    icon: Backup,
-    authenticatedUsers: [UserRoles.Client],
-    disabled: false
+    disabled: false,
+    children: essentialEightTabs
   }
 ];
 
@@ -182,6 +92,16 @@ export const siderClientRoutes: Array<SiderRoutes> = [
  */
 export const siderClientMenu: MenuItem[] = siderClientRoutes.map((route, index) => {
   // index will have default route so must be replaced
+
+  const childMenu = route.children?.map((child) => {
+    return getItem(
+      <Link className={`${child.path}`} id={child.id} to={`/user/${route.path}/${child.path}`}>
+        {child.label}
+      </Link>,
+      `${child.path}-${child.id}`,
+      <Icon className="icon active-icon" component={child.icon}></Icon>
+    );
+  });
   return getItem(
     <Link id={route.id} to={`/user/${route.index ? '' : route.path}`}>
       {route.label}
@@ -190,7 +110,8 @@ export const siderClientMenu: MenuItem[] = siderClientRoutes.map((route, index) 
     <Icon className="icon active-icon" component={route.icon}></Icon>,
     null,
     undefined,
-    route.disabled
+    route.disabled,
+    childMenu
   );
 });
 
