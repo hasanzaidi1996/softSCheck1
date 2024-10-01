@@ -14,7 +14,6 @@ export interface CountObject {
 }
 
 export interface IReportState {
-  selectedReportId: string | null;
   reports: IReport[] | null;
   reportsLoading: boolean;
   whitelistedCount: CountObject[] | null;

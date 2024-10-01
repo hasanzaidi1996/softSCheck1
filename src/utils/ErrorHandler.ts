@@ -1,6 +1,5 @@
-import _ from 'lodash';
-import { logout } from '../appRedux/actions/authAction';
 import store from '../appRedux/store';
+import { logout } from '../appRedux/actions/authAction';
 import { AuthErrors } from '../types';
 
 /**
@@ -28,11 +27,7 @@ export const handlerError = (e: any) => {
         }
         return [AuthErrors.LoginNeeded];
       }
-      return _.isEmpty(e.response.data.errors)
-        ? ['Error Occured']
-        : (e.response.data.errors as Record<string, string>[]).map((error) => {
-            return error.msg;
-          });
+      return ['Error Occured!'];
     }
     return [e.message || 'Error Occured!'];
   } catch (err: any) {

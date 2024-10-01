@@ -21,5 +21,5 @@ export const removeSecondaryToken = () => {
   /*
     Useful For Offline Logout
     */
-  document.cookie = 'token=null; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  document.cookie = 'secondaryToken=null; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
 };
