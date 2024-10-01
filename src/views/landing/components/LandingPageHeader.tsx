@@ -120,7 +120,10 @@ const LandingPageHeader = () => {
             </p>
           </motion.div>
           <NavLink to={'/login'}>
-            <Button type="primary" size="large" className="bg-primary text-secondary rounded-lg">
+            <Button
+              type="primary"
+              size="large"
+              className="bg-primary text-secondary rounded-lg my-4">
               Get Started
             </Button>{' '}
           </NavLink>

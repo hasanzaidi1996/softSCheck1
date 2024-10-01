@@ -1,86 +1,10 @@
 import { UserOutlined } from '@ant-design/icons';
-import { Button, Comment, Form, Input, List } from 'antd';
+import { Tabs } from 'antd';
 import moment from 'moment';
-import React, { useState } from 'react';
-
-const { TextArea } = Input;
-
-interface CommentItem {
-  author: string;
-  avatar: React.ReactNode;
-  content: React.ReactNode;
-  datetime: React.ReactNode;
-}
-
-/**
- * Renders a list of comments.
- */
-const CommentList = ({ comments }: { comments: CommentItem[] }) => {
-  return (
-    <List
-      dataSource={comments}
-      itemLayout="horizontal"
-      renderItem={(props) => {
-        return <Comment {...props} />;
-      }}
-    />
-  );
-};
-
-/**
- * Renders a comment editor form.
- *
- */
-const Editor = () => {
-  const [submitting, setSubmitting] = useState(false);
-  const [value, setValue] = useState('');
-
-  /**
-   * Handles the form submission.
-   *
-   * If the text area is empty, the function will return without doing anything.
-   *
-   * Otherwise, the function will set the `submitting` state to true and then
-   * reset the text area value and set `submitting` to false after a delay of
-   * 1000 milliseconds.
-   */
-  const onSubmit = () => {
-    if (!value) return;
-
-    setSubmitting(true);
-
-    setTimeout(() => {
-      setSubmitting(false);
-      setValue('');
-    }, 1000);
-  };
-
-  /**
-   * Handles the change event of the text area.
-   *
-   * @param {React.ChangeEvent<HTMLTextAreaElement>} e - event object
-   */
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setValue(e.target.value);
-  };
-  return (
-    <>
-      <Form.Item>
-        <TextArea rows={1} onChange={handleChange} value={value} className="rounded-md" />
-      </Form.Item>
-      <Form.Item>
-        <Button
-          htmlType="submit"
-          loading={submitting}
-          onClick={onSubmit}
-          type="primary"
-          className="rounded-lg">
-          Add Comment
-        </Button>
-      </Form.Item>
-    </>
-  );
-};
+import { useState } from 'react';
+import CommentIcon from '../../assets/img/comment.png';
+import CommentsSection from './CommentsSection';
+import CommentsSider from './CommentsSider';
 
 /**
  * Renders a list of comments with a form to add a new comment.
@@ -92,97 +16,212 @@ const Editor = () => {
  * @returns {React.ReactElement} The Comments component.
  */
 const Comments = () => {
+  const [selected, setSelected] = useState(null);
   const allComments = [
     {
-      author: 'Han Solo',
+      id: '1',
+      name: 'Syed Ali Hassan Zaidi',
+      organization: 'Elite IT',
+      role: 'Agent',
       avatar: (
         <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
       ),
       content:
-        'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure).',
+        'Great tool! Easy to use and really boosts security. Love the real-time alerts and user-friendly interface. A must-have for any team!',
       datetime: moment().fromNow(),
       reply: [
         {
-          author: 'Han Solo',
+          id: '2',
+          name: 'Syed Ali Hassan Zaidi',
+          organization: 'Elite IT',
+          role: 'Agent',
           avatar: (
             <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
           ),
           content:
-            'We supply a serieasdasdasds of design principles, practical patterns and high quality design resources (Sketch and Axure).',
+            'Absolutely agree! The real-time alerts are a game changer for staying proactive.',
           datetime: moment().fromNow()
         },
         {
-          author: 'Han Solo',
+          id: '3',
+          name: 'Syed Ali Hassan Zaidi',
+          organization: 'Elite IT',
+          role: 'Agent',
           avatar: (
             <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
           ),
           content:
-            'We supply a series of design principles, practiadfasdfcal patterns and high quality design resources (Sketch and Axure).',
+            'I’ve found it super helpful for streamlining our security processes. What features do you use the most?',
+          datetime: moment().fromNow()
+        },
+        {
+          id: '3',
+          name: 'Syed Ali Hassan Zaidi',
+          organization: 'Elite IT',
+          role: 'Agent',
+          avatar: (
+            <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
+          ),
+          content:
+            'Totally! It makes managing threats so much simpler. Have you tried the latest updates?',
+          datetime: moment().fromNow()
+        },
+
+        {
+          id: '3',
+          name: 'Syed Ali Hassan Zaidi',
+          organization: 'Elite IT',
+          role: 'Agent',
+          avatar: (
+            <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
+          ),
+          content:
+            'Yes! The updates have been fantastic. They really improved the interface and added useful features!',
           datetime: moment().fromNow()
         }
       ]
     },
     {
-      author: 'Ali Hassan',
+      id: '4',
+      name: 'Anand Kumar',
+      organization: 'Connecting Dots',
+      role: 'Agent',
       avatar: 'https://joeschmoe.io/api/v1/random',
-      content: 'hahah heheh ehasdkljah sjhaslkjdh alkjdh laskjd',
+      content:
+        'Secure Cohort is impressive! It enhances collaboration while keeping data safe. The encryption features are top-notch. Perfect for team projects!',
       datetime: moment().fromNow(),
       reply: [
         {
-          author: 'Han Solo',
+          id: '5',
+          name: 'Syed Ali Hassan Zaidi',
+          organization: 'Elite IT',
+          role: 'Agent',
           avatar: (
             <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
           ),
           content:
-            'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure).',
+            'Totally agree! The encryption really gives peace of mind. Have you tried it for remote teams?',
+          datetime: moment().fromNow()
+        },
+        {
+          id: '5',
+          name: 'Syed Ali Hassan Zaidi',
+          organization: 'Elite IT',
+          role: 'Agent',
+          avatar: (
+            <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
+          ),
+          content:
+            'Yes! It’s great for collaboration. I love how user-friendly it is while maintaining strong security.',
           datetime: moment().fromNow()
         }
       ]
+    },
+    {
+      id: '6',
+      name: 'Sir Sarwanan',
+      organization: 'Apply Cyber',
+      role: 'Agent',
+      avatar: 'https://joeschmoe.io/api/v1/random',
+      content:
+        'Secure Cohort is a game changer! The seamless integration with existing tools makes it so convenient. Plus, the security features are robust—definitely a must for any organization!',
+      datetime: moment().fromNow(),
+      reply: [
+        {
+          name: 'Sir Sarwanan',
+          organization: 'Apply Cyber',
+          role: 'Agent',
+          avatar: (
+            <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
+          ),
+          content:
+            'Absolutely! The integration is so smooth, it makes onboarding a breeze. Have you noticed any specific benefits for your team?',
+          datetime: moment().fromNow()
+        }
+      ]
+    },
+    {
+      id: '7',
+      name: 'Talha Talreja',
+      organization: 'USquare',
+      role: 'Client',
+      avatar: 'https://joeschmoe.io/api/v1/random',
+      content:
+        'The overall system is highly efficient and user-friendly! It streamlines processes while ensuring top-notch security. Great balance between functionality and safety!',
+      datetime: moment().fromNow()
+      // reply: [
+      //   {
+      //     name: 'Sir Sarwanan',
+      //     organization: 'Apply Cyber',
+      //     role: 'Agent',
+      //     avatar: (
+      //       <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
+      //     ),
+      //     content:
+      //       'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure).',
+      //     datetime: moment().fromNow()
+      //   }
+      // ]
     }
   ];
-
+  const commentsTabs = [
+    {
+      label: 'All Comments',
+      value: 'all',
+      data: allComments
+    },
+    {
+      label: 'Agents',
+      value: 'agents',
+      data: allComments.filter((comment) => {
+        return comment?.role === 'Agent';
+      })
+    },
+    {
+      label: 'Clients',
+      value: 'clients',
+      data: allComments.filter((comment) => {
+        return comment?.role === 'Client';
+      })
+    }
+  ];
   return (
     <div className="container">
       <h1 className="text-2xl my-4">All Comments</h1>
-
-      <div className="grid lg:grid-cols-1 gird-cols-1 gap-4">
-        {allComments.map((comment, index) => {
-          return (
-            <div className="bg-tertiary p-4 rounded-xl h-min" key={index}>
-              <Comment
-                avatar={
-                  <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
-                }
-                content={
-                  <div>
-                    <p>
-                      <b>{comment.author}</b>
-                    </p>
-                    <p>{comment.content}</p>
+      <div className=" bg-white p-6 rounded-lg ">
+        <Tabs
+          defaultActiveKey="all"
+          className="border-0 ring-0"
+          type="line"
+          onChange={() => {
+            setSelected(null);
+          }}
+          items={commentsTabs.map((tab, i) => {
+            return {
+              label: tab.label,
+              key: tab.value,
+              children: (
+                <div className="flex items-start justify-start gap-4">
+                  <div className="h-[70vh]">
+                    <CommentsSider data={tab.data} selected={selected} setSelected={setSelected} />
                   </div>
-                }
-              />
-              {comment.reply?.length > 0 && (
-                <div className="ml-8">
-                  <CommentList comments={comment.reply} />
+                  <div className="max-h-[70vh] overflow-auto w-full">
+                    {selected === null ? (
+                      <div className="flex flex-col justify-center items-center h-full w-full overflow-hidden">
+                        <img src={CommentIcon} className="size-56 animate-pulse" />
+                        <h1 className="text-xl font-bold text-center -mt-10 overflow-hidden">
+                          Please Select A User To View Comments
+                        </h1>
+                      </div>
+                    ) : (
+                      <CommentsSection allComments={tab.data} selected={selected} />
+                    )}
+                  </div>
                 </div>
-              )}
-              <Comment
-                avatar={
-                  <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
-                }
-                content={
-                  <div>
-                    <p>
-                      <b>Han Solo</b>
-                    </p>
-                    <Editor />
-                  </div>
-                }
-              />
-            </div>
-          );
-        })}
+              )
+            };
+          })}
+        />
       </div>
     </div>
   );

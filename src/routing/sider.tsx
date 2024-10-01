@@ -1,4 +1,4 @@
-import Icon, { CommentOutlined } from '@ant-design/icons';
+import Icon, { CommentOutlined, CopyOutlined, SettingOutlined } from '@ant-design/icons';
 import { Image, type MenuProps } from 'antd';
 import { Link } from 'react-router-dom';
 import getItem from './getMenuItem';
@@ -12,6 +12,7 @@ import AppDashboard from 'views/dashboard';
 import Subscriptions from 'views/subscriptions';
 import Users from 'views/users';
 
+import Settings from 'views/settings';
 import { essentialEightTabs } from './essentialEightTabs';
 import { isoTabs } from './isoTabs';
 import { SiderRoutes } from './types';
@@ -59,7 +60,17 @@ export const siderMsspRoutes: Array<SiderRoutes> = [
     label: 'Add Ons',
     id: 'addons',
     // index: true,
-    icon: <Icon className="icon active-icon" component={Fingerprint} />,
+    icon: <CopyOutlined />,
+    authenticatedUsers: [UserRoles.Mssp],
+    disabled: false
+  },
+  {
+    path: 'settings',
+    component: Settings,
+    label: 'Settings',
+    id: 'settings',
+    // index: true,
+    icon: <SettingOutlined />,
     authenticatedUsers: [UserRoles.Mssp],
     disabled: false
   }

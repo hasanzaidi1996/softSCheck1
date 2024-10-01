@@ -112,11 +112,11 @@ const AddEditUser = ({
                 options={[
                   {
                     value: UserRoles.Auditor,
-                    label: 'Auditor'
+                    label: 'Complience Partner'
                   },
                   {
                     value: UserRoles.Client,
-                    label: 'Client'
+                    label: 'Employee'
                   },
                   {
                     value: UserRoles.ServiceProvider,
