@@ -1,39 +1,21 @@
 import Icon, { CommentOutlined, CopyOutlined, SettingOutlined } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
+import { Image, type MenuProps } from 'antd';
 import { Link } from 'react-router-dom';
 import getItem from './getMenuItem';
 
-import {
-  Backup,
-  Check,
-  DashboardCustom,
-  Fingerprint,
-  Lock,
-  Microsoft,
-  Monitor,
-  PrivilegeLogo,
-  Secure
-} from 'assets/icons';
+import { DashboardCustom, Essential8Png, Fingerprint, ISOIcon, NISTIcon } from 'assets/icons';
 import { UserRoles } from 'types';
-
-import AppHardening from 'views/appHardening';
-import AppWhiteListing from 'views/appWhiteListing';
-import DailyBackups from 'views/dailyBackups';
-import MacroMSOffice from 'views/macroMSOffice';
-import MFA from 'views/mfa';
-import PatchApplication from 'views/patchApp';
 
 import AddOns from 'views/addons';
 import Comments from 'views/comments';
 import AppDashboard from 'views/dashboard';
-import PatchOS from 'views/patchOS';
-import Report from 'views/report';
-import RestrictPrivilege from 'views/restrictPrivilege';
 import Subscriptions from 'views/subscriptions';
 import Users from 'views/users';
-import ProfileCog from '../assets/icons/InfoCustom.svg?react';
-import { SiderRoutes } from './types';
+
 import Settings from 'views/settings';
+import { essentialEightTabs } from './essentialEightTabs';
+import { isoTabs } from './isoTabs';
+import { SiderRoutes } from './types';
 
 /**
  * Icons
@@ -44,37 +26,37 @@ type MenuItem = Required<MenuProps>['items'][number];
 export const siderMsspRoutes: Array<SiderRoutes> = [
   {
     path: 'users',
-    component: <Users />,
+    component: Users,
     label: 'Users',
     id: 'users',
     index: true,
-    icon: DashboardCustom,
+    icon: <Icon className="icon active-icon" component={DashboardCustom} />,
     authenticatedUsers: [UserRoles.Mssp],
     disabled: false
   },
   {
     path: 'comments',
-    component: <Comments />,
+    component: Comments,
     label: 'Comments',
     id: 'comments',
     // index: true,
-    icon: CommentOutlined as any,
+    icon: <CommentOutlined />,
     authenticatedUsers: [UserRoles.Mssp],
     disabled: false
   },
   {
     path: 'subscriptions',
-    component: <Subscriptions />,
+    component: Subscriptions,
     label: 'Subscriptions',
     id: 'subscriptions',
     // index: true,
-    icon: Fingerprint as any,
+    icon: <Icon className="icon active-icon" component={Fingerprint} />,
     authenticatedUsers: [UserRoles.Mssp],
     disabled: false
   },
   {
     path: 'addons',
-    component: <AddOns />,
+    component: AddOns,
     label: 'Add Ons',
     id: 'addons',
     // index: true,
@@ -88,103 +70,75 @@ export const siderMsspRoutes: Array<SiderRoutes> = [
     label: 'Settings',
     id: 'settings',
     // index: true,
-    icon: SettingOutlined as any,
+    icon: <Icon className="icon active-icon" component={SettingOutlined} />,
     authenticatedUsers: [UserRoles.Mssp],
     disabled: false
   }
 ];
 
 export const siderClientRoutes: Array<SiderRoutes> = [
+  // {
+  //   path: 'dashboard',
+  //   component: AppDashboard,
+  //   label: 'Dashboard',
+  //   id: 'dashboard',
+  //   index: true, // index will create it first route when navigating to /
+  //   icon: <Icon className="icon active-icon" component={DashboardCustom} />,
+  //   authenticatedUsers: [UserRoles.Client],
+  //   disabled: false
+  // },
   {
-    path: 'dashboard',
-    component: <AppDashboard />,
-    label: 'Dashboard',
-    id: 'dashboard',
-    index: true, // index will create it first route when navigating to /
-    icon: DashboardCustom,
+    path: 'essential-eight',
+    component: AppDashboard,
+    label: 'Essential Eight',
+    id: 'essential-eight',
+    // index: true, // index will create it first route when navigating to /
+    icon: (
+      <Icon
+        className="icon active-icon"
+        component={() => {
+          return <Image src={Essential8Png} style={{ width: 32, borderRadius: 20 }} />;
+        }}
+      />
+    ),
     authenticatedUsers: [UserRoles.Client],
-    disabled: false
+    disabled: false,
+    children: essentialEightTabs
   },
   {
-    path: 'reports',
-    component: <Report />,
-    label: 'Logs',
-    id: 'logs',
-    icon: ProfileCog,
+    path: 'iso',
+    component: AppDashboard,
+    label: 'ISO 70001',
+    id: 'iso',
+    // index: true, // index will create it first route when navigating to /
+    icon: (
+      <Icon
+        className="icon active-icon"
+        component={() => {
+          return <Image src={ISOIcon} style={{ width: 37 }} />;
+        }}
+      />
+    ),
     authenticatedUsers: [UserRoles.Client],
-    disabled: false
+    disabled: false,
+    children: isoTabs
   },
   {
-    path: 'app-whitelisting',
-    component: <AppWhiteListing />,
-    label: 'App Whitelisting',
-    id: 'App Whitelisting',
-    icon: Monitor,
+    path: 'nist',
+    component: AppDashboard,
+    label: 'NIST',
+    id: 'nist',
+    // index: true, // index will create it first route when navigating to /
+    icon: (
+      <Icon
+        className="icon active-icon"
+        component={() => {
+          return <Image src={NISTIcon} style={{ width: 37, borderRadius: 20 }} />;
+        }}
+      />
+    ),
     authenticatedUsers: [UserRoles.Client],
-    disabled: false
-  },
-  {
-    path: 'patch-app',
-    component: <PatchApplication />,
-    label: 'Patch App',
-    id: 'Patch App',
-    icon: Secure,
-    authenticatedUsers: [UserRoles.Client],
-    disabled: false
-  },
-  {
-    path: 'ms-macro',
-    component: <MacroMSOffice />,
-    label: 'Macro MS Office',
-    id: 'Macro MS Office',
-    icon: Microsoft,
-    authenticatedUsers: [UserRoles.Client],
-    disabled: false
-  },
-  {
-    path: 'app-hardening',
-    component: <AppHardening />,
-    label: 'App Hardening',
-    id: 'App Hardening',
-    icon: Lock,
-    authenticatedUsers: [UserRoles.Client],
-    disabled: false
-  },
-  {
-    path: 'mfa',
-    component: <MFA />,
-    label: 'MFA',
-    id: 'MFA',
-    icon: Fingerprint,
-    authenticatedUsers: [UserRoles.Client],
-    disabled: false
-  },
-  {
-    path: 'patch-os',
-    component: <PatchOS />,
-    label: 'Patch OS',
-    id: 'Patch OS',
-    icon: Check,
-    authenticatedUsers: [UserRoles.Client],
-    disabled: false
-  },
-  {
-    path: 'restrict-privilege',
-    component: <RestrictPrivilege />,
-    label: 'Restrict Priviledges',
-    id: 'Restrict Priviledges',
-    icon: PrivilegeLogo,
-    authenticatedUsers: [UserRoles.Client],
-    disabled: false
-  },
-  {
-    path: 'daily-backup',
-    component: <DailyBackups />,
-    label: 'Daily Backups',
-    id: 'Daily Backups',
-    icon: Backup,
-    authenticatedUsers: [UserRoles.Client],
-    disabled: false
+    disabled: true
   }
 ];
 
@@ -193,15 +147,30 @@ export const siderClientRoutes: Array<SiderRoutes> = [
  */
 export const siderClientMenu: MenuItem[] = siderClientRoutes.map((route, index) => {
   // index will have default route so must be replaced
+
+  const childMenu = route.children
+    ?.filter((child) => {
+      return !child.index;
+    })
+    .map((child) => {
+      return getItem(
+        <Link className={`${child.path}`} id={child.id} to={`/user/${route.path}/${child.path}`}>
+          {child.label}
+        </Link>,
+        `${child.path}-${child.id}`,
+        child.icon
+      );
+    });
   return getItem(
     <Link id={route.id} to={`/user/${route.index ? '' : route.path}`}>
       {route.label}
     </Link>,
     index.toString(),
-    <Icon className="icon active-icon" component={route.icon}></Icon>,
+    route.icon,
     null,
     undefined,
-    route.disabled
+    route.disabled,
+    childMenu
   );
 });
 
@@ -212,7 +181,7 @@ export const siderMsspMenu: MenuItem[] = siderMsspRoutes.map((route, index) => {
       {route.label}
     </Link>,
     index.toString(),
-    <Icon className="icon active-icon" component={route.icon}></Icon>,
+    route.icon,
     null,
     undefined,
     route.disabled
