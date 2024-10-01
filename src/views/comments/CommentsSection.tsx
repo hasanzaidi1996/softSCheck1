@@ -1,6 +1,8 @@
 import { UserOutlined } from '@ant-design/icons';
 import { Button, Comment, Form, Input, List } from 'antd';
+import { AuthSelector } from 'appRedux/reducers';
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const { TextArea } = Input;
 
@@ -91,6 +93,8 @@ const Editor = () => {
  * @returns {React.ReactElement} The CommentsSection component.
  */
 const CommentsSection = ({ allComments, selected }: { allComments: any; selected: any }) => {
+  const { user } = useSelector(AuthSelector);
+
   return (
     <div>
       <div className="space-y-2">
@@ -125,8 +129,8 @@ const CommentsSection = ({ allComments, selected }: { allComments: any; selected
                   }
                   content={
                     <div>
-                      <p>
-                        <b>Han Solo</b>
+                      <p className="font-semibold text-nowrap capitalize">
+                        {user?.firstName} {user?.lastName}
                       </p>
                       <Editor />
                     </div>
