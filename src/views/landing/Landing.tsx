@@ -1,20 +1,25 @@
-import { Button, Card, Col, Collapse, Image, Row, Space, Typography } from 'antd';
+import { Button, Card, Col, Collapse, Grid, Image, Row, Space, Typography } from 'antd';
 import React from 'react';
 import LandingPerson from '../../assets/img/Landing-Page-Person.jpg';
 // import IdentifyProblemImage from '../../assets/img/problem-identification.jpg';
 // import Investigate from '../../assets/img/analytics-identify.jpg';
 // import SecureInfrastructure from '../../assets/img/secure.jpg';
 
-import LandingLayout from 'views/layout/LandingLayout';
-import TypingAnimation from './components/TypingAnimation';
-import { motion } from 'framer-motion';
 import {
+  CodeSandboxOutlined,
+  DatabaseOutlined,
+  DeploymentUnitOutlined,
   FacebookOutlined,
+  GlobalOutlined,
   InstagramOutlined,
   PlusCircleOutlined,
   TwitterOutlined
 } from '@ant-design/icons';
+import { motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
+import LandingLayout from 'views/layout/LandingLayout';
+import TypingAnimation from './components/TypingAnimation';
+const { useBreakpoint } = Grid;
 
 // import Meta from 'antd/lib/card/Meta';
 
@@ -25,6 +30,7 @@ const { Panel } = Collapse;
  * @returns {React.FC} - User Profile Card Component
  */
 const Landing: React.FC = () => {
+  const { sm, md, xs } = useBreakpoint();
   // const cardVariants = {
   //   offscreen: {
   //     y: 300
@@ -75,12 +81,14 @@ Digital Safety...`}
           </Col>
         </Row>
       </Card>
-      <Card style={{ padding: '80px', backgroundColor: '#ffd15c' }}>
+
+      <Card
+        style={{ padding: md ? '80px' : sm || xs ? '15px' : '80px', backgroundColor: '#ffd15c' }}>
         <Row>
-          <Col span={12}>
+          <Col sm={24} lg={12}>
             <Title>With the Right Advice Great Things Can Happen</Title>
           </Col>
-          <Col span={12}>
+          <Col sm={24} lg={12}>
             <Paragraph>
               <Text strong>Connecting Dots...</Text> we stand at the intersection of innovation and
               reliability, dedicated to driving growth and efficiency for our partners, Join us in
@@ -96,40 +104,52 @@ Digital Safety...`}
       </Card>
       <Card title={<Title level={2}>Our Expertise</Title>}>
         <Row gutter={[20, 20]}>
-          <Col span={9}>
-            <Card
-              className="pattern-circle"
-              style={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
-              <Title level={4} style={{ color: '#fff' }}>
+          <Col sm={24} lg={11} className="same-height-col">
+            <Card className="services-offer">
+              <Title level={4}>
+                <CodeSandboxOutlined />
                 Digital & Technology consulting
               </Title>
+              <Text>
+                Providing strategic guidance to enhance your digital footprint and optimize
+                technological solutions for sustained growth and innovation.
+              </Text>
             </Card>
           </Col>
-          <Col span={15}>
-            <Card
-              className="pattern-3"
-              style={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
-              <Title level={4} style={{ color: '#fff' }}>
+          <Col sm={24} lg={13} className="same-height-col">
+            <Card className="services-offer">
+              <Title level={4}>
+                <GlobalOutlined />
                 Cyber Security
               </Title>
+              <Text>
+                Safeguarding your digital assets with cutting-edge security measures, threat
+                mitigation strategies, and comprehensive risk assessments.
+              </Text>
             </Card>
           </Col>
-          <Col span={15}>
-            <Card
-              className="pattern-4"
-              style={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
-              <Title level={4} style={{ color: '#fff' }}>
+          <Col sm={24} lg={12} className="same-height-col">
+            <Card className="services-offer">
+              <Title level={4}>
+                <DatabaseOutlined />
                 Data Analytics & Business Intelligence
               </Title>
+              <Text>
+                Transforming raw data into actionable insights to drive informed decision-making and
+                achieve business objectives.
+              </Text>
             </Card>
           </Col>
-          <Col span={9}>
-            <Card
-              className="pattern-circle"
-              style={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
-              <Title level={4} style={{ color: '#fff' }}>
+          <Col sm={24} lg={12} className="same-height-col">
+            <Card className="services-offer">
+              <Title level={4}>
+                <DeploymentUnitOutlined />
                 Artificial Intelligence
               </Title>
+              <Text>
+                Leveraging AI technologies to automate processes, enhance customer experiences, and
+                deliver advanced predictive analytics for smarter business solutions.
+              </Text>
             </Card>
           </Col>
         </Row>
@@ -140,7 +160,7 @@ Digital Safety...`}
             <Title level={2}>Assess Your Organizations Cyber Security Maturity </Title>
           </Col>
           <Col span={7} offset={11}>
-            <NavLink to={'/auth/signup'}>
+            <NavLink to={'/login'}>
               <Button type="primary" size="large">
                 Get Started
               </Button>
@@ -151,7 +171,7 @@ Digital Safety...`}
       <Card className="services-container">
         <Title level={3}>Cyber Security Made Easy</Title>
         <Row>
-          <Col span={20} offset={4}>
+          <Col sm={{ span: 24 }} lg={{ span: 20, offset: 4 }}>
             <div className="service service1">
               <Row>
                 <Col span={2}>
@@ -166,7 +186,7 @@ Digital Safety...`}
               </Row>
             </div>
           </Col>
-          <Col span={18} offset={6}>
+          <Col sm={{ span: 24 }} lg={{ span: 18, offset: 6 }}>
             <div className="service service2">
               <Row>
                 <Col span={2}>
@@ -181,7 +201,7 @@ Digital Safety...`}
               </Row>
             </div>
           </Col>
-          <Col span={16} offset={8}>
+          <Col sm={{ span: 24 }} lg={{ span: 16, offset: 8 }}>
             <div className="service service3">
               <Row>
                 <Col span={2}>
@@ -198,6 +218,18 @@ Digital Safety...`}
           </Col>
         </Row>
       </Card>
+      <Card
+        className="card-nobody"
+        title="Our List of Services does not end here. We'll adapt to your particular needs."
+        style={{ padding: '-30px' }}
+        extra={
+          <NavLink to={'/signup'}>
+            <Button type="primary" size="large">
+              Start Now
+            </Button>
+          </NavLink>
+        }
+      />
       <Card className="faq-card">
         <Space
           className="faq-title"
@@ -211,11 +243,16 @@ Digital Safety...`}
           <Title level={2}>Frequently Asked Questions</Title>
         </Space>
         <Row>
-          <Col span={12}>
+          <Col sm={24} md={12}>
             <Collapse
               style={{ width: '100%' }}
               expandIcon={({ isActive }) => {
-                return <PlusCircleOutlined style={{ fontSize: 20 }} rotate={isActive ? 90 : 0} />;
+                return (
+                  <PlusCircleOutlined
+                    style={{ fontSize: 20, color: '#ffd15c' }}
+                    rotate={isActive ? 90 : 0}
+                  />
+                );
               }}>
               <Panel key={1} header="How does good cyber security Operate" className="faq-panel">
                 <p>
@@ -249,10 +286,17 @@ Digital Safety...`}
               </Panel>
             </Collapse>
           </Col>
-          <Col span={12}>
+
+          <Col sm={24} md={12}>
             <Collapse
+              style={{ width: '100%' }}
               expandIcon={({ isActive }) => {
-                return <PlusCircleOutlined style={{ fontSize: 20 }} rotate={isActive ? 90 : 0} />;
+                return (
+                  <PlusCircleOutlined
+                    style={{ fontSize: 20, color: '#ffd15c' }}
+                    rotate={isActive ? 90 : 0}
+                  />
+                );
               }}>
               <Panel key={1} header="What is Cyber Security" className="faq-panel">
                 <p>
@@ -285,19 +329,6 @@ Digital Safety...`}
           </Col>
         </Row>
       </Card>
-
-      <Card
-        className="card-nobody"
-        title="Our List of Services does not end here. We'll adapt to your particular needs."
-        style={{ padding: '-30px' }}
-        extra={
-          <NavLink to={'/auth/signup'}>
-            <Button type="primary" size="large">
-              Start Now
-            </Button>
-          </NavLink>
-        }
-      />
 
       {/* <Row gutter={10} justify={'center'}>
         <Col xs={24} md={12} lg={8} xl={6}>

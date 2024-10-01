@@ -1,6 +1,7 @@
 import { UserRoles } from 'types';
 
 export interface IUser {
+  createdBy?: string;
   firstName: string;
   lastName?: string;
   email: string;

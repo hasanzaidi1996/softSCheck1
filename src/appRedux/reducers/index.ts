@@ -1,19 +1,32 @@
-import { Reducer } from 'react';
-import { RESET } from 'appRedux/middleware/root/events';
 import { CombinedState, combineReducers } from '@reduxjs/toolkit';
+import { RESET } from 'appRedux/middleware/root/events';
+import { Reducer } from 'react';
 
 // reducers
-import authReducer, { AuthSelector } from './authReducer';
 import alertReducer, { AlertSelector } from './alertReducer';
+import authReducer, { AuthSelector } from './authReducer';
 import reportReducer, { ReportSelector } from './reportReducer';
+import subscriptionReducer, { SubscriptionSelector } from './subscriptionReducer';
+import usersReducer, { UserSelector } from './usersReducer';
+import addOnReducer, { AddOnSelector } from './addOnReducer';
 
 const appReducer = combineReducers({
   auth: authReducer,
+  addOn: addOnReducer,
   alert: alertReducer,
-  report: reportReducer
+  report: reportReducer,
+  subscription: subscriptionReducer,
+  user: usersReducer
 });
 
-export { AuthSelector, AlertSelector, ReportSelector };
+export {
+  AlertSelector,
+  AddOnSelector,
+  AuthSelector,
+  ReportSelector,
+  SubscriptionSelector,
+  UserSelector
+};
 
 export type RootState = ReturnType<typeof appReducer>;
 

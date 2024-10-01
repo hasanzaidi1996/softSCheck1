@@ -1,30 +1,29 @@
 import {
-  BarChartOutlined,
   CaretDownFilled,
+  CaretLeftOutlined,
+  CaretRightOutlined,
   LoginOutlined,
   LogoutOutlined,
-  PieChartOutlined,
   UserAddOutlined,
   UserOutlined
 } from '@ant-design/icons';
 import Icon from '@ant-design/icons/lib/components/Icon';
-import { Button, Card, Col, Dropdown, Layout, Row, Segmented, Space, Typography } from 'antd';
+import { Button, Card, Col, Dropdown, Grid, Layout, Row, Space, Typography } from 'antd';
+import { Footer } from 'antd/lib/layout/layout';
 import Sider from 'antd/lib/layout/Sider';
 import { logout } from 'appRedux/actions/authAction';
 import { AuthSelector } from 'appRedux/reducers';
 import store from 'appRedux/store';
 import { LogoIcon } from 'assets/icons';
-import isAuthorized from 'authorization/RouteAuthorized';
 import { CustomMenu, ScalableButton } from 'components';
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import getItem from 'routing/getMenuItem';
 import CyberAttackBar from './components/CyberAttackBar';
-import CommonAttackPie from './components/CommonAttackPie';
-import { Footer } from 'antd/lib/layout/layout';
 const { Header, Content } = Layout;
 const { Title } = Typography;
+const { useBreakpoint } = Grid;
 
 interface ILayoutProps {
   children: ReactNode;
@@ -37,38 +36,44 @@ interface ILayoutProps {
  * @returns {React.FC<ILayoutProps>} layout for landing
  */
 const LandingLayout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
-  const location = useLocation();
-  const authState = useSelector(AuthSelector);
-  const segmentOptions = [
-    {
-      label: 'Major Attacks',
-      value: 0,
-      icon: <BarChartOutlined />
-    },
-    {
-      label: 'Common Type',
-      value: 1,
-      icon: <PieChartOutlined />
-    }
-  ];
-  const [type, setType] = useState(0);
+  const { md, lg } = useBreakpoint();
 
-  /**
-   * Render chart according to type
-   *
-   * @param {number} type type chart
-   * @returns {React.FC} component to render
-   */
-  const previewChart = (type: number) => {
-    switch (type) {
-      case 0:
-        return <CyberAttackBar />;
-      case 1:
-        return <CommonAttackPie />;
-      default:
-        return <></>;
-    }
-  };
+  const authState = useSelector(AuthSelector);
+  const [collapsed, setCollapsed] = useState(true);
+
+  useEffect(() => {
+    md ? setCollapsed(false) : setCollapsed(true);
+  }, [md]);
+  // const segmentOptions = [
+  //   {
+  //     label: 'Major Attacks',
+  //     value: 0,
+  //     icon: <BarChartOutlined />
+  //   },
+  //   {
+  //     label: 'Common Type',
+  //     value: 1,
+  //     icon: <PieChartOutlined />
+  //   }
+  // ];
+  // const [type, setType] = useState(0);
+
+  // /**
+  //  * Render chart according to type
+  //  *
+  //  * @param {number} type type chart
+  //  * @returns {React.FC} component to render
+  //  */
+  // const previewChart = (type: number) => {
+  //   switch (type) {
+  //     case 0:
+  //       return <CyberAttackBar />;
+  //     case 1:
+  //       return <CommonAttackPie />;
+  //     default:
+  //       return <></>;
+  //   }
+  // };
 
   /**
    * Account Tab
@@ -118,6 +123,8 @@ const LandingLayout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
     );
   };
 
+  const smExpandedLayoutOpacity = 0.3;
+  const mdUpExpandedLayoutOpacity = 1;
   return (
     <Layout className={`site-layout`}>
       <Header className="site-layout-background">
@@ -129,18 +136,18 @@ const LandingLayout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
           </Col>
           <Col span={12} className="navbar-right">
             {/* {authState.role === UserRoles.Client && <Notification />} */}
-            {isAuthorized(location.pathname, authState.user) ? (
+            {authState.user ? (
               <Dropdown className="align-center navbar-padding" overlay={accountMenu}>
                 <AccountTab />
               </Dropdown>
             ) : (
               <Space>
-                <NavLink to={'/auth/login'}>
+                <NavLink to={'/login'}>
                   <ScalableButton icon={<LoginOutlined />} block>
                     Login
                   </ScalableButton>
                 </NavLink>
-                <NavLink to={'/auth/signup'}>
+                <NavLink to={'/signup'}>
                   <ScalableButton icon={<UserAddOutlined />} block type="primary">
                     Register
                   </ScalableButton>
@@ -151,22 +158,39 @@ const LandingLayout: React.FC<ILayoutProps> = (props: ILayoutProps) => {
         </Row>
       </Header>
       <Layout hasSider>
-        <Layout>
+        <Layout
+          style={{
+            opacity: !md && !collapsed ? smExpandedLayoutOpacity : mdUpExpandedLayoutOpacity
+          }}>
           <Content>{props.children}</Content>
         </Layout>
-        <Sider width={'25%'} className="landing-sider">
-          <Card
-            style={{ height: '100%', borderRight: 0 }}
-            extra={
-              <Segmented
-                options={segmentOptions}
-                onChange={(chart) => {
-                  setType(chart as number);
-                }}
-              />
-            }>
-            {previewChart(type)}
-          </Card>
+        <Sider
+          width={lg ? '25%' : md ? '45%' : '100%'}
+          collapsedWidth={20}
+          className="landing-sider"
+          collapsed={collapsed}
+          breakpoint="lg">
+          {collapsed ? (
+            <CaretLeftOutlined
+              style={{ color: '#fff', fontSize: 20 }}
+              onClick={() => {
+                setCollapsed(false);
+              }}
+            />
+          ) : (
+            <CaretRightOutlined
+              style={{ color: '#fff', fontSize: 20 }}
+              onClick={() => {
+                setCollapsed(true);
+              }}
+            />
+          )}
+
+          {!collapsed && (
+            <Card style={{ borderRight: 0 }}>
+              <CyberAttackBar />
+            </Card>
+          )}
         </Sider>
       </Layout>
       <Footer>

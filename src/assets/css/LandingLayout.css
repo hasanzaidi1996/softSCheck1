@@ -3,37 +3,27 @@
 }
 
 .landing-sider {
-  /* overflow: auto; */
-  height: 100vh;
+  overflow: auto;
+  height: 100%;
   position: sticky;
   /* Modal in 20*/
-  /* z-index: 19; */
+  z-index: 19;
   top: 0;
   right: 0;
 }
 
-.pattern-circle {
-  background-image: url('assets/img/pattern-2.jpg');
-  background-size: 100%;
-  height: 200px;
-}
-
-.pattern-3 {
-  background-image: url('assets/img/pattern-5.jpg');
-  background-size: 100%;
-  height: 200px;
-}
-
-.pattern-4 {
-  background-image: url('assets/img/pattern-4.jpg');
-  background-size: 100%;
-  height: 200px;
+.services-offer {
+  background-color: #242527;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 20px;
 }
 
 .services-container {
-  background-color: #0d1b2a;
-  padding: 40px;
-  background-image: url('assets/img/zig-zag.svg');
+  background-color: #242527;
+  padding: 0px;
+  background-image: url('/src/assets/img/zig-zag.svg');
   background-repeat: no-repeat;
   background-size: 200px;
   background-position: left bottom;
@@ -48,7 +38,7 @@
   color: #000;
   padding: 20px;
   border-radius: 10px;
-  width: 550px;
+  max-width: 550px;
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -78,7 +68,7 @@
 }
 
 .faq-card {
-  background-color: #0d1b2a;
+  background-color: #242527;
 }
 
 .faq-title h2 {
@@ -86,17 +76,74 @@
 }
 
 .faq-title h4 {
-  color: #335580;
+  color: #ffd15c;
 }
 
 .faq-panel {
-  background-color: #203953;
+  background-color: #171717;
+  width: 100%;
 }
 
 .faq-panel span {
   color: #fff;
 }
 
-.card-nobody ant-card-body {
+.card-nobody .ant-card-body {
   display: none;
+}
+
+.services-offer .anticon {
+  color: #ffd15c;
+  font-size: 25px;
+  margin-right: 10px;
+}
+
+.services-offer h4,
+.services-offer span {
+  color: #fff;
+}
+
+.same-height-card,
+.same-height-col {
+  display: flex;
+}
+
+/*
+Infinite Scroll
+*/
+
+/* Vertical Auto-Scrolling */
+.vertical-marquee {
+  min-height: 200px; /* Adjust based on your needs */
+  height: 240px; /* Adjust based on your needs */
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.marquee-content {
+  position: absolute;
+  top: 2%;
+  animation: vertical-marquee 20s linear infinite;
+}
+
+.vertical-marquee p {
+  padding: 0;
+  height: 40px;
+  margin: 0;
+}
+
+@keyframes vertical-marquee {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: -300%; /* Adjust based on the number of lines */
+  }
+}
+
+/* Pause on Hover */
+.marquee:hover p,
+.vertical-marquee:hover .marquee-content {
+  animation-play-state: paused;
 }

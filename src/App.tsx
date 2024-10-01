@@ -1,20 +1,21 @@
-import React, { useEffect } from 'react';
-import './App.css';
 import '@fontsource/chakra-petch';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { siderClientRoutes } from './routing';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { AuthLayout, DashboardLayout, VerifyEmail } from 'views';
+import './App.css';
+import { siderClientRoutes, siderMsspRoutes } from './routing';
 import { SiderRoutes } from './routing/types';
-import { AuthLayout, DashboardLayout, Login, SignUp, VerifyEmail } from 'views';
 
 // redux
-import { Provider } from 'react-redux';
 import { loadUser } from 'appRedux/actions/authAction';
 import store from 'appRedux/store';
+import { Provider } from 'react-redux';
 
 // middleware
-import RequireAuth from './utils/RequireAuth';
 import { Alert } from 'components';
-import { Landing } from 'views/landing/Landing';
+import LandingSaas from 'views/landing/LandingSaas';
+import RequireAuth from './utils/RequireAuth';
+// import { Landing } from 'views/landing/Landing';
 
 /**
  * Main App
@@ -50,10 +51,7 @@ const App: React.FC = () => {
           <Routes>
             <Route path="verify-email/:tokenId" element={<VerifyEmail />} />
 
-            <Route path="auth" element={<AuthLayout />}>
-              <Route path={'signup'} element={<SignUp />} />
-              <Route path={'login'} element={<Login />} />
-            </Route>
+            <Route path="*" element={<AuthLayout />} />
 
             <Route
               path="user"
@@ -64,7 +62,17 @@ const App: React.FC = () => {
               }>
               {developRoutes(siderClientRoutes)}
             </Route>
-            <Route path="*" element={<Landing />} />
+            <Route
+              path="mssp"
+              element={
+                <RequireAuth>
+                  <DashboardLayout />
+                </RequireAuth>
+              }>
+              {developRoutes(siderMsspRoutes)}
+            </Route>
+            <Route path="/" element={<LandingSaas />} />
+            {/* <Route path="/users" element={<Users />} /> */}
           </Routes>
         </div>
       </BrowserRouter>

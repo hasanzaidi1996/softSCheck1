@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IReportState } from 'types/ReduxTypes/report';
 
 const initialState: IReportState = {
+  selectedReportId: null,
   reports: null,
   reportsLoading: true,
   whitelistedCount: null,
@@ -17,8 +18,12 @@ const ReportSlice = createSlice({
   name: 'report',
   initialState: initialState,
   reducers: {
+    setSelectedId: (state, { payload }: PayloadAction<string>) => {
+      state.selectedReportId = payload;
+    },
     getReportsSuccess: (state, { payload }: PayloadAction<IReportState['reports']>) => {
       state.reports = payload;
+      state.selectedReportId = payload ? payload[0]._id : null;
       state.reportsLoading = false;
     },
     getReportsFailure: (state) => {
@@ -62,7 +67,8 @@ export const {
   getWhitelistedFailure,
   getWhitelistedSuccess,
   getMaturityLevelFailure,
-  getMaturityLevelSuccess
+  getMaturityLevelSuccess,
+  setSelectedId
 } = ReportSlice.actions;
 
 export default ReportSlice.reducer;

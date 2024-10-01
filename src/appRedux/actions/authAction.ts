@@ -1,26 +1,27 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { BackendInstance, config } from 'config';
+import { userLogout } from 'utils/Logout';
 import { handlerError } from '../../utils/ErrorHandler';
 import { updateAlert } from './alertAction';
-import { userLogout } from 'utils/Logout';
-import { createAsyncThunk } from '@reduxjs/toolkit';
 // import { DISCONNECT_SOCKET } from 'appRedux/middleware/socket/events';
 
 // types
+import { RESET } from 'appRedux/middleware/root/events';
 import type {
   ILoginFormData,
+  ILoginResponseData,
   IRegisterFormData,
-  IUser,
-  ILoginResponseData
+  IUser
 } from 'types/ReduxTypes/auth';
-import { RESET } from 'appRedux/middleware/root/events';
 
 // reducers
+import { AxiosError } from 'axios';
 import {
-  userLoaded,
-  loginSuccess,
   authReset,
   clearSession,
-  registerSuccess
+  loginSuccess,
+  registerSuccess,
+  userLoaded
 } from '../reducers/authReducer';
 
 /**
@@ -64,6 +65,8 @@ export const Login = createAsyncThunk(
       dispatch(loadUser());
       return responseData;
     } catch (err) {
+      console.log(((err as AxiosError).response?.data as Record<string, string[]>).errors);
+      console.log(err);
       handlerError(err).forEach((error: string) => {
         dispatch(updateAlert({ place: 'tc', message: error, type: 'danger' }));
       });

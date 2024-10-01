@@ -1,26 +1,25 @@
-import { Col, Row, Select, Typography } from 'antd';
-import React, { useEffect, useState } from 'react';
-import PieChart from './pieChart';
-import { useAppDispatch } from 'appRedux/store';
-import { useSelector } from 'react-redux';
-import { ReportSelector } from 'appRedux/reducers';
+import { Col, Row } from 'antd';
 import {
   getCriticalityCount,
   getMaturityLevel,
   getReports,
   getWhitelistedCount
 } from 'appRedux/actions/reportAction';
-import BarChart from './barChart';
-import { useLocation } from 'react-router-dom';
+import { ReportSelector } from 'appRedux/reducers';
+import { useAppDispatch } from 'appRedux/store';
+import { BarChart, PieChart } from 'charts';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { ComplianceCount } from './complianceCount/ComplianceCount';
 
 /**
  *
  * @returns {React.FC}
  */
 const AppWhiteListing: React.FC = () => {
-  const { search } = useLocation();
+  // const { search } = useLocation();
 
-  const query = new URLSearchParams(search);
+  // const query = new URLSearchParams(search);
   const [loading, setLoading] = useState(false);
   const {
     criticalityCount,
@@ -30,20 +29,10 @@ const AppWhiteListing: React.FC = () => {
     reports,
     reportsLoading,
     maturityLevel,
-    maturityLevelLoading
+    maturityLevelLoading,
+    selectedReportId
   } = useSelector(ReportSelector);
   const dispatch = useAppDispatch();
-  const [id, setId] = useState<string | undefined>(() => {
-    return query.get('id') || undefined;
-  });
-
-  const items =
-    reports?.map((report) => {
-      return {
-        label: report.name,
-        value: report._id
-      };
-    }) || [];
 
   /**
    * Format data for whitelisting and
@@ -78,35 +67,35 @@ const AppWhiteListing: React.FC = () => {
    */
   useEffect(() => {
     (async () => {
-      if (id) {
+      if (selectedReportId) {
         setLoading(true);
-        await dispatch(getCriticalityCount(id));
-        await dispatch(getWhitelistedCount(id));
-        await dispatch(getMaturityLevel(id));
+        await dispatch(getCriticalityCount(selectedReportId));
+        await dispatch(getWhitelistedCount(selectedReportId));
+        await dispatch(getMaturityLevel(selectedReportId));
         setLoading(false);
       }
     })();
-  }, [id]);
+  }, [selectedReportId]);
 
   /**
    * If data does not exist and id exists then fetch
    * data for charts
    */
   useEffect(() => {
-    if (id && !criticalityCount && criticalityCountLoading) {
-      dispatch(getCriticalityCount(id));
+    if (selectedReportId && !criticalityCount && criticalityCountLoading) {
+      dispatch(getCriticalityCount(selectedReportId));
     }
   }, [criticalityCount, criticalityCountLoading]);
 
   useEffect(() => {
-    if (id && !whitelistedCount && whitelistedCountLoading) {
-      dispatch(getWhitelistedCount(id));
+    if (selectedReportId && !whitelistedCount && whitelistedCountLoading) {
+      dispatch(getWhitelistedCount(selectedReportId));
     }
   }, [whitelistedCount, whitelistedCountLoading]);
 
   useEffect(() => {
-    if (id && !maturityLevel && maturityLevelLoading) {
-      dispatch(getMaturityLevel(id));
+    if (selectedReportId && !maturityLevel && maturityLevelLoading) {
+      dispatch(getMaturityLevel(selectedReportId));
     }
   }, [maturityLevel, maturityLevelLoading]);
 
@@ -118,24 +107,11 @@ const AppWhiteListing: React.FC = () => {
   return (
     <>
       <Row gutter={[20, 20]}>
-        <Col span={24}>
-          <Typography.Title level={5}>
-            Report:{' '}
-            <Select
-              options={items}
-              onChange={(val) => {
-                setId(val);
-              }}
-              defaultValue={id}
-              style={{ width: '250px' }}
-            />
-          </Typography.Title>
-        </Col>
         <Col sm={24} md={24} lg={12} xl={12} xxl={12}>
           <PieChart
             data={whitelistData}
             title={'Application by whitelisting status'}
-            color={['#0c5720', '#0c3a57']}
+            palatte={'puOr'}
             loading={loading}
           />
         </Col>
@@ -143,7 +119,7 @@ const AppWhiteListing: React.FC = () => {
           <PieChart
             data={criticalityData}
             title={'Criticality Count'}
-            color={['#94481c', '#570f0c', '#c4b331', '#316616']}
+            palatte={'dark2'}
             loading={loading}
           />
         </Col>
@@ -151,9 +127,12 @@ const AppWhiteListing: React.FC = () => {
           <BarChart
             data={maturityData}
             title={'Maturity Level By App Count'}
-            color={['#c4b331', '#316616', '#570f0c', '#94481c']}
+            palatte="set1"
             loading={loading}
           />
+        </Col>
+        <Col sm={24} md={24} lg={12} xl={12} xxl={12}>
+          <ComplianceCount loading={loading} reportId={selectedReportId || undefined} />
         </Col>
       </Row>
     </>

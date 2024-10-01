@@ -1,12 +1,12 @@
+import { Col, Form, Grid, Row, Typography } from 'antd';
 import React, { useState } from 'react';
-import { Row, Col, Typography, Grid, Form } from 'antd';
-import { ScalableButton, ScalableInput, ScalableLink } from '../../components';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { InputLength } from 'types';
+import { ScalableButton, ScalableInput, ScalableLink } from '../../components';
 // redux
 import { register as RegisterAction } from 'appRedux/actions/authAction';
-import { IRegisterFormData } from 'types/ReduxTypes/auth';
 import { useAppDispatch } from 'appRedux/store';
+import { IRegisterFormData } from 'types/ReduxTypes/auth';
 
 const { Text, Title } = Typography;
 const { useBreakpoint } = Grid;
@@ -146,7 +146,7 @@ const SignUp: React.FC = () => {
           <Form.Item>
             <Row gutter={18} justify={'space-between'} align="bottom">
               <Col span={12}>
-                <NavLink to={'/auth/login'}>
+                <NavLink to={'/login'}>
                   <ScalableButton block>Login</ScalableButton>
                 </NavLink>
               </Col>

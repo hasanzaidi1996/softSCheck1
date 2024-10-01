@@ -82,14 +82,14 @@ const FileUploader: React.FC<IUploadProps> = (props: IUploadProps) => {
   const DraggerComponent: React.FC = () => {
     return (
       <Upload.Dragger onPreview={handlePreview} {...rest}>
-        <p className="ant-upload-drag-icon">
+        <div className="flex flex-col gap-1 items-center justify-center">
           <FileUploaderSvg />
-        </p>
-        <p className="ant-upload-text">Click or drag file to this area to upload</p>
-        <p className="ant-upload-hint">
-          {draggerText ||
-            'Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files'}
-        </p>
+          <p className="ant-upload-text">Click or drag file to this area to upload</p>
+          <p className="ant-upload-hint">
+            {draggerText ||
+              'Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files'}
+          </p>
+        </div>
       </Upload.Dragger>
     );
   };

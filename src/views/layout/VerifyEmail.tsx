@@ -59,7 +59,7 @@ const VerifyEmail: React.FC = () => {
         status.status === 'success' && (
           <Button
             onClick={() => {
-              navigate('/auth/login');
+              navigate('/');
             }}>
             Login
           </Button>
