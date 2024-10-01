@@ -1,19 +1,18 @@
-import { LinkedinFilled, TwitterSquareFilled } from '@ant-design/icons';
-import { Col, Grid, Image, Layout, Row, Typography } from 'antd';
-import { Loader } from 'components';
 import React, { useEffect } from 'react';
-import { ReactTyped } from 'react-typed';
-import NotFoundLayout from 'views/notFound/NotFound';
-import CyMainLogo from '../../assets/icons/LogoWithName.svg';
+import { Row, Col, Image, Typography, Grid, Layout } from 'antd';
+import CyMainLogo from '../../assets/img/logo.png';
+import { TwitterSquareFilled, LinkedinFilled } from '@ant-design/icons';
+import { Loader } from 'components';
 import Login from '../authentication/Login';
 import SignUp from '../authentication/SignUp';
+import NotFoundLayout from 'views/notFound/NotFound';
+import { ReactTyped } from 'react-typed';
 // REDUX
 import { useSelector } from 'react-redux';
 // import { useAppDispatch } from 'appRedux/store';
 import { AuthSelector } from 'appRedux/reducers';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { branding } from 'config/branding';
-import { Route, Routes, useNavigate } from 'react-router-dom';
-import { UserRoles } from 'types';
 // import { Landing } from 'views/landing/Landing';
 
 const { useBreakpoint } = Grid;
@@ -33,18 +32,20 @@ const AuthLayout: React.FC = () => {
 
   // Route protection redirection
   const navigate = useNavigate();
-
+  const location = useLocation();
   const { isAuthenticated, role, loading } = useSelector(AuthSelector);
 
   useEffect(() => {
     (async () => {
       if (isAuthenticated && role) {
-        if (role === UserRoles.Client) {
-          navigate('/user/');
-        } else if (role === UserRoles.Mssp) {
+        const cachedPath = location.state as string;
+
+        if (cachedPath && cachedPath.includes('user')) {
           // If not redirect to cached state
-          navigate('/mssp/');
+          navigate((location.state as string) || '/user');
         }
+
+        navigate('/user/');
       }
     })();
     // Run it only once
@@ -62,7 +63,7 @@ const AuthLayout: React.FC = () => {
             <Image
               className="auth-logo-image"
               style={{
-                width: 400
+                width: 100
               }}
               src={CyMainLogo}
               preview={false}
@@ -128,6 +129,7 @@ const AuthLayout: React.FC = () => {
       <Col xs={22} sm={22} md={15} className="form-container">
         <Routes>
           {/* <Route path="landing" element={<Landing />} /> */}
+
           <Route path={'signup'} element={<SignUp />} />
           <Route path={'login'} element={<Login />} />
           <Route path="*" element={<NotFoundLayout />} />

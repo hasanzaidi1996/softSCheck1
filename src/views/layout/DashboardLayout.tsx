@@ -1,34 +1,26 @@
-import {
-  CaretDownFilled,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UserOutlined
-} from '@ant-design/icons';
-import { Col, Dropdown, Grid, Image, Layout, Row, Select, Skeleton, Space, Typography } from 'antd';
-import { CustomMenu } from 'components';
-import React, { useEffect, useState } from 'react';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { UserRoles } from 'types';
+import { Layout, Image, Typography, Grid, Row, Col, Dropdown, Skeleton } from 'antd';
 import LogoMark from '../../assets/icons/logo-white.svg';
 import {
-  navAccountMenu,
-  siderClientMenu,
-  siderClientRoutes,
-  siderMsspMenu,
-  siderMsspRoutes
-} from '../../routing';
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+  UserOutlined,
+  CaretDownFilled
+} from '@ant-design/icons';
+import { siderClientRoutes, navAccountMenu, siderClientMenu } from '../../routing';
+import { CustomMenu } from 'components';
+import { useLocation, Outlet, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { UserRoles } from 'types';
 
 // redux
-import { getReports } from 'appRedux/actions/reportAction';
-import { AuthSelector, ReportSelector } from 'appRedux/reducers';
-import { setSelectedId } from 'appRedux/reducers/reportReducer';
-import { useAppDispatch } from 'appRedux/store';
-import { SidebarSkeleton } from 'components/skeleton';
-import { branding } from 'config/branding';
 import { useSelector } from 'react-redux';
+import { AuthSelector } from 'appRedux/reducers';
+import { SidebarSkeleton } from 'components/skeleton';
+import isAuthorized from 'authorization/RouteAuthorized';
+import { branding } from 'config/branding';
 
 const { Header, Content, Footer, Sider } = Layout;
-const { Text } = Typography;
+const { Title, Text } = Typography;
 
 const { useBreakpoint } = Grid;
 
@@ -60,7 +52,7 @@ const DashboardLayout: React.FC = () => {
      * If not authorized simply redirect to
      * root page
      */
-    if (!authState.user) {
+    if (!isAuthorized(currentWindow, authState.user)) {
       navigate('/');
     }
 
@@ -73,15 +65,6 @@ const DashboardLayout: React.FC = () => {
       currentWindow = currentWindow.replace('/user', '');
     }
 
-    if (currentWindow.startsWith('/mssp/')) {
-      /**
-       * Donot replace last "/" otherwise
-       * it has to be removed from route.path
-       * as well
-       */
-      currentWindow = currentWindow.replace('/mssp', '');
-    }
-
     /**
      * Configuration of routing and brand name
      */
@@ -92,21 +75,9 @@ const DashboardLayout: React.FC = () => {
       let label = '';
       siderClientRoutes.forEach((route, index) => {
         const path = route.path;
+        console.log('here');
         if (currentWindow.indexOf(path) !== unAvailable) {
-          setSelectedKey(index.toString());
-          label += `${route.label} `;
-          brandFound = true;
-        }
-      });
-
-      if (brandFound && label) {
-        setBrand(label);
-      }
-    } else if (authState.role === UserRoles.Mssp) {
-      let label = '';
-      siderMsspRoutes.forEach((route, index) => {
-        const path = route.path;
-        if (currentWindow.indexOf(path) !== unAvailable) {
+          console.log('index', index);
           setSelectedKey(index.toString());
           label += `${route.label} `;
           brandFound = true;
@@ -119,7 +90,7 @@ const DashboardLayout: React.FC = () => {
     }
 
     if (!brandFound) {
-      // setBrand('Reports');
+      setBrand('Reports');
       setSelectedKey('0');
     }
   }, [location.pathname]);
@@ -162,36 +133,15 @@ const DashboardLayout: React.FC = () => {
         {!authState.user ? (
           <Skeleton.Input active={true} className="nav-account-dropdown" size="small" />
         ) : (
-          <a
-            {...props}
-            className="nav-account-dropdown capitalize flex items-center gap-1 text-nowrap">
+          <a {...props} className="nav-account-dropdown">
             <UserOutlined className="antd-icon align-center navbar-padding navbar-badge" />
-            {md ? `${authState.user?.firstName || ''} ${authState.user?.lastName}` || '' : ''}{' '}
+            {`${authState.user?.firstName || ''} ${authState.user?.lastName}` || ''}{' '}
             <CaretDownFilled twoToneColor={'#111c4e'} />
           </a>
         )}
       </>
     );
   };
-
-  const { reports, reportsLoading, selectedReportId } = useSelector(ReportSelector);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (authState.role === UserRoles.Client) {
-      if (!reports && reportsLoading) {
-        dispatch(getReports());
-      }
-    }
-  }, [reports, reportsLoading]);
-
-  const items =
-    reports?.map((report) => {
-      return {
-        label: report.name,
-        value: report._id
-      };
-    }) || [];
 
   const smallScreenWidth = 0;
   const mdUpScreenWidth = 80;
@@ -212,20 +162,24 @@ const DashboardLayout: React.FC = () => {
             <div
               className="logo"
               onClick={() => {
-                // if (authState.user?._id) {
-                //   return navigate('/user');
-                // }
+                if (authState.user?._id) {
+                  return navigate('/user');
+                }
                 return navigate('/');
               }}>
-              <div className="flex items-center gap-2">
-                <Image
-                  src={LogoMark}
-                  preview={false}
-                  height={branding.BRAND_LOGO_NAVBAR_HEIGHT}
-                  width={branding.BRAND_LOGO_NAVBAR_WIDTH}
-                />
-                <Text style={{ fontSize: 20, color: '#ffffff' }}>{branding.BRAND_NAME}</Text>
-              </div>
+              <Row gutter={[5, 5]}>
+                <Col>
+                  <Image
+                    src={LogoMark}
+                    preview={false}
+                    height={branding.BRAND_LOGO_NAVBAR_HEIGHT}
+                    width={branding.BRAND_LOGO_NAVBAR_WIDTH}
+                  />
+                </Col>
+                <Col>
+                  <Text style={{ fontSize: 20, color: '#ffffff' }}>{branding.BRAND_NAME}</Text>
+                </Col>
+              </Row>
             </div>
           ) : (
             <div className="logo logo-collapsed">
@@ -248,7 +202,7 @@ const DashboardLayout: React.FC = () => {
                 md ? setCollapsed(false) : setCollapsed(true);
               }}
               mode="inline"
-              items={authState.role === UserRoles.Mssp ? siderMsspMenu : siderClientMenu}
+              items={siderClientMenu}
             />
           </SidebarSkeleton>
         </Sider>
@@ -262,7 +216,7 @@ const DashboardLayout: React.FC = () => {
           }}>
           <Header className="site-layout-background">
             <Row className="site-layout-row">
-              <Col md={3} lg={5} className="navbar-left flex items-center gap-2">
+              <Col span={12} className="navbar-left">
                 {collapsed ? (
                   <MenuUnfoldOutlined
                     className="antd-icon align-center navbar-padding"
@@ -274,33 +228,11 @@ const DashboardLayout: React.FC = () => {
                     onClick={toggle}
                   />
                 )}
-                <h1 className="text-xl font-semibold text-nowrap">{md ? brand : ''}</h1>
+                <Title className="align-center navbar-padding" level={4}>
+                  {brand}
+                </Title>
               </Col>
-
-              {authState.role === UserRoles.Client && (
-                <Col
-                  xs={{ span: 12, offset: 0 }}
-                  md={{ span: 12, offset: 0 }}
-                  lg={{ span: 10, offset: 2 }}>
-                  <Typography.Title level={5}>
-                    <Space direction="horizontal">
-                      {md ? 'Report:' : ''}
-                      <Select
-                        options={items}
-                        onChange={(val) => {
-                          dispatch(setSelectedId(val));
-                        }}
-                        value={selectedReportId}
-                        style={{ width: md ? '250px' : '180px' }}
-                      />
-                    </Space>
-                  </Typography.Title>
-                </Col>
-              )}
-              <Col
-                md={authState.role === UserRoles.Client ? { span: 2 } : { span: 6, offset: 15 }}
-                lg={authState.role === UserRoles.Client ? { span: 6 } : { span: 6, offset: 13 }}
-                className="navbar-right">
+              <Col span={12} className="navbar-right">
                 {/* {authState.role === UserRoles.Client && <Notification />} */}
                 <Dropdown className="align-center navbar-padding" overlay={accountMenu}>
                   <AccountTab />

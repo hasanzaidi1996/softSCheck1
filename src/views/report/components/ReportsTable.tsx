@@ -1,11 +1,11 @@
 import { Card } from 'antd';
-import { getReports } from 'appRedux/actions/reportAction';
-import { useAppDispatch } from 'appRedux/store';
 import CustomTable from 'components/table';
 import { ReportColumns } from 'components/tableColumn';
 import TableToolBar from 'components/tableToolBar';
 import React, { useState } from 'react';
 import { IReportTableProps } from './types';
+import { useAppDispatch } from 'appRedux/store';
+import { getReports } from 'appRedux/actions/reportAction';
 import UploadReportModal from './UploadReportModal';
 
 /**
@@ -17,6 +17,7 @@ import UploadReportModal from './UploadReportModal';
 const ReportsTable: React.FC<IReportTableProps> = (props: IReportTableProps) => {
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [search, setSearch] = useState('');
 
   const tableData =
@@ -37,14 +38,16 @@ const ReportsTable: React.FC<IReportTableProps> = (props: IReportTableProps) => 
   };
   return (
     <>
-      <Card title="Upload Logs">
-        <UploadReportModal />
-      </Card>
+      <UploadReportModal open={modalOpen} setOpen={setModalOpen} />
       <Card>
         <TableToolBar
           search
           refresh
+          add
           refreshEventListener={refreshReports}
+          addEventListener={() => {
+            setModalOpen(true);
+          }}
           searchFieldHandler={(e) => {
             setSearch(e.target.value);
           }}
