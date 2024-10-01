@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 /**
  * @returns {React.FC} - User Profile Card Component
  */
-const LandingPagePhishedDataUsage = () => {
+const LandingPageInsights = () => {
   const [active, setActive] = useState(0);
   const services = [
     {
@@ -101,4 +101,4 @@ const LandingPagePhishedDataUsage = () => {
   );
 };
 
-export default LandingPagePhishedDataUsage;
+export default LandingPageInsights;

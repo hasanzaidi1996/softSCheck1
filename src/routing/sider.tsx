@@ -1,4 +1,4 @@
-import Icon, { CommentOutlined } from '@ant-design/icons';
+import Icon, { CommentOutlined, CopyOutlined, SettingOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Link } from 'react-router-dom';
 import getItem from './getMenuItem';
@@ -23,6 +23,7 @@ import MacroMSOffice from 'views/macroMSOffice';
 import MFA from 'views/mfa';
 import PatchApplication from 'views/patchApp';
 
+import AddOns from 'views/addons';
 import Comments from 'views/comments';
 import AppDashboard from 'views/dashboard';
 import PatchOS from 'views/patchOS';
@@ -32,7 +33,7 @@ import Subscriptions from 'views/subscriptions';
 import Users from 'views/users';
 import ProfileCog from '../assets/icons/InfoCustom.svg?react';
 import { SiderRoutes } from './types';
-import AddOns from 'views/addons';
+import Settings from 'views/settings';
 
 /**
  * Icons
@@ -77,7 +78,17 @@ export const siderMsspRoutes: Array<SiderRoutes> = [
     label: 'Add Ons',
     id: 'addons',
     // index: true,
-    icon: Fingerprint as any,
+    icon: CopyOutlined as any,
+    authenticatedUsers: [UserRoles.Mssp],
+    disabled: false
+  },
+  {
+    path: 'settings',
+    component: <Settings />,
+    label: 'Settings',
+    id: 'settings',
+    // index: true,
+    icon: SettingOutlined as any,
     authenticatedUsers: [UserRoles.Mssp],
     disabled: false
   }

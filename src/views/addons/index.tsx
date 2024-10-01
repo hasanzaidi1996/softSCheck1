@@ -1,18 +1,14 @@
-import { Button, Divider } from 'antd';
+import { Badge, Button, Divider } from 'antd';
+import { getAddOns } from 'appRedux/actions/addOnAction';
 import { getSubscriptions, getUserSubsciption } from 'appRedux/actions/subscriptionAction';
-import { SubscriptionSelector } from 'appRedux/reducers';
+import { AddOnSelector, SubscriptionSelector } from 'appRedux/reducers';
+
 import { useAppDispatch } from 'appRedux/store';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { ISubscription } from 'types/ReduxTypes/subscription';
+import { IAddOn } from 'types/ReduxTypes/addOn';
+import { ISubscription, IUserSubscription } from 'types/ReduxTypes/subscription';
 
-interface IAddOnsProps {
-  addOn: {
-    name: string;
-    price: any;
-    description: string;
-  };
-}
 /**
  * AddOns component
  *
@@ -24,13 +20,26 @@ const AddOns = () => {
   const dispatch = useAppDispatch();
   const { subscriptions, subscriptionLoading, userSubscribed, userSubscribedLoading } =
     useSelector(SubscriptionSelector);
-  const [subsData, setSubsData] = useState<ISubscription>();
-  console.log(subsData);
+  const { addOnLoading, addOns } = useSelector(AddOnSelector);
+
   useEffect(() => {
     if (!subscriptions && subscriptionLoading) {
       dispatch(getSubscriptions());
     }
   }, [subscriptions]);
+  useEffect(() => {
+    if (!addOns && addOnLoading) {
+      dispatch(getAddOns());
+    }
+  }, [addOns]);
+  useEffect(() => {
+    if (!userSubscribed && userSubscribedLoading) {
+      dispatch(getUserSubsciption());
+    }
+  }, [userSubscribed]);
+
+  const [subsData, setSubsData] = useState<ISubscription>();
+
   useEffect(() => {
     if (!userSubscribed && userSubscribedLoading) {
       dispatch(getUserSubsciption());
@@ -49,36 +58,6 @@ const AddOns = () => {
     }
   }, [subscriptions, userSubscribed]);
 
-  console.log('@@@@', subscriptions, subscriptionLoading, userSubscribed, userSubscribedLoading);
-  const addOns = [
-    {
-      name: 'EasyAudit',
-      price:
-        subsData?.name === 'Free'
-          ? 'Not Available'
-          : subsData?.name === 'Basic'
-          ? '$ 200'
-          : subsData?.name === 'Standard'
-          ? '$ 200'
-          : 'Custom',
-      description:
-        'Automates 80% of pre-audit work, generates compliance reports, and tracks regulatory requirements. With business consent, assessment reports can be shared with EasyAudit-registered auditors, reducing manual work and saving costs.'
-    },
-    {
-      name: 'SecureCohort',
-      price:
-        subsData?.name === 'Free'
-          ? 'Not Available'
-          : subsData?.name === 'Basic'
-          ? '$ 200'
-          : subsData?.name === 'Standard'
-          ? '$ 200'
-          : 'Custom',
-      description:
-        'A network of cybersecurity service providers offering targeted remediation services. Businesses can share assessment reports with SecureCohort-registered providers to receive specialized support for addressing vulnerabilities.'
-    }
-  ];
-
   return (
     <div className="container mb-4">
       <h1 className="text-2xl my-4 capitalize">
@@ -88,9 +67,27 @@ const AddOns = () => {
         </b>{' '}
         Subscription
       </h1>
-      <div className="grid grid-cols-1  lg:grid-cols-2 gap-4 gap-y-6">
-        {addOns.map((addOn, index) => {
-          return <AddOnsCard key={index} addOn={addOn} />;
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 gap-y-6">
+        {addOns?.map((addOn, index) => {
+          return (
+            <div key={index} className="flex justify-center">
+              {userSubscribed && userSubscribed?.addons?.includes(addOn?._id as any) ? (
+                <div
+                  className="hover:transition hover:scale-[102%] hover:shadow hover:duration-200 hover:ease-in w-80 "
+                  key={index}>
+                  <Badge.Ribbon text="Subscribed" placement="end" color="red" key={index}>
+                    <AddOnsCard key={index} addOn={addOn} userSubscribed={userSubscribed} />
+                  </Badge.Ribbon>
+                </div>
+              ) : (
+                <div
+                  className="hover:transition hover:scale-[102%] hover:shadow hover:duration-200 hover:ease-in w-80 "
+                  key={index}>
+                  <AddOnsCard key={index} addOn={addOn} />
+                </div>
+              )}
+            </div>
+          );
         })}
       </div>
     </div>
@@ -105,43 +102,32 @@ export default AddOns;
  *
  * @returns {JSX.Element} The AddOnsCard component
  */
-const AddOnsCard = ({ addOn }: IAddOnsProps) => {
+const AddOnsCard = ({
+  addOn,
+  userSubscribed
+}: {
+  addOn: IAddOn;
+  userSubscribed?: IUserSubscription;
+}) => {
   return (
-    <div className=" bg-tertiary rounded-lg p-6 flex flex-col justify-between hover:transition hover:scale-105 hover:shadow hover:duration-300 hover:ease-in ">
-      <div className="flex flex-col gap-2">
+    <div className=" bg-tertiary rounded-lg p-6 flex flex-col justify-between h-full">
+      <div className="flex flex-col">
         <h1 className="text-xl font-semibold text-center">{addOn.name}</h1>
         <div className="flex flex-col gap-0">
           <Divider />
-          <p className="text-2xl font-bold text-red-600">{addOn.price}</p>
+          <p className="text-2xl font-bold text-red-600">$ {addOn.price}</p>
           <Divider />
         </div>
-        <p className="text-justify text-lg">{addOn.description}</p>
-
-        {/* <div className="flex flex-col">
-          <h1 className={textHighlight}>Features</h1>
-          <div className="space-y-2 mt-2">
-            {addOn.plugins?.map((plugin: string, index: number) => {
-              return (
-                <span key={index} className="font-medium capitalize flex items-center gap-1">
-                  <div className="size-1.5 bg-secondary rounded-full"></div>
-                  {plugin}
-                </span>
-              );
-            })}
-          </div>
-        </div>
-        <Divider /> */}
-        <Button
-          className="w-full rounded-lg"
-          type="primary"
-          disabled={addOn.price === 'Not Available'}>
-          <span className="text-sm">
-            {addOn.price === 'Not Available'
-              ? 'N/A for current subscription'
-              : `Add on For ${addOn.price}`}
-          </span>
-        </Button>
+        <p className="text-lg">{addOn.description}</p>
       </div>
+      <Button
+        className="w-full rounded-lg"
+        type="primary"
+        disabled={addOn.price === 0 || userSubscribed?.addons?.includes(addOn?._id as any)}>
+        <span className="text-sm">
+          {addOn.price === 0 ? 'N/A for current subscription' : `Add on For $ ${addOn.price}`}
+        </span>
+      </Button>
     </div>
   );
 };

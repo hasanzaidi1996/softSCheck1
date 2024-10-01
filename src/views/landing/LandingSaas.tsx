@@ -4,7 +4,8 @@ import LandingPageAccessingApplyCyber from './components/LandingPageAccessingApp
 import LandingPageAttackingTypes from './components/LandingPageAttackingTypes';
 import LandingPageHeader from './components/LandingPageHeader';
 import LandingPageHowItWorks from './components/LandingPageHowItWorks';
-import LandingPagePhishedDataUsage from './components/LandingPagePhishedDataUsage';
+import LandingSubscriptions from './components/LandingSubscriptions';
+import LandingPageInsights from './components/LandingPageInsights';
 
 /**
  * @returns {React.FC} - User Profile Card Component
@@ -39,11 +40,12 @@ const LandingSaas: React.FC = () => {
       {/* <LandingPageStats /> */}
       <LandingPageHowItWorks />
       <LandingPageAttackingTypes />
+      <LandingSubscriptions />
       <LandingPageAccessingApplyCyber />
 
       {/* <LandingPageTargetAudience /> */}
       {/* <LandingPageActionsAgainstPhishing /> */}
-      <LandingPagePhishedDataUsage />
+      <LandingPageInsights />
     </div>
   );
 };

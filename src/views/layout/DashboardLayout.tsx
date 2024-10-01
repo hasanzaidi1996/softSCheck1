@@ -28,7 +28,7 @@ import { branding } from 'config/branding';
 import { useSelector } from 'react-redux';
 
 const { Header, Content, Footer, Sider } = Layout;
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 const { useBreakpoint } = Grid;
 
@@ -162,7 +162,9 @@ const DashboardLayout: React.FC = () => {
         {!authState.user ? (
           <Skeleton.Input active={true} className="nav-account-dropdown" size="small" />
         ) : (
-          <a {...props} className="nav-account-dropdown">
+          <a
+            {...props}
+            className="nav-account-dropdown capitalize flex items-center gap-1 text-nowrap">
             <UserOutlined className="antd-icon align-center navbar-padding navbar-badge" />
             {md ? `${authState.user?.firstName || ''} ${authState.user?.lastName}` || '' : ''}{' '}
             <CaretDownFilled twoToneColor={'#111c4e'} />
@@ -215,19 +217,15 @@ const DashboardLayout: React.FC = () => {
                 // }
                 return navigate('/');
               }}>
-              <Row gutter={[5, 5]}>
-                <Col>
-                  <Image
-                    src={LogoMark}
-                    preview={false}
-                    height={branding.BRAND_LOGO_NAVBAR_HEIGHT}
-                    width={branding.BRAND_LOGO_NAVBAR_WIDTH}
-                  />
-                </Col>
-                <Col>
-                  <Text style={{ fontSize: 20, color: '#ffffff' }}>{branding.BRAND_NAME}</Text>
-                </Col>
-              </Row>
+              <div className="flex items-center gap-2">
+                <Image
+                  src={LogoMark}
+                  preview={false}
+                  height={branding.BRAND_LOGO_NAVBAR_HEIGHT}
+                  width={branding.BRAND_LOGO_NAVBAR_WIDTH}
+                />
+                <Text style={{ fontSize: 20, color: '#ffffff' }}>{branding.BRAND_NAME}</Text>
+              </div>
             </div>
           ) : (
             <div className="logo logo-collapsed">
@@ -264,7 +262,7 @@ const DashboardLayout: React.FC = () => {
           }}>
           <Header className="site-layout-background">
             <Row className="site-layout-row">
-              <Col md={3} lg={5} className="navbar-left">
+              <Col md={3} lg={5} className="navbar-left flex items-center gap-2">
                 {collapsed ? (
                   <MenuUnfoldOutlined
                     className="antd-icon align-center navbar-padding"
@@ -276,9 +274,7 @@ const DashboardLayout: React.FC = () => {
                     onClick={toggle}
                   />
                 )}
-                <Title className="align-center navbar-padding" level={4}>
-                  {md ? brand : ''}
-                </Title>
+                <h1 className="text-xl font-semibold text-nowrap">{md ? brand : ''}</h1>
               </Col>
 
               {authState.role === UserRoles.Client && (
@@ -302,7 +298,7 @@ const DashboardLayout: React.FC = () => {
                 </Col>
               )}
               <Col
-                md={authState.role === UserRoles.Client ? { span: 2 } : { span: 6, offset: 13 }}
+                md={authState.role === UserRoles.Client ? { span: 2 } : { span: 6, offset: 15 }}
                 lg={authState.role === UserRoles.Client ? { span: 6 } : { span: 6, offset: 13 }}
                 className="navbar-right">
                 {/* {authState.role === UserRoles.Client && <Notification />} */}
