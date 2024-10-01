@@ -1,4 +1,4 @@
-import { CheckCircleTwoTone, CloseCircleTwoTone, CloudUploadOutlined } from '@ant-design/icons';
+import { CloudUploadOutlined } from '@ant-design/icons';
 import { Button, Collapse, Typography, UploadFile, UploadProps } from 'antd';
 import { RcFile } from 'antd/lib/upload';
 import { uploadReports } from 'appRedux/actions/reportAction';
@@ -205,15 +205,16 @@ const UploadReportModal: React.FC = () => {
               <Panel
                 header={item.title}
                 key={index}
-                extra={
-                  item.responseData?.status === 'success' ? (
-                    <CheckCircleTwoTone twoToneColor={'#52c41a'} />
-                  ) : (
-                    <CloseCircleTwoTone twoToneColor={'#eb2f96'} />
-                  )
-                }>
+                // extra={
+                //   item.responseData?.status === 'success' ? (
+                //     <Tag color="Request">magenta</Tag>
+                //   ) : (
+                //     <CloseCircleTwoTone twoToneColor={'#eb2f96'} />
+                //   )
+                // }
+              >
                 <div>
-                  <div className="max-h-44 overflow-auto">
+                  <div className="max-h-44 overflow-auto grid grid-cols-2 gap-2">
                     <div>
                       <div>
                         <Typography.Text type="secondary">Request</Typography.Text>
