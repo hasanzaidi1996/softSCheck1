@@ -40,7 +40,7 @@ const AuthLayout: React.FC = () => {
     (async () => {
       if (isAuthenticated && role) {
         if (role === UserRoles.Client) {
-          navigate('/user/');
+          navigate('/user/essential-eight');
         } else if (role === UserRoles.Mssp) {
           // If not redirect to cached state
           navigate('/mssp/');
