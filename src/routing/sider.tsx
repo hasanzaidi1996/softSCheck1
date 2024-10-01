@@ -13,6 +13,7 @@ import Subscriptions from 'views/subscriptions';
 import Users from 'views/users';
 
 import { essentialEightTabs } from './essentialEightTabs';
+import { isoTabs } from './isoTabs';
 import { SiderRoutes } from './types';
 
 /**
@@ -108,7 +109,8 @@ export const siderClientRoutes: Array<SiderRoutes> = [
       />
     ),
     authenticatedUsers: [UserRoles.Client],
-    disabled: true
+    disabled: false,
+    children: isoTabs
   },
   {
     path: 'nist',
