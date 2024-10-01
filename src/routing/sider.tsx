@@ -66,11 +66,11 @@ export const siderMsspRoutes: Array<SiderRoutes> = [
   },
   {
     path: 'settings',
-    component: <Settings />,
+    component: Settings,
     label: 'Settings',
     id: 'settings',
     // index: true,
-    icon: <Icon className="icon active-icon" component={SettingOutlined} />,
+    icon: <SettingOutlined />,
     authenticatedUsers: [UserRoles.Mssp],
     disabled: false
   }
