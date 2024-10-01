@@ -60,7 +60,7 @@ export const siderMsspRoutes: Array<SiderRoutes> = [
     label: 'Add Ons',
     id: 'addons',
     // index: true,
-    icon: CopyOutlined as any,
+    icon: <CopyOutlined />,
     authenticatedUsers: [UserRoles.Mssp],
     disabled: false
   },
