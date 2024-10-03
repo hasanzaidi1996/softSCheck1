@@ -139,6 +139,16 @@ export const siderClientRoutes: Array<SiderRoutes> = [
     ),
     authenticatedUsers: [UserRoles.Client],
     disabled: true
+  },
+  {
+    path: 'settings',
+    component: Settings,
+    label: 'Settings',
+    id: 'settings',
+    // index: true,
+    icon: <SettingOutlined />,
+    authenticatedUsers: [UserRoles.Mssp],
+    disabled: false
   }
 ];
 

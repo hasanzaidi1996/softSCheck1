@@ -1,7 +1,12 @@
-import { Button, Form, Input, Select } from 'antd';
+import { Button, Form, Input, Select, Switch } from 'antd';
+import { generateOTP, removeOTP } from 'appRedux/actions/authAction';
 import { AuthSelector } from 'appRedux/reducers';
+import { useAppDispatch } from 'appRedux/store';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { UserRoles } from 'types';
+import { OTPData } from './types';
+import OTPModal from './OTPModal';
 
 /**
  * This is the main function for the SettingsForm page.
@@ -9,8 +14,12 @@ import { UserRoles } from 'types';
  * @returns The JSX to be rendered on the page.
  */
 const SettingsForm = () => {
+  const [modalVisibility, setModalVisibility] = useState(false);
+  const [otpData, setOTPData] = useState({ url: '', secret: '' });
+  const [loading, setLoading] = useState(false);
   const { user } = useSelector(AuthSelector);
   const [form] = Form.useForm();
+  const dispatch = useAppDispatch();
   console.log(user);
   /**
    * Called when the form is submitted.
@@ -22,8 +31,34 @@ const SettingsForm = () => {
     console.log('Received values of form: ', values);
   };
 
+  /**
+   * OTP change call of function
+   *
+   * @param {boolean} checked status of otp
+   * @param {Event} event event of call
+   */
+  const otpChange = async (checked: boolean) => {
+    setLoading(true);
+    if (checked) {
+      const data: OTPData = await dispatch(generateOTP()).unwrap();
+
+      if (data) {
+        setOTPData(data);
+        setModalVisibility(true);
+      }
+    } else {
+      await dispatch(removeOTP());
+    }
+    setLoading(false);
+  };
+
   return (
     <div className="container bg-tertiary rounded-lg p-6">
+      <OTPModal
+        modalVisibility={modalVisibility}
+        setModalVisibility={setModalVisibility}
+        data={otpData}
+      />
       <Form
         form={form}
         name="SettingsForm"
@@ -111,6 +146,15 @@ const SettingsForm = () => {
                   label: 'Service Provider'
                 }
               ]}
+            />
+          </Form.Item>
+          <Form.Item name="otp" label="OTP">
+            <Switch
+              checkedChildren={'enabled'}
+              unCheckedChildren={'not enabled'}
+              defaultChecked={!!user?.totpSecret}
+              onChange={otpChange}
+              loading={loading}
             />
           </Form.Item>
         </div>

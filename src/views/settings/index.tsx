@@ -9,7 +9,7 @@ import ChangePassword from './ChangePassword';
  *
  * This page contains settings for the entire application.
  *
- * @return {React.ReactElement} The component
+ * @returns {React.ReactElement} The component
  */
 const Settngs = () => {
   const items = [

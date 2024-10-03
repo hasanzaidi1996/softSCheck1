@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { removeSecondaryToken } from 'utils/Logout';
 import { AuthState } from 'types/ReduxTypes/auth';
+import { OTPData } from 'views/settings/types';
 
 const initialState: AuthState = {
   token: null,
@@ -28,6 +29,12 @@ const AuthSlice = createSlice({
     registerSuccess: (state) => {
       return state;
     },
+    generateOTPSuccess: (state, { payload }: PayloadAction<OTPData>) => {
+      state.user = state.user ? { ...state.user, totpSecret: payload.secret } : null;
+    },
+    removeOTPSuccess: (state) => {
+      state.user = state.user ? { ...state.user, totpSecret: undefined } : null;
+    },
     loginSuccess: () => {},
     loginFailure: (state) => {
       return state;
@@ -43,8 +50,15 @@ const AuthSlice = createSlice({
   }
 });
 
-export const { userLoaded, registerSuccess, loginSuccess, authReset, clearSession } =
-  AuthSlice.actions;
+export const {
+  userLoaded,
+  registerSuccess,
+  loginSuccess,
+  authReset,
+  clearSession,
+  generateOTPSuccess,
+  removeOTPSuccess
+} = AuthSlice.actions;
 
 export default AuthSlice.reducer;
 

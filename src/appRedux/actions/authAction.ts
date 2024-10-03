@@ -19,8 +19,10 @@ import { AxiosError } from 'axios';
 import {
   authReset,
   clearSession,
+  generateOTPSuccess,
   loginSuccess,
   registerSuccess,
+  removeOTPSuccess,
   userLoaded
 } from '../reducers/authReducer';
 
@@ -181,5 +183,43 @@ export const resetAuth = createAsyncThunk('auth/resetAuth', async (_, { dispatch
     return true;
   } catch (err) {
     return false;
+  }
+});
+
+/**
+ * Generate OTP code
+ *
+ * @returns {boolean} register
+ */
+export const generateOTP = createAsyncThunk('auth/generateOTP', async (_, { dispatch }) => {
+  try {
+    const res = await BackendInstance.post('user/2fa', {}, config);
+
+    dispatch(generateOTPSuccess(res.data.data));
+    return res.data.data;
+  } catch (err) {
+    handlerError(err).forEach((error: string) => {
+      dispatch(updateAlert({ place: 'tc', message: error, type: 'danger' }));
+    });
+    return undefined;
+  }
+});
+
+/**
+ * removeOTP OTP code
+ *
+ * @returns {boolean} register
+ */
+export const removeOTP = createAsyncThunk('auth/removeOTP', async (_, { dispatch }) => {
+  try {
+    const res = await BackendInstance.post('user/2fa/remove', {}, config);
+    dispatch(updateAlert({ place: 'tc', message: res.data.msg, type: 'success' }));
+    dispatch(removeOTPSuccess());
+    return res.data.data;
+  } catch (err) {
+    handlerError(err).forEach((error: string) => {
+      dispatch(updateAlert({ place: 'tc', message: error, type: 'danger' }));
+    });
+    return undefined;
   }
 });

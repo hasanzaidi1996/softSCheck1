@@ -2,7 +2,7 @@ import { UserRoles } from 'types';
 
 export interface IUser {
   createdBy?: string;
-  firstName: string;
+  firstName?: string;
   lastName?: string;
   email: string;
   role: UserRoles;
@@ -11,6 +11,7 @@ export interface IUser {
   date: string;
   address: string;
   organization: string;
+  totpSecret?: string;
 }
 
 export interface AuthState {
