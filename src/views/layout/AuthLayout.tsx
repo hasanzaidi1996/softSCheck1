@@ -14,6 +14,7 @@ import { AuthSelector } from 'appRedux/reducers';
 import { branding } from 'config/branding';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { UserRoles } from 'types';
+import VerifyOTP from './VerifyOTP';
 // import { Landing } from 'views/landing/Landing';
 
 const { useBreakpoint } = Grid;
@@ -130,6 +131,8 @@ const AuthLayout: React.FC = () => {
           {/* <Route path="landing" element={<Landing />} /> */}
           <Route path={'signup'} element={<SignUp />} />
           <Route path={'login'} element={<Login />} />
+          <Route path="otp/:userId" element={<VerifyOTP />} />
+
           <Route path="*" element={<NotFoundLayout />} />
         </Routes>
       </Col>

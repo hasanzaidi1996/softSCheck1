@@ -11,7 +11,8 @@ import type {
   ILoginFormData,
   ILoginResponseData,
   IRegisterFormData,
-  IUser
+  IUser,
+  IVerifyOTP
 } from 'types/ReduxTypes/auth';
 
 // reducers
@@ -63,8 +64,11 @@ export const Login = createAsyncThunk(
     try {
       const res = await BackendInstance.post('user/login', body, config);
       const responseData = res.data.data as ILoginResponseData;
-      dispatch(loginSuccess());
-      dispatch(loadUser());
+      if (!responseData.otp) {
+        dispatch(loginSuccess());
+        dispatch(loadUser());
+      }
+
       return responseData;
     } catch (err) {
       console.log(((err as AxiosError).response?.data as Record<string, string[]>).errors);
@@ -223,3 +227,28 @@ export const removeOTP = createAsyncThunk('auth/removeOTP', async (_, { dispatch
     return undefined;
   }
 });
+
+/**
+ * removeOTP OTP code
+ *
+ * @returns {boolean} register
+ */
+export const verifyOTP = createAsyncThunk(
+  'auth/verifyOTP',
+  async (data: IVerifyOTP, { dispatch }) => {
+    try {
+      const _data = JSON.stringify(data);
+
+      await BackendInstance.post('user/2fa/verify', _data, config);
+      dispatch(loginSuccess());
+      dispatch(loadUser());
+      return true;
+    } catch (err) {
+      handlerError(err).forEach((error: string) => {
+        dispatch(updateAlert({ place: 'tc', message: error, type: 'danger' }));
+      });
+      dispatch(clearSession());
+      return false;
+    }
+  }
+);

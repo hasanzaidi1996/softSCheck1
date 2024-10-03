@@ -14,7 +14,12 @@ export interface IConfirmPasswordData {
 export interface ILoginResponseData {
   role?: string;
   id?: string;
-  // otpEnabled?: boolean;
+  otp?: boolean;
+}
+
+export interface IVerifyOTP {
+  otp: string;
+  userId: string;
 }
 
 export interface IRegisterFormData {

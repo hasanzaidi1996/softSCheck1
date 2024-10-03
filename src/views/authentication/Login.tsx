@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Row, Col, Typography, Form, Grid } from 'antd';
 import { ScalableButton, ScalableInput, ScalableLink } from 'components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { InputLength } from 'types';
 
 // REDUX
@@ -23,6 +23,7 @@ const { useBreakpoint } = Grid;
 const Login: React.FC = () => {
   const screens = useBreakpoint();
   const mdOrUp = Boolean(screens.md);
+  const navigate = useNavigate();
   const [btnLoader, setBtnLoader] = useState(false);
   const mdCol = 15;
   const smallCol = 20;
@@ -39,9 +40,9 @@ const Login: React.FC = () => {
     setBtnLoader(true);
     const response = await dispatch(LoginAction(formData));
     const payload = response.payload as ILoginResponseData;
-    if (payload && payload.id) {
-      sessionStorage.setItem('email', formData.email);
-      // navigate(`/otp/${payload.id}`);
+    if (payload.otp && payload.id) {
+      // sessionStorage.setItem('email', formData.email);
+      navigate(`/otp/${payload.id}`);
     }
     setBtnLoader(Boolean(response.payload));
   };
