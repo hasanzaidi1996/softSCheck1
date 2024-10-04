@@ -1,33 +1,85 @@
 import { Col, Row } from 'antd';
 import StackedBarChart from 'charts/stackedBarChart';
+import { IStackBarChartProps } from 'charts/stackedBarChart/types';
 import React from 'react';
 
 /**
  * @returns {React.FC} component to render
  */
 const ISOOrganization: React.FC = () => {
-  const data = [
-    { label: 'test1', count: 22, category: 'post' },
-    { label: 'test1', count: 22, category: 'post2' },
-    { label: 'test2', count: 222, category: 'post' },
-    { label: 'test3', count: 2, category: 'post2' },
-    { label: 'test1', count: 548, category: 'post' },
-    { label: 'test2', count: 982, category: 'post2' },
-    { label: 'test3', count: 191, category: 'post' },
-    { label: 'test6', count: 17, category: 'post2' },
-    { label: 'test5', count: 654, category: 'post3' },
-    { label: 'test6', count: 38, category: 'post' },
-    { label: 'test3', count: 473, category: 'post2' },
-    { label: 'test5', count: 812, category: 'post3' },
-    { label: 'test4', count: 275, category: 'post' },
-    { label: 'test6', count: 351, category: 'post2' },
-    { label: 'test5', count: 351, category: 'post2' },
-    { label: 'test5', count: 351, category: 'post2' }
-  ];
+  /**
+   *
+   * @param {number} length length of dataset
+   * @returns {IStackBarChartProps.data} data to return
+   */
+  const generateRandomData = (length: number): IStackBarChartProps['data'] => {
+    const months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+    ];
+
+    const categories = ['compliant', 'non-compliant', 'not-assessed', 'partially compliant'];
+
+    const data = [];
+
+    for (let i = 0; i < length; i++) {
+      const randomMonth = months[Math.floor(Math.random() * months.length)];
+      const randomCount = Math.floor(Math.random() * 5);
+      const randomCategory = categories[Math.floor(Math.random() * categories.length)];
+
+      data.push({
+        label: randomMonth,
+        count: randomCount,
+        category: randomCategory
+      });
+    }
+
+    return data;
+  };
+
   return (
-    <Row>
-      <Col span={24}>
-        <StackedBarChart data={data} loading={false} palatte="viridis" title="Compliance" />
+    <Row gutter={[10, 10]}>
+      <Col span={12}>
+        <StackedBarChart
+          data={generateRandomData(40)}
+          loading={false}
+          palatte="set1"
+          title="Acceptable use of information and other associated assets"
+        />
+      </Col>
+      <Col span={12}>
+        <StackedBarChart
+          data={generateRandomData(40)}
+          loading={false}
+          palatte="set1"
+          title="Access Control"
+        />
+      </Col>
+      <Col span={12}>
+        <StackedBarChart
+          data={generateRandomData(40)}
+          loading={false}
+          palatte="set1"
+          title="Access Rights"
+        />
+      </Col>
+      <Col span={12}>
+        <StackedBarChart
+          data={generateRandomData(40)}
+          loading={false}
+          palatte="set1"
+          title="Access Rights"
+        />
       </Col>
     </Row>
   );
