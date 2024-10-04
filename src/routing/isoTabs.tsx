@@ -4,6 +4,7 @@ import { UserRoles } from 'types';
 import AppDashboard from 'views/dashboard';
 import Report from 'views/report';
 import { SiderRoutes } from './types';
+import ISOOrganization from 'views/iso/organization';
 
 export const isoTabs: Array<SiderRoutes> = [
   {
@@ -18,7 +19,7 @@ export const isoTabs: Array<SiderRoutes> = [
   },
   {
     path: 'org-control',
-    component: Report,
+    component: ISOOrganization,
     label: 'Organization',
     id: 'org-control',
     icon: <Icon className="icon active-icon" component={Check} />,
