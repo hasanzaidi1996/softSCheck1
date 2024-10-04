@@ -3,7 +3,16 @@ import { Image, type MenuProps } from 'antd';
 import { Link } from 'react-router-dom';
 import getItem from './getMenuItem';
 
-import { DashboardCustom, Essential8Png, Fingerprint, ISOIcon, NISTIcon } from 'assets/icons';
+import {
+  DashboardCustom,
+  Essential8Png,
+  Fingerprint,
+  GDPRIcon,
+  HIPPAIcon,
+  ISOIcon,
+  NISTIcon,
+  PCIIcon
+} from 'assets/icons';
 import { UserRoles } from 'types';
 
 import AddOns from 'views/addons';
@@ -133,7 +142,51 @@ export const siderClientRoutes: Array<SiderRoutes> = [
       <Icon
         className="icon active-icon"
         component={() => {
-          return <Image src={NISTIcon} style={{ width: 37, borderRadius: 20 }} />;
+          return <Image preview={false} src={NISTIcon} style={{ width: 37, borderRadius: 20 }} />;
+        }}
+      />
+    ),
+    authenticatedUsers: [UserRoles.Client],
+    disabled: true
+  },
+  {
+    path: 'hippa',
+    component: AppDashboard,
+    label: 'HIPPA',
+    id: 'hippa',
+    // index: true, // index will create it first route when navigating to /
+    icon: (
+      <Icon
+        className="icon active-icon"
+        component={() => {
+          return <Image preview={false} src={HIPPAIcon} style={{ width: 37, borderRadius: 20 }} />;
+        }}
+      />
+    ),
+    authenticatedUsers: [UserRoles.Client],
+    disabled: true
+  },
+  {
+    path: 'pci',
+    component: AppDashboard,
+    label: 'PCI',
+    id: 'pci',
+    // index: true, // index will create it first route when navigating to /
+    icon: <Icon className="icon active-icon" component={PCIIcon} />,
+    authenticatedUsers: [UserRoles.Client],
+    disabled: true
+  },
+  {
+    path: 'gdpr',
+    component: AppDashboard,
+    label: 'GDPR',
+    id: 'hippa',
+    // index: true, // index will create it first route when navigating to /
+    icon: (
+      <Icon
+        className="icon active-icon"
+        component={() => {
+          return <Image preview={false} src={GDPRIcon} style={{ width: 37, borderRadius: 20 }} />;
         }}
       />
     ),
@@ -146,7 +199,7 @@ export const siderClientRoutes: Array<SiderRoutes> = [
     label: 'Settings',
     id: 'settings',
     // index: true,
-    icon: <SettingOutlined />,
+    icon: <SettingOutlined style={{ fontSize: 20 }} />,
     authenticatedUsers: [UserRoles.Mssp],
     disabled: false
   }

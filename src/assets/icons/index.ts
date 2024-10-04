@@ -22,7 +22,14 @@ import EssentialEightCustom from './EssentialEight.svg?react';
 import InfoCustom from './InfoCustom.svg?react';
 import ISOIcon from './ISO-27001.png';
 import NISTIcon from './nist.png';
+import HIPPAIcon from './HIPPA.png';
+import GDPRIcon from './GDPRIcon.png';
+import PCIIcon from './PCI.svg?react';
+
 export {
+  HIPPAIcon,
+  GDPRIcon,
+  PCIIcon,
   AddCustom,
   Australia,
   Backup,
