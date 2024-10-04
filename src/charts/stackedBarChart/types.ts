@@ -8,4 +8,5 @@ export interface IStackBarChartProps {
   palatte: string;
   colorField?: 'label' | 'count';
   loading: boolean;
+  height?: number;
 }
