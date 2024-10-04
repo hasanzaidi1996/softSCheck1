@@ -19,7 +19,8 @@ const StackedBarChart: React.FC<IStackBarChartProps> = (props: IStackBarChartPro
     xField: 'label',
     yField: 'count',
     colorField: 'category',
-    stack: true
+    stack: true,
+    height: props.height
   };
   return (
     <Card title={props.title} style={{ borderRadius: 10, height: '100%' }}>
