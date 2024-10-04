@@ -6,7 +6,7 @@ import React from 'react';
 /**
  * @returns {React.FC} component to render
  */
-const ISOOrganization: React.FC = () => {
+const ISOTechnological: React.FC = () => {
   /**
    *
    * @param {number} length length of dataset
@@ -54,7 +54,7 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Acceptable use of information and other associated assets"
+          title="Secure Communications"
         />
       </Col>
       <Col span={12}>
@@ -62,7 +62,7 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Access Control"
+          title="E-mail Protection"
         />
       </Col>
       <Col span={12}>
@@ -70,7 +70,7 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Access Rights"
+          title="Wireless Network Security"
         />
       </Col>
       <Col span={12}>
@@ -78,7 +78,7 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Addressing Information Security within Supplier Aggreements"
+          title="Data Integrity Verification"
         />
       </Col>
       <Col span={12}>
@@ -86,7 +86,7 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Assessment and Decision on Information Security Events"
+          title="Automated Security Patching"
         />
       </Col>
       <Col span={12}>
@@ -94,7 +94,7 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Authentication Information"
+          title="Intrusion Detection and Prevention"
         />
       </Col>
       <Col span={12}>
@@ -102,7 +102,7 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Avaliability of Information Processing Facilities"
+          title="Threat Detection and Response"
         />
       </Col>
       <Col span={12}>
@@ -110,7 +110,7 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Classification of Information"
+          title="Web Content Filtering"
         />
       </Col>
       <Col span={12}>
@@ -118,7 +118,7 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Collection of Evidence"
+          title="Vulnerability Scanning"
         />
       </Col>
       <Col span={12}>
@@ -126,7 +126,7 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Compliance with information security policies"
+          title="Encryption Key Management"
         />
       </Col>
       <Col span={12}>
@@ -134,7 +134,7 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Contact with authorities"
+          title="Mobile Device Management"
         />
       </Col>
       <Col span={12}>
@@ -142,7 +142,7 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Contact with special interest groups"
+          title="Secure Development Environment"
         />
       </Col>
       <Col span={12}>
@@ -150,7 +150,7 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Continuity Planning for Information Security"
+          title="Secure System Engineering"
         />
       </Col>
       <Col span={12}>
@@ -158,7 +158,7 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Documentation of Information Security Controls"
+          title="Endpoint Security"
         />
       </Col>
       <Col span={12}>
@@ -166,7 +166,7 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Identity management"
+          title="Use of Virtualization and Cloud Services"
         />
       </Col>
       <Col span={12}>
@@ -174,7 +174,7 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Independent Review of Information Security policy "
+          title="Secure Messaging"
         />
       </Col>
       <Col span={12}>
@@ -182,7 +182,7 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Information security on project management"
+          title="Secure Disposal or Reuse of Equipment"
         />
       </Col>
       <Col span={12}>
@@ -190,7 +190,7 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Information security in supplier Relationships"
+          title="System Hardening"
         />
       </Col>
       <Col span={12}>
@@ -198,7 +198,7 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Information security incident management Planning and Response"
+          title="Application Security"
         />
       </Col>
       <Col span={12}>
@@ -206,7 +206,7 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Information Securituy Roles and responsibility"
+          title="Monitoring Information Systems"
         />
       </Col>
       <Col span={12}>
@@ -214,7 +214,7 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Information Transfer"
+          title="Secure Coding"
         />
       </Col>
       <Col span={12}>
@@ -222,7 +222,7 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Intellectual Property Rights (IPR)"
+          title="Data Loss Prevention"
         />
       </Col>
       <Col span={12}>
@@ -230,7 +230,7 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Inventory of iformation and other associated assets"
+          title="Protection Against Malware"
         />
       </Col>
       <Col span={12}>
@@ -238,40 +238,7 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Labelling of information"
-        />
-      </Col>
-      <Col span={12}>
-        <StackedBarChart
-          data={generateRandomData(40)}
-          loading={false}
-          palatte="set1"
-          title="Learning from Information Security Incidents"
-        />
-      </Col>
-      <Col span={12}>
-        <StackedBarChart
-          data={generateRandomData(40)}
-          loading={false}
-          palatte="set1"
-          title="Legal and Regulatory Requirements"
-        />
-      </Col>
-
-      <Col span={12}>
-        <StackedBarChart
-          data={generateRandomData(40)}
-          loading={false}
-          palatte="set1"
-          title="Management Responsibilities"
-        />
-      </Col>
-      <Col span={12}>
-        <StackedBarChart
-          data={generateRandomData(40)}
-          loading={false}
-          palatte="set1"
-          title="Managing Information Security in the Supply Chain"
+          title="Clock Synchronization"
         />
       </Col>
       <Col span={12}>
@@ -287,31 +254,7 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Policies for Information Security"
-        />
-      </Col>
-      <Col span={12}>
-        <StackedBarChart
-          data={generateRandomData(40)}
-          loading={false}
-          palatte="set1"
-          title="Privacy and Protection of Personal Identifiable Information (PII)"
-        />
-      </Col>
-      <Col span={12}>
-        <StackedBarChart
-          data={generateRandomData(40)}
-          loading={false}
-          palatte="set1"
-          title="Protection of Records"
-        />
-      </Col>
-      <Col span={12}>
-        <StackedBarChart
-          data={generateRandomData(40)}
-          loading={false}
-          palatte="set1"
-          title="Risk Assessments"
+          title="Logging"
         />
       </Col>
 
@@ -320,7 +263,55 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Response of Information Security Incidents"
+          title="Information Backup"
+        />
+      </Col>
+      <Col span={12}>
+        <StackedBarChart
+          data={generateRandomData(40)}
+          loading={false}
+          palatte="set1"
+          title="Data Leakage Prevention"
+        />
+      </Col>
+      <Col span={12}>
+        <StackedBarChart
+          data={generateRandomData(40)}
+          loading={false}
+          palatte="set1"
+          title="Data Masking"
+        />
+      </Col>
+      <Col span={12}>
+        <StackedBarChart
+          data={generateRandomData(40)}
+          loading={false}
+          palatte="set1"
+          title="Information Deletion"
+        />
+      </Col>
+      <Col span={12}>
+        <StackedBarChart
+          data={generateRandomData(40)}
+          loading={false}
+          palatte="set1"
+          title="Vulnerability Management"
+        />
+      </Col>
+      <Col span={12}>
+        <StackedBarChart
+          data={generateRandomData(40)}
+          loading={false}
+          palatte="set1"
+          title="Configuration Management"
+        />
+      </Col>
+      <Col span={12}>
+        <StackedBarChart
+          data={generateRandomData(40)}
+          loading={false}
+          palatte="set1"
+          title="Security Testing"
         />
       </Col>
 
@@ -329,27 +320,11 @@ const ISOOrganization: React.FC = () => {
           data={generateRandomData(40)}
           loading={false}
           palatte="set1"
-          title="Return of assets"
-        />
-      </Col>
-      <Col span={12}>
-        <StackedBarChart
-          data={generateRandomData(40)}
-          loading={false}
-          palatte="set1"
-          title="Segregation of duties"
-        />
-      </Col>
-      <Col span={12}>
-        <StackedBarChart
-          data={generateRandomData(40)}
-          loading={false}
-          palatte="set1"
-          title="Threat Intelligence"
+          title="Protection of Test Data"
         />
       </Col>
     </Row>
   );
 };
 
-export default ISOOrganization;
+export default ISOTechnological;

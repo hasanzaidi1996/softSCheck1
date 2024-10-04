@@ -1,10 +1,17 @@
-import Icon from '@ant-design/icons';
-import { Check, DashboardCustom } from 'assets/icons';
+import Icon, {
+  BlockOutlined,
+  DatabaseOutlined,
+  DesktopOutlined,
+  TeamOutlined
+} from '@ant-design/icons';
+import { DashboardCustom } from 'assets/icons';
 import { UserRoles } from 'types';
 import ISODashboard from 'views/isoDashboard';
-import Report from 'views/report';
 import { SiderRoutes } from './types';
 import ISOOrganization from 'views/iso/organization';
+import ISOPeople from 'views/iso/people';
+import ISOPhysical from 'views/iso/physical';
+import ISOTechnological from 'views/iso/technological';
 
 export const isoTabs: Array<SiderRoutes> = [
   {
@@ -22,34 +29,34 @@ export const isoTabs: Array<SiderRoutes> = [
     component: ISOOrganization,
     label: 'Organization',
     id: 'org-control',
-    icon: <Icon className="icon active-icon" component={Check} />,
+    icon: <BlockOutlined />,
     authenticatedUsers: [UserRoles.Client],
     disabled: false
   },
   {
     path: 'people-control',
-    component: Report,
+    component: ISOPeople,
     label: 'People',
     id: 'people-control',
-    icon: <Icon className="icon active-icon" component={Check} />,
+    icon: <TeamOutlined />,
     authenticatedUsers: [UserRoles.Client],
     disabled: false
   },
   {
     path: 'physical-control',
-    component: Report,
+    component: ISOPhysical,
     label: 'Physical',
     id: 'physical-control',
-    icon: <Icon className="icon active-icon" component={Check} />,
+    icon: <DatabaseOutlined />,
     authenticatedUsers: [UserRoles.Client],
     disabled: false
   },
   {
     path: 'tech-control',
-    component: Report,
+    component: ISOTechnological,
     label: 'Technological',
     id: 'tech-control',
-    icon: <Icon className="icon active-icon" component={Check} />,
+    icon: <DesktopOutlined />,
     authenticatedUsers: [UserRoles.Client],
     disabled: false
   }
