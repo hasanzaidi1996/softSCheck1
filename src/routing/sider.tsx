@@ -25,6 +25,7 @@ import Settings from 'views/settings';
 import { essentialEightTabs } from './essentialEightTabs';
 import { isoTabs } from './isoTabs';
 import { SiderRoutes } from './types';
+import ISODashboard from 'views/isoDashboard';
 
 /**
  * Icons
@@ -116,7 +117,7 @@ export const siderClientRoutes: Array<SiderRoutes> = [
   },
   {
     path: 'iso',
-    component: AppDashboard,
+    component: ISODashboard,
     label: 'ISO 70001',
     id: 'iso',
     // index: true, // index will create it first route when navigating to /
