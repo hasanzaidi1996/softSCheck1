@@ -1,7 +1,7 @@
 import Icon from '@ant-design/icons';
 import { Check, DashboardCustom } from 'assets/icons';
 import { UserRoles } from 'types';
-import AppDashboard from 'views/dashboard';
+import ISODashboard from 'views/isoDashboard';
 import Report from 'views/report';
 import { SiderRoutes } from './types';
 import ISOOrganization from 'views/iso/organization';
@@ -9,7 +9,7 @@ import ISOOrganization from 'views/iso/organization';
 export const isoTabs: Array<SiderRoutes> = [
   {
     path: '',
-    component: AppDashboard,
+    component: ISODashboard,
     label: 'Dashboard',
     id: 'dashboard',
     index: true, // index will create it first route when navigating to /
