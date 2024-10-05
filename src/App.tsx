@@ -13,8 +13,11 @@ import { Provider } from 'react-redux';
 
 // middleware
 import { Alert } from 'components';
+import Pricing from 'views/Pricing';
 import LandingSaas from 'views/landing/LandingSaas';
+import LandingLayout2 from 'views/layout/components/LandingLayout2';
 import RequireAuth from './utils/RequireAuth';
+import Resources from 'views/Resources';
 // import { Landing } from 'views/landing/Landing';
 
 /**
@@ -75,7 +78,12 @@ const App: React.FC = () => {
               }>
               {developRoutes(siderMsspRoutes)}
             </Route>
-            <Route path="/" element={<LandingSaas />} />
+            <Route path="" element={<LandingLayout2 />}>
+              <Route path="/" element={<LandingSaas />} />
+              <Route path="/resources" element={<Resources />} />
+              <Route path="/pricing" element={<Pricing />} />
+            </Route>
+
             {/* <Route path="/users" element={<Users />} /> */}
           </Routes>
         </div>

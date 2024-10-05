@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import StartArrow from '../../../assets/img/startArrrow.png';
+import LandingHeadings from './LandingHeadings';
 /**
  * @returns {React.FC} - User Profile Card Component
  */
@@ -31,9 +32,7 @@ const LandingPageHowItWorks = () => {
   ];
   return (
     <div className="flex flex-col justify-center items-center gap-4 p-12 container">
-      <h1 className="text-4xl max-md:text-2xl font-bold text-center text-secondary underline">
-        Cyber Security Maturity Levels
-      </h1>
+      <LandingHeadings heading=" Cyber Security Maturity Levels" />
       <p className="text-lg max-md:text-sm leading-[30px] mx-20 text-center text-secondary">
         Maturity Levels are designed for simple understanding
       </p>
@@ -49,7 +48,7 @@ const LandingPageHowItWorks = () => {
                 initial={{
                   opacity: 0,
                   // if odd index card,slide from right instead of left
-                  x: index === 0 ? -100 : index === 3 ? 100 : '',
+                  x: index === 0 ? -50 : index === 3 ? 50 : '',
                   y: index === 1 ? -50 : index === 2 ? 50 : ''
                 }}
                 whileInView={{
@@ -79,7 +78,7 @@ const LandingPageHowItWorks = () => {
             initial={{
               opacity: 0,
               // if odd index card,slide from right instead of left
-              x: active === 0 ? -100 : active === 3 ? 100 : '',
+              x: active === 0 ? -50 : active === 3 ? 50 : '',
               y: active === 1 ? -50 : active === 2 ? 50 : ''
             }}
             whileInView={{

@@ -61,7 +61,7 @@ const LandingPageHeader = () => {
               initial={{
                 opacity: 0,
                 // if odd index card,slide from right instead of left
-                x: isInView ? -100 : 100
+                x: isInView ? -50 : 50
               }}
               whileInView={{
                 opacity: 1,
@@ -84,7 +84,7 @@ const LandingPageHeader = () => {
               initial={{
                 opacity: 0,
                 // if odd index card,slide from right instead of left
-                x: isInView ? 100 : -100
+                x: isInView ? 50 : -50
               }}
               whileInView={{
                 opacity: 1,
@@ -133,7 +133,7 @@ const LandingPageHeader = () => {
             initial={{
               opacity: 0,
               // if odd index card,slide from right instead of left
-              y: isInView ? -100 : 100
+              y: isInView ? -50 : 50
             }}
             whileInView={{
               opacity: 1,

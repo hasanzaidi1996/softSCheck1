@@ -1,5 +1,6 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
+import LandingHeadings from './LandingHeadings';
 /**
  * @returns {React.FC} - User Profile Card Component
  */
@@ -41,12 +42,9 @@ const LandingPageInsights = () => {
     }
   ];
   return (
-    <div className=" p-8 ">
-      <div className="container flex flex-col gap-8 max-md:gap-4">
-        <h1 className="text-4xl max-md:text-2xl font-bold text-center mb-6 max-md:mb-2 text-secondary underline">
-          Deep Assesment Insights
-        </h1>
-
+    <div className="p-8 container">
+      <div className=" flex flex-col gap-8 max-md:gap-4">
+        <LandingHeadings heading=" Deep Assesment Insights" />
         <div className="grid grid-cols-4 max-xl:grid-cols-2 max-md:grid-cols-1 gap-4">
           {services.map((service, index: number) => {
             return (
@@ -54,7 +52,7 @@ const LandingPageInsights = () => {
                 initial={{
                   opacity: 0,
                   // if odd index card,slide from right instead of left
-                  x: index % 2 === 0 ? -100 : 100
+                  x: index % 2 === 0 ? -25 : 25
                 }}
                 whileInView={{
                   opacity: 1,

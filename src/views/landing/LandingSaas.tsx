@@ -4,8 +4,8 @@ import LandingPageAccessingApplyCyber from './components/LandingPageAccessingApp
 import LandingPageAttackingTypes from './components/LandingPageAttackingTypes';
 import LandingPageHeader from './components/LandingPageHeader';
 import LandingPageHowItWorks from './components/LandingPageHowItWorks';
-import LandingSubscriptions from './components/LandingSubscriptions';
 import LandingPageInsights from './components/LandingPageInsights';
+import LandingPageIntegrations from './components/LandingPageIntegrations';
 
 /**
  * @returns {React.FC} - User Profile Card Component
@@ -28,7 +28,6 @@ const LandingSaas: React.FC = () => {
           backgroundColor: '#f3c920',
           width: '100%',
           position: 'fixed',
-          top: 0,
           left: 0,
           right: 0,
           height: 10,
@@ -38,14 +37,16 @@ const LandingSaas: React.FC = () => {
 
       <LandingPageHeader />
       {/* <LandingPageStats /> */}
-      <LandingPageHowItWorks />
-      <LandingPageAttackingTypes />
-      <LandingSubscriptions />
-      <LandingPageAccessingApplyCyber />
+      <div className="space-y-4">
+        <LandingPageHowItWorks />
+        <LandingPageAttackingTypes />
+        <LandingPageAccessingApplyCyber />
+        <LandingPageIntegrations />
 
-      {/* <LandingPageTargetAudience /> */}
-      {/* <LandingPageActionsAgainstPhishing /> */}
-      <LandingPageInsights />
+        {/* <LandingPageTargetAudience /> */}
+        {/* <LandingPageActionsAgainstPhishing /> */}
+        <LandingPageInsights />
+      </div>
     </div>
   );
 };

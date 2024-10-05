@@ -10,6 +10,7 @@ import officeMacroManagement from '../../../assets/img/officeMacroManagement.png
 import patchApplication from '../../../assets/img/patchApplication.png';
 import patchingOperatingSystem from '../../../assets/img/patchingOperatingSystem.png';
 import privilegedAccess from '../../../assets/img/privilegedAccess.png';
+import LandingHeadings from './LandingHeadings';
 
 /**
  * @returns {React.FC} - User Profile Card Component
@@ -85,10 +86,8 @@ const LandingPageAttackingTypes = () => {
         </div>
       </Modal>
       <div className="container py-10">
-        <h1 className=" mb-2 text-4xl max-md:text-2xl max-lg:text-3xl text-center font-bold leading-[60px] text-secondary underline">
-          Apply Cyber Controls
-        </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 items-center justify-center md:gap-12 gap-4">
+        <LandingHeadings heading="Apply Cyber Controls" />
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 items-center justify-center md:gap-12 gap-0 my-4">
           {preVettedTalent.map((item, index) => {
             return (
               <motion.div
@@ -96,31 +95,30 @@ const LandingPageAttackingTypes = () => {
                 initial={{
                   opacity: 0,
                   // if odd index card,slide from right instead of left
-                  x: index % 2 === 0 ? -100 : 100
+                  x: index % 2 === 0 ? -25 : 25
                 }}
                 whileInView={{
                   opacity: 1,
                   x: 0, // Slide in to its original position
-                  y: 0,
                   transition: {
-                    duration: 2 // Animation duration
+                    duration: 1 // Animation duration
                   }
                 }}>
                 <div
-                  className={`flex gap-4 my-4 p-4 max-md:p-2 rounded-xl w-full cursor-pointer`}
+                  className={`flex items-center gap-4 p-4 max-md:p-2 rounded-xl w-full cursor-pointer`}
                   onClick={() => {
                     setIsModalOpen(true);
                     setActiveIndex(index);
                   }}>
                   <div>
-                    <div className="flex items-center justify-center bg-primary rounded-full p-4 size-20 max-md:size-20">
+                    <div className="flex items-center justify-center bg-primary rounded-full p-4 size-14 md:size-20">
                       <img src={item.image} className="" />
                     </div>
                   </div>
                   <div className={`flex flex-col w-full text-primary`}>
                     <div className="flex justify-between flex-nowrap items-center w-full ">
                       <h1
-                        className={`text-2xl font-medium w-full max-md:text-sm text-primary hover:transition hover:ease-in hover:duration-300 hover:text-secondary hover:font-semibold ${
+                        className={`text-2xl font-medium w-full max-md:text-sm text-secondary hover:transition hover:ease-in hover:duration-300 hover:text-secondary hover:font-semibold ${
                           index % 2 === 0 ? 'text-left' : 'text-left'
                         }`}>
                         {item.title}

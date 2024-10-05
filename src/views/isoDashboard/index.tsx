@@ -118,7 +118,7 @@ const ISODashboard = () => {
               className="cursor-pointer"
               onClick={() => {
                 if (activeControl === 'All') {
-                  setActiveControl('Organizational');
+                  setActiveControl('People');
                 } else {
                   setActiveControl('All');
                 }
@@ -137,7 +137,7 @@ const ISODashboard = () => {
               className="cursor-pointer"
               onClick={() => {
                 if (activeControl === 'All') {
-                  setActiveControl('Organizational');
+                  setActiveControl('Physical');
                 } else {
                   setActiveControl('All');
                 }
@@ -156,7 +156,7 @@ const ISODashboard = () => {
               className="cursor-pointer"
               onClick={() => {
                 if (activeControl === 'All') {
-                  setActiveControl('Organizational');
+                  setActiveControl('Technical');
                 } else {
                   setActiveControl('All');
                 }

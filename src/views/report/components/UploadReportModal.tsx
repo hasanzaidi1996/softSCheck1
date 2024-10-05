@@ -1,5 +1,5 @@
 import { CloudUploadOutlined } from '@ant-design/icons';
-import { Button, Collapse, Typography, UploadFile, UploadProps } from 'antd';
+import { Button, Collapse, Tag, Typography, UploadFile, UploadProps } from 'antd';
 import { RcFile } from 'antd/lib/upload';
 import { uploadReports } from 'appRedux/actions/reportAction';
 import { useAppDispatch } from 'appRedux/store';
@@ -59,6 +59,7 @@ const UploadReportModal: React.FC = () => {
   const accordianData = [
     {
       key: 0,
+      type: 'POST',
       title: 'https://applycyber.net/v1/api/submit-logs',
       request: [
         'POST /submitLogs HTTP/1.1',
@@ -105,6 +106,7 @@ const UploadReportModal: React.FC = () => {
     },
     {
       key: 1,
+      type: 'GET',
       title: 'https://applycyber.net/v1/api/validate-auth',
       request: [
         'GET /validate-auth HTTP/1.1',
@@ -125,6 +127,7 @@ const UploadReportModal: React.FC = () => {
     },
     {
       key: 2,
+      type: 'GET',
       title: 'https://applycyber.net/v1/api/recent-log-status',
       request: [
         'GET /recent-log-status HTTP/1.1',
@@ -202,17 +205,7 @@ const UploadReportModal: React.FC = () => {
         <Collapse accordion defaultActiveKey={0}>
           {accordianData?.map((item, index) => {
             return (
-              <Panel
-                header={item.title}
-                key={index}
-                // extra={
-                //   item.responseData?.status === 'success' ? (
-                //     <Tag color="Request">magenta</Tag>
-                //   ) : (
-                //     <CloseCircleTwoTone twoToneColor={'#eb2f96'} />
-                //   )
-                // }
-              >
+              <Panel header={item.title} key={index} extra={<Tag>{item.type}</Tag>}>
                 <div>
                   <div className="max-h-44 overflow-auto grid grid-cols-2 gap-2">
                     <div>
