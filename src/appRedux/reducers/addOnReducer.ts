@@ -3,7 +3,11 @@ import { IAddOnState } from 'types/ReduxTypes/addOn';
 
 const initialState: IAddOnState = {
   addOns: null,
-  addOnLoading: true
+  addOnLoading: true,
+  providers: null,
+  providerLoading: true,
+  recommendationLoading: true,
+  recommendations: null
 };
 
 const AddOnSlice = createSlice({
@@ -16,11 +20,35 @@ const AddOnSlice = createSlice({
     },
     getAddOnsFailure: (state) => {
       state.addOnLoading = false;
+    },
+    getRecommendationSuccess: (
+      state,
+      { payload }: PayloadAction<IAddOnState['recommendations']>
+    ) => {
+      state.recommendations = payload;
+      state.recommendationLoading = false;
+    },
+    getRecommendationFailure: (state) => {
+      state.recommendationLoading = false;
+    },
+    getProviderSuccess: (state, { payload }: PayloadAction<IAddOnState['providers']>) => {
+      state.providers = payload;
+      state.providerLoading = false;
+    },
+    getProviderFailure: (state) => {
+      state.providerLoading = false;
     }
   }
 });
 
-export const { getAddOnsFailure, getAddOnsSuccess } = AddOnSlice.actions;
+export const {
+  getAddOnsFailure,
+  getAddOnsSuccess,
+  getProviderFailure,
+  getProviderSuccess,
+  getRecommendationFailure,
+  getRecommendationSuccess
+} = AddOnSlice.actions;
 
 export default AddOnSlice.reducer;
 
