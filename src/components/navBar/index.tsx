@@ -1,11 +1,16 @@
-import { AppstoreOutlined, CodeOutlined, DollarOutlined, HomeOutlined } from '@ant-design/icons';
+import {
+  AppstoreOutlined,
+  CodeOutlined,
+  DollarOutlined,
+  HomeOutlined,
+  LogoutOutlined
+} from '@ant-design/icons';
 import { AuthSelector } from 'appRedux/reducers';
 import { branding } from 'config/branding';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import LogoMark from '../../assets/icons/logo-white.svg';
-import { LogoIcon } from 'assets/icons';
 
 /**
  * A navigation bar component.
@@ -58,7 +63,7 @@ const NavBar = () => {
             {user ? (
               <AppstoreOutlined className="text-tertiary" />
             ) : (
-              <LogoIcon className="text-tertiary" />
+              <LogoutOutlined className="text-tertiary" />
             )}
           </div>
 

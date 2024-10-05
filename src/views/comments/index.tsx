@@ -22,7 +22,7 @@ const Comments = () => {
       id: '1',
       name: 'Syed Ali Hassan Zaidi',
       organization: 'Elite IT',
-      role: 'Agent',
+      role: 'Employee',
       avatar: (
         <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
       ),
@@ -34,7 +34,7 @@ const Comments = () => {
           id: '2',
           name: 'Syed Ali Hassan Zaidi',
           organization: 'Elite IT',
-          role: 'Agent',
+          role: 'Employee',
           avatar: (
             <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
           ),
@@ -46,7 +46,7 @@ const Comments = () => {
           id: '3',
           name: 'Syed Ali Hassan Zaidi',
           organization: 'Elite IT',
-          role: 'Agent',
+          role: 'Employee',
           avatar: (
             <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
           ),
@@ -58,7 +58,7 @@ const Comments = () => {
           id: '3',
           name: 'Syed Ali Hassan Zaidi',
           organization: 'Elite IT',
-          role: 'Agent',
+          role: 'Employee',
           avatar: (
             <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
           ),
@@ -71,7 +71,7 @@ const Comments = () => {
           id: '3',
           name: 'Syed Ali Hassan Zaidi',
           organization: 'Elite IT',
-          role: 'Agent',
+          role: 'Employee',
           avatar: (
             <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
           ),
@@ -85,7 +85,7 @@ const Comments = () => {
       id: '4',
       name: 'Anand Kumar',
       organization: 'Connecting Dots',
-      role: 'Agent',
+      role: 'Employee',
       avatar: 'https://joeschmoe.io/api/v1/random',
       content:
         'Secure Cohort is impressive! It enhances collaboration while keeping data safe. The encryption features are top-notch. Perfect for team projects!',
@@ -95,7 +95,7 @@ const Comments = () => {
           id: '5',
           name: 'Syed Ali Hassan Zaidi',
           organization: 'Elite IT',
-          role: 'Agent',
+          role: 'Employee',
           avatar: (
             <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
           ),
@@ -107,7 +107,7 @@ const Comments = () => {
           id: '5',
           name: 'Syed Ali Hassan Zaidi',
           organization: 'Elite IT',
-          role: 'Agent',
+          role: 'Employee',
           avatar: (
             <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
           ),
@@ -121,7 +121,7 @@ const Comments = () => {
       id: '6',
       name: 'Sir Sarwanan',
       organization: 'Apply Cyber',
-      role: 'Agent',
+      role: 'Employee',
       avatar: 'https://joeschmoe.io/api/v1/random',
       content:
         'Secure Cohort is a game changer! The seamless integration with existing tools makes it so convenient. Plus, the security features are robust—definitely a must for any organization!',
@@ -130,7 +130,7 @@ const Comments = () => {
         {
           name: 'Sir Sarwanan',
           organization: 'Apply Cyber',
-          role: 'Agent',
+          role: 'Employee',
           avatar: (
             <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
           ),
@@ -144,24 +144,21 @@ const Comments = () => {
       id: '7',
       name: 'Talha Talreja',
       organization: 'USquare',
-      role: 'Client',
+      role: 'Auditor',
       avatar: 'https://joeschmoe.io/api/v1/random',
       content:
         'The overall system is highly efficient and user-friendly! It streamlines processes while ensuring top-notch security. Great balance between functionality and safety!',
       datetime: moment().fromNow()
-      // reply: [
-      //   {
-      //     name: 'Sir Sarwanan',
-      //     organization: 'Apply Cyber',
-      //     role: 'Agent',
-      //     avatar: (
-      //       <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
-      //     ),
-      //     content:
-      //       'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure).',
-      //     datetime: moment().fromNow()
-      //   }
-      // ]
+    },
+    {
+      id: '8',
+      name: 'Sarmad Ali',
+      organization: 'The Consultants',
+      role: 'Service Provider',
+      avatar: 'https://joeschmoe.io/api/v1/random',
+      content:
+        'The overall system is highly efficient and user-friendly! It streamlines processes while ensuring top-notch security. Great balance between functionality and safety!',
+      datetime: moment().fromNow()
     }
   ];
   const commentsTabs = [
@@ -171,17 +168,24 @@ const Comments = () => {
       data: allComments
     },
     {
-      label: 'Agents',
-      value: 'agents',
+      label: 'Employees',
+      value: 'employees',
       data: allComments.filter((comment) => {
-        return comment?.role === 'Agent';
+        return comment?.role === 'Employee';
       })
     },
     {
-      label: 'Clients',
-      value: 'clients',
+      label: 'Auditors',
+      value: 'auditor',
       data: allComments.filter((comment) => {
-        return comment?.role === 'Client';
+        return comment?.role === 'Auditor';
+      })
+    },
+    {
+      label: 'Service Providers',
+      value: 'service-provider',
+      data: allComments.filter((comment) => {
+        return comment?.role === 'Service Provider';
       })
     }
   ];

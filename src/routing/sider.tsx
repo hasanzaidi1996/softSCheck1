@@ -1,6 +1,8 @@
 import Icon, {
+  AuditOutlined,
   CommentOutlined,
   CopyOutlined,
+  KeyOutlined,
   SettingOutlined,
   SoundOutlined
 } from '@ant-design/icons';
@@ -26,12 +28,14 @@ import AppDashboard from 'views/dashboard';
 import Subscriptions from 'views/subscriptions';
 import Users from 'views/users';
 
+import ISODashboard from 'views/isoDashboard';
+import Recomendations from 'views/recomendations';
+import SecureCohort from 'views/secureCohort';
 import Settings from 'views/settings';
 import { essentialEightTabs } from './essentialEightTabs';
 import { isoTabs } from './isoTabs';
 import { SiderRoutes } from './types';
-import ISODashboard from 'views/isoDashboard';
-import Recomendations from 'views/recomendations';
+import EazyAudit from 'views/eazyAudit';
 
 /**
  * Icons
@@ -77,6 +81,26 @@ export const siderMsspRoutes: Array<SiderRoutes> = [
     id: 'addons',
     // index: true,
     icon: <CopyOutlined />,
+    authenticatedUsers: [UserRoles.Mssp],
+    disabled: false
+  },
+  {
+    path: 'secure-cohort',
+    component: SecureCohort,
+    label: 'Secure Cohort',
+    id: 'secure-cohort',
+    // index: true,
+    icon: <KeyOutlined />,
+    authenticatedUsers: [UserRoles.Mssp],
+    disabled: false
+  },
+  {
+    path: 'eazy-audit',
+    component: EazyAudit,
+    label: 'Eazy Audit',
+    id: 'eazy-audit',
+    // index: true,
+    icon: <AuditOutlined />,
     authenticatedUsers: [UserRoles.Mssp],
     disabled: false
   },

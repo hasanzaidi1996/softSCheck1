@@ -202,10 +202,20 @@ const UploadReportModal: React.FC = () => {
         </Button>
       </div>
       <div>
-        <Collapse accordion defaultActiveKey={0}>
+        <Collapse accordion>
           {accordianData?.map((item, index) => {
             return (
-              <Panel header={item.title} key={index} extra={<Tag>{item.type}</Tag>}>
+              <Panel
+                header={item.title}
+                key={index}
+                extra={
+                  <Tag
+                    className={`text-tertiary rounded-md ${
+                      item.type === 'GET' ? 'bg-green-500' : 'bg-yellow-500'
+                    }`}>
+                    {item.type}
+                  </Tag>
+                }>
                 <div>
                   <div className="max-h-44 overflow-auto grid grid-cols-2 gap-2">
                     <div>
