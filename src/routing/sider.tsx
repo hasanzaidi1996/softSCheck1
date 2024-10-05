@@ -1,4 +1,9 @@
-import Icon, { CommentOutlined, CopyOutlined, SettingOutlined } from '@ant-design/icons';
+import Icon, {
+  CommentOutlined,
+  CopyOutlined,
+  SettingOutlined,
+  SoundOutlined
+} from '@ant-design/icons';
 import { Image, type MenuProps } from 'antd';
 import { Link } from 'react-router-dom';
 import getItem from './getMenuItem';
@@ -26,6 +31,7 @@ import { essentialEightTabs } from './essentialEightTabs';
 import { isoTabs } from './isoTabs';
 import { SiderRoutes } from './types';
 import ISODashboard from 'views/isoDashboard';
+import Recomendations from 'views/recomendations';
 
 /**
  * Icons
@@ -193,6 +199,16 @@ export const siderClientRoutes: Array<SiderRoutes> = [
     ),
     authenticatedUsers: [UserRoles.Client],
     disabled: true
+  },
+  {
+    path: 'recomendations',
+    component: Recomendations,
+    label: 'Recomendations',
+    id: 'recomendations',
+    // index: true,
+    icon: <SoundOutlined style={{ fontSize: 20 }} />,
+    authenticatedUsers: [UserRoles.Client],
+    disabled: false
   },
   {
     path: 'settings',

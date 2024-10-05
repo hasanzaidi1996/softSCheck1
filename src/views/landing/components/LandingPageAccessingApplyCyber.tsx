@@ -5,6 +5,7 @@ import Desktop from '../../../assets/img/Desktop.png';
 import Responsive from '../../../assets/img/Responsive.png';
 import Saas from '../../../assets/img/Saas.png';
 import Server from '../../../assets/img/Server.png';
+import LandingHeadings from './LandingHeadings';
 // import comingSoon from '../../../assets/img/comingSoon.png';
 /**
  * @returns {React.FC} - User Profile Card Component
@@ -39,30 +40,28 @@ const LandingPageAccessingApplyCyber = () => {
   return (
     <div className=" rounded-2xl">
       <div className="container  flex flex-col gap-4 text-secondary p-12 pb-8">
-        <h1 className="text-4xl max-md:text-2xl max-lg:text-3xl text-center font-bold leading-[60px] underline">
-          Accessing Apply Cyber
-        </h1>
-        <div className="grid md:grid-cols-2 grid-cols-1 items-center justify-center">
-          <p className="text-3xl text-center font-medium p-8">
+        <LandingHeadings heading="Accessing Apply Cyber" />
+        <div className="">
+          <p className="lg:text-3xl md:text-2xl text-xl text-center font-medium p-8">
             Apply Cyber is designed for optimal viewing and interacrtion experince across all
-            devices
+            devices. It is available on all major platforms such as Chrome, Firefox, Edge, etc.
           </p>
           <div className="flex items-center justify-center mt-10 -space-x-5 ">
             <motion.div
               initial={{
                 // if odd index card,slide from right instead of left
                 opacity: 0.5,
-                x: -280
+                x: -17.5
               }}
               whileInView={{
                 opacity: 1,
                 x: 0, // Slide in to its original position
                 transition: {
-                  duration: 2 // Animation duration
+                  duration: 1 // Animation duration
                 }
               }}>
               <div
-                className={`rotate-45 ring-1 ring-secondary bg-primary rounded-md p-2 size-32 flex items-center justify-center cursor-pointer hover:scale-110 hover:transition hover:ease-in hover:duration-3`}>
+                className={`rotate-45 ring-1 ring-secondary bg-primary rounded-md p-2 md:size-32 size-24 flex items-center justify-center cursor-pointer hover:scale-110 hover:transition hover:ease-in hover:duration-3`}>
                 <Tooltip title={features?.[0].title}>
                   <img
                     src={features?.[0].image}
@@ -77,17 +76,17 @@ const LandingPageAccessingApplyCyber = () => {
                 initial={{
                   // if odd index card,slide from right instead of left
                   opacity: 0.5,
-                  x: -320
+                  x: -20
                 }}
                 whileInView={{
                   opacity: 1,
                   x: 0, // Slide in to its original position
                   transition: {
-                    duration: 2 // Animation duration
+                    duration: 1 // Animation duration
                   }
                 }}>
                 <div
-                  className={`rotate-45 ring-1 ring-secondary bg-primary rounded-md p-2 size-32 flex items-center justify-center cursor-pointer hover:scale-110 hover:transition hover:ease-in hover:duration-3 `}>
+                  className={`rotate-45 ring-1 ring-secondary bg-primary rounded-md p-2 md:size-32 size-24 flex items-center justify-center cursor-pointer hover:scale-110 hover:transition hover:ease-in hover:duration-3 `}>
                   <Tooltip title={features?.[1].title}>
                     <img
                       src={features?.[1].image}
@@ -101,17 +100,17 @@ const LandingPageAccessingApplyCyber = () => {
                 initial={{
                   // if odd index card,slide from right instead of left
                   opacity: 0.5,
-                  x: -320
+                  x: -20
                 }}
                 whileInView={{
                   opacity: 1,
                   x: 0, // Slide in to its original position
                   transition: {
-                    duration: 2 // Animation duration
+                    duration: 1 // Animation duration
                   }
                 }}>
                 <div
-                  className={`rotate-45 ring-1 ring-secondary bg-primary rounded-md p-2 size-32 flex items-center justify-center cursor-pointer hover:scale-110 hover:transition hover:ease-in hover:duration-3`}>
+                  className={`rotate-45 ring-1 ring-secondary bg-primary rounded-md p-2 md:size-32 size-24 flex items-center justify-center cursor-pointer hover:scale-110 hover:transition hover:ease-in hover:duration-3`}>
                   <Tooltip title={features?.[2].title}>
                     <img
                       src={features?.[2].image}
@@ -126,17 +125,17 @@ const LandingPageAccessingApplyCyber = () => {
               initial={{
                 // if odd index card,slide from right instead of left
                 opacity: 0.5,
-                x: -400
+                x: -25
               }}
               whileInView={{
                 opacity: 1,
                 x: 0, // Slide in to its original position
                 transition: {
-                  duration: 2 // Animation duration
+                  duration: 1 // Animation duration
                 }
               }}>
               <div
-                className={`rotate-45 ring-1 ring-secondary bg-primary rounded-md p-2 size-32 flex items-center justify-center cursor-pointer hover:scale-110 hover:transition hover:ease-in hover:duration-3 `}>
+                className={`rotate-45 ring-1 ring-secondary bg-primary rounded-md p-2 md:size-32 size-24 flex items-center justify-center cursor-pointer hover:scale-110 hover:transition hover:ease-in hover:duration-3 `}>
                 <Tooltip title={features?.[3].title}>
                   <img
                     src={features?.[3].image}

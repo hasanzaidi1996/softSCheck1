@@ -23,20 +23,18 @@ const LandingSubscriptions = () => {
   }, [subscriptions]);
   return (
     <div className="container flex flex-col gap-8 max-md:gap-4">
-      <h1 className="text-4xl max-md:text-2xl font-bold text-center mb-6 max-md:mb-2 text-secondary underline">
+      <h1 className="text-4xl max-md:text-2xl font-bold mb-6 max-md:mb-2 text-secondary underline">
         Our Subscriptions
       </h1>
-      <div className={`grid grid-cols-1 lg:grid-cols-2 gap-4 xl:grid-cols-4`}>
+      <div className={`grid grid-cols-1 lg:grid-cols-2 gap-4 xl:grid-cols-3`}>
         {subscriptions &&
           subscriptions.map((subscription: ISubscription, index: number) => {
             return (
-              index < 4 && (
-                <div key={index} className="flex justify-center">
-                  <div className="hover:transition hover:scale-[102%] hover:shadow hover:duration-200 hover:ease-in w-80 ">
-                    <SubscriptionCard subscription={subscription} key={index} hasSwitch={false} />
-                  </div>
+              <div key={index} className="flex">
+                <div className="hover:transition hover:scale-[102%] hover:shadow hover:duration-200 hover:ease-in w-96 ">
+                  <SubscriptionCard subscription={subscription} key={index} hasSwitch={false} />
                 </div>
-              )
+              </div>
             );
           })}
       </div>
