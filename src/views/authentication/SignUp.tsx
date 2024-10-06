@@ -107,7 +107,7 @@ const SignUp: React.FC = () => {
           type="secondary"
           className={`form-subtitle auth-subtitle ${mdOrUp ? 'auth-subtitle-md-lg' : ''}`}>
           Create a new account or&nbsp;
-          <ScalableLink sameline={true} href={'/'} title={'Login'} underline={true} />
+          <ScalableLink sameline={true} href={'/login'} title={'Login'} underline={true} />
           &nbsp;to existing
         </Text>
         <Form onFinish={submitForm}>

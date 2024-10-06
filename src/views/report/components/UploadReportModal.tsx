@@ -62,14 +62,15 @@ const UploadReportModal: React.FC = () => {
       type: 'POST',
       title: 'https://applycyber.net/v1/api/submit-logs',
       request: [
-        'POST /submitLogs HTTP/1.1',
+        <>
+          <b>POST</b> /v1/api/submit-logs HTTP/1.1
+        </>,
         'Host: api.example.com',
         'Content-Type: application/json',
         'Content-Length: 123',
-        'Authorization: Bearer your-auth-token',
-        'User-Agent: Mozilla/5.0 (compatible; ExampleClient/1.0)',
-        'Accept: application/json',
-        'Connection: keep-alive'
+        <>
+          <b>Authorization:</b> Bearer <b>your-auth-token</b>
+        </>
       ],
       requestData: {
         EventID: 1,
@@ -109,14 +110,14 @@ const UploadReportModal: React.FC = () => {
       type: 'GET',
       title: 'https://applycyber.net/v1/api/validate-auth',
       request: [
-        'GET /validate-auth HTTP/1.1',
+        <>
+          <b>GET</b> /v1/api/validate-auth HTTP/1.1
+        </>,
         'Host: api.example.com',
-        'Content-Type: application/json',
         'Content-Length: 123',
-        'Authorization: Bearer your-auth-token',
-        ' User-Agent: Mozilla/5.0 (compatible; ExampleClient/1.0)',
-        'Accept: application/json',
-        'Connection: keep-alive'
+        <>
+          <b>Authorization:</b> Bearer <b>your-auth-token</b>
+        </>
       ],
       response: ['HTTP/1.1 200 OK', 'Content-Type: application/json', 'Content-Length: 85'],
       responseData: {
@@ -130,14 +131,13 @@ const UploadReportModal: React.FC = () => {
       type: 'GET',
       title: 'https://applycyber.net/v1/api/recent-log-status',
       request: [
-        'GET /recent-log-status HTTP/1.1',
+        <>
+          <b>GET</b> /v1/api/recent-log-status HTTP/1.1
+        </>,
         'Host: api.example.com',
-        'Content-Type: application/json',
-        'Content-Length: 123',
-        'Authorization: Bearer your-auth-token',
-        'User-Agent: Mozilla/5.0 (compatible; ExampleClient/1.0)',
-        'Accept: application/json',
-        'Connection: keep-alive'
+        <>
+          <b>Authorization:</b> Bearer <b>your-auth-token</b>
+        </>
       ],
       response: ['HTTP/1.1 200 OK', 'Content-Type: application/json', 'Content-Length: 85'],
       responseData: {
@@ -220,7 +220,9 @@ const UploadReportModal: React.FC = () => {
                   <div className="max-h-44 overflow-auto grid grid-cols-2 gap-2">
                     <div>
                       <div>
-                        <Typography.Text type="secondary">Request</Typography.Text>
+                        <Typography.Text strong type="secondary">
+                          Request
+                        </Typography.Text>
                         {item?.request.map((req, index) => {
                           return (
                             <div key={index}>
@@ -231,7 +233,9 @@ const UploadReportModal: React.FC = () => {
                       </div>
                       {item?.requestData && (
                         <div>
-                          <Typography.Text type="secondary">Request Data</Typography.Text>
+                          <Typography.Text strong type="secondary">
+                            Request Data
+                          </Typography.Text>
 
                           <pre>{JSON.stringify(item?.requestData, null, 2)}</pre>
                         </div>
@@ -239,7 +243,9 @@ const UploadReportModal: React.FC = () => {
                     </div>
                     <div>
                       <div>
-                        <Typography.Text type="success">Response</Typography.Text>
+                        <Typography.Text strong type="success">
+                          Response
+                        </Typography.Text>
                         {item?.response.map((res, index) => {
                           return (
                             <div key={index}>
@@ -250,7 +256,9 @@ const UploadReportModal: React.FC = () => {
                       </div>
 
                       <div>
-                        <Typography.Text type="success">Response Data</Typography.Text>
+                        <Typography.Text strong type="success">
+                          Response Data
+                        </Typography.Text>
                         {item?.responseData && (
                           <pre>{JSON.stringify(item?.responseData, null, 2)}</pre>
                         )}

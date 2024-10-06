@@ -1,4 +1,5 @@
-import LandingSubscriptions from 'views/landing/components/LandingSubscriptions';
+// import LandingSubscriptions from 'views/landing/components/LandingSubscriptions';
+import Subscriptions from 'views/subscriptions';
 
 /**
  * Pricing component
@@ -23,7 +24,9 @@ const Pricing = () => {
           </div>
         </div>
       </div>
-      <LandingSubscriptions />
+      {/* <LandingSubscriptions />
+       */}
+      <Subscriptions />
     </div>
   );
 };

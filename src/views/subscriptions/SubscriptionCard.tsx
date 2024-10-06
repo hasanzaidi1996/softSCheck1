@@ -1,6 +1,7 @@
 import { Button, Divider } from 'antd';
 import { ISubscription } from 'types/ReduxTypes/subscription';
 import AdditionalService from './AdditionalService';
+import { useNavigate } from 'react-router-dom';
 /**
  * SubscriptionCard component
  *
@@ -19,6 +20,7 @@ const SubscriptionCard = ({
   hasSwitch?: boolean;
 }) => {
   const textHighlight = 'text-xl font-medium text-red-600';
+  const navigate = useNavigate();
   return (
     <div
       className={`h-full bg-tertiary rounded-lg p-4 flex flex-col justify-between shadow-lg  ${
@@ -106,6 +108,9 @@ const SubscriptionCard = ({
       <Button
         className="w-full rounded-lg mt-4"
         type="primary"
+        onClick={() => {
+          navigate('/signup');
+        }}
         disabled={subscription._id === userSubscribed?.subscriptionId}>
         {subscription.validity === 'yearly' && subscription.price !== -1 ? (
           <span className="text-sm">Subscribe for ${subscription.price}/year</span>

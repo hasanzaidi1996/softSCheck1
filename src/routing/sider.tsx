@@ -159,7 +159,7 @@ export const siderClientRoutes: Array<SiderRoutes> = [
   {
     path: 'iso',
     component: ISODashboard,
-    label: 'ISO 70001',
+    label: 'ISO 27001',
     id: 'iso',
     // index: true, // index will create it first route when navigating to /
     icon: (

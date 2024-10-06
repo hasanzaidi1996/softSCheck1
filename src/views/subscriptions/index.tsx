@@ -1,5 +1,5 @@
 import { Badge, Switch } from 'antd';
-import { getSubscriptions, getUserSubsciption } from 'appRedux/actions/subscriptionAction';
+import { getSubscriptions } from 'appRedux/actions/subscriptionAction';
 import { SubscriptionSelector } from 'appRedux/reducers/subscriptionReducer';
 import { useAppDispatch } from 'appRedux/store';
 import { useEffect, useState } from 'react';
@@ -16,18 +16,17 @@ import SubscriptionCard from './SubscriptionCard';
  */
 const Subscriptions = () => {
   const dispatch = useAppDispatch();
-  const { subscriptions, subscriptionLoading, userSubscribed, userSubscribedLoading } =
-    useSelector(SubscriptionSelector);
+  const { subscriptions, subscriptionLoading, userSubscribed } = useSelector(SubscriptionSelector);
   useEffect(() => {
     if (!subscriptions && subscriptionLoading) {
       dispatch(getSubscriptions());
     }
   }, [subscriptions]);
-  useEffect(() => {
-    if (!userSubscribed && userSubscribedLoading) {
-      dispatch(getUserSubsciption());
-    }
-  }, [userSubscribed]);
+  // useEffect(() => {
+  //   if (!userSubscribed && userSubscribedLoading) {
+  //     dispatch(getUserSubsciption());
+  //   }
+  // }, [userSubscribed]);
   const [validity, setValidity] = useState('monthly');
   return (
     <div className="container mb-4">
@@ -54,7 +53,7 @@ const Subscriptions = () => {
         {subscriptions &&
           subscriptions
             .filter((subscription) => {
-              return subscription?.validity === validity || subscription.name === 'Free';
+              return subscription?.validity === validity && subscription.name !== 'Free';
             })
             .map((subscription: ISubscription, index: number) => {
               return (

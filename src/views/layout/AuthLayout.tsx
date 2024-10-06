@@ -61,10 +61,11 @@ const AuthLayout: React.FC = () => {
         <Row>
           <Col span={24}>
             <Image
-              className="auth-logo-image"
+              className="auth-logo-image hover:cursor-pointer"
               style={{
                 width: 400
               }}
+              onClick={() => navigate('/')}
               src={CyMainLogo}
               preview={false}
             />
