@@ -19,9 +19,7 @@ import MacroMSOffice from 'views/macroMSOffice';
 import MFA from 'views/mfa';
 import PatchApplication from 'views/patchApp';
 import PatchOS from 'views/patchOS';
-import Report from 'views/report';
 import RestrictPrivilege from 'views/restrictPrivilege';
-import ProfileCog from '../assets/icons/InfoCustom.svg?react';
 import { SiderRoutes } from './types';
 
 export const essentialEightTabs: Array<SiderRoutes> = [
@@ -35,15 +33,7 @@ export const essentialEightTabs: Array<SiderRoutes> = [
     authenticatedUsers: [UserRoles.Client],
     disabled: false
   },
-  {
-    path: 'reports',
-    component: Report,
-    label: 'Logs',
-    id: 'logs',
-    icon: <Icon className="icon active-icon" component={ProfileCog} />,
-    authenticatedUsers: [UserRoles.Client],
-    disabled: false
-  },
+
   {
     path: 'app-whitelisting',
     component: AppWhiteListing,

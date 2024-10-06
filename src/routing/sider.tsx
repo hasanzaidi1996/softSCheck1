@@ -36,6 +36,8 @@ import { essentialEightTabs } from './essentialEightTabs';
 import { isoTabs } from './isoTabs';
 import { SiderRoutes } from './types';
 import EazyAudit from 'views/eazyAudit';
+import Report from 'views/report';
+import ProfileCog from '../assets/icons/InfoCustom.svg?react';
 
 /**
  * Icons
@@ -127,6 +129,15 @@ export const siderClientRoutes: Array<SiderRoutes> = [
   //   authenticatedUsers: [UserRoles.Client],
   //   disabled: false
   // },
+  {
+    path: '',
+    component: Report,
+    label: 'Logs',
+    id: 'logs',
+    icon: <Icon className="icon active-icon" component={ProfileCog} />,
+    authenticatedUsers: [UserRoles.Client],
+    disabled: false
+  },
   {
     path: 'essential-eight',
     component: AppDashboard,
