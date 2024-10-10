@@ -12,10 +12,9 @@ import { UserRoles } from 'types';
 import LogoMark from '../../assets/icons/logo-white.svg';
 import {
   navAccountMenu,
-  siderClientMenu,
   siderClientRoutes,
-  siderMsspMenu,
-  siderMsspRoutes
+  siderMsspRoutes,
+  siderProviderRoutes
 } from '../../routing';
 
 // redux
@@ -26,6 +25,7 @@ import { useAppDispatch } from 'appRedux/store';
 import { SidebarSkeleton } from 'components/skeleton';
 import { branding } from 'config/branding';
 import { useSelector } from 'react-redux';
+import { getSiderMenu } from 'utils';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { Text } = Typography;
@@ -105,6 +105,23 @@ const DashboardLayout: React.FC = () => {
     } else if (authState.role === UserRoles.Mssp) {
       let label = '';
       siderMsspRoutes.forEach((route, index) => {
+        const path = route.path;
+        if (currentWindow.indexOf(path) !== unAvailable) {
+          setSelectedKey(index.toString());
+          label += `${route.label} `;
+          brandFound = true;
+        }
+      });
+
+      if (brandFound && label) {
+        setBrand(label);
+      }
+    } else if (
+      authState.role === UserRoles.Auditor ||
+      authState.role === UserRoles.ServiceProvider
+    ) {
+      let label = '';
+      siderProviderRoutes.forEach((route, index) => {
         const path = route.path;
         if (currentWindow.indexOf(path) !== unAvailable) {
           setSelectedKey(index.toString());
@@ -248,7 +265,7 @@ const DashboardLayout: React.FC = () => {
                 md ? setCollapsed(false) : setCollapsed(true);
               }}
               mode="inline"
-              items={authState.role === UserRoles.Mssp ? siderMsspMenu : siderClientMenu}
+              items={getSiderMenu(authState.role)}
             />
           </SidebarSkeleton>
         </Sider>

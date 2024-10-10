@@ -9,8 +9,7 @@
     "plugin:react/recommended",
     "standard",
     "eslint:recommended",
-    "plugin:prettier/recommended",
-    "plugin:jsdoc/recommended"
+    "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -21,7 +20,7 @@
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
-  "plugins": ["react", "@typescript-eslint", "jsdoc"],
+  "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "react/react-in-jsx-scope": "off",
     "no-console": 1,
@@ -37,17 +36,17 @@
     //                     "MethodDefinition": true
     //      }
     //  ],
-    "require-jsdoc": [
-      2,
-      {
-        "require": {
-          "FunctionDeclaration": true,
-          "MethodDefinition": true,
-          "ClassDeclaration": true,
-          "ArrowFunctionExpression": true
-        }
-      }
-    ],
+    // "require-jsdoc": [
+    //   2,
+    //   {
+    //     "require": {
+    //       "FunctionDeclaration": true,
+    //       "MethodDefinition": true,
+    //       "ClassDeclaration": true,
+    //       "ArrowFunctionExpression": true
+    //     }
+    //   }
+    // ],
     // // All JSDoc comments must be valid
     // "valid-jsdoc": [
     //      2,

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IAddOnState } from 'types/ReduxTypes/addOn';
+import { IAddOnState, IComment } from 'types/ReduxTypes/addOn';
 
 const initialState: IAddOnState = {
   addOns: null,
@@ -7,7 +7,9 @@ const initialState: IAddOnState = {
   providers: null,
   providerLoading: true,
   recommendationLoading: true,
-  recommendations: null
+  recommendations: null,
+  comments: null,
+  commentsLoading: true
 };
 
 const AddOnSlice = createSlice({
@@ -37,6 +39,16 @@ const AddOnSlice = createSlice({
     },
     getProviderFailure: (state) => {
       state.providerLoading = false;
+    },
+    getCommentSuccess: (state, { payload }: PayloadAction<IAddOnState['comments']>) => {
+      state.comments = payload;
+      state.commentsLoading = false;
+    },
+    getCommentsFailure: (state) => {
+      state.commentsLoading = false;
+    },
+    addCommentSuccess: (state, { payload }: PayloadAction<IComment>) => {
+      state.comments = state.comments ? [...state.comments, payload] : [payload];
     }
   }
 });
@@ -47,7 +59,10 @@ export const {
   getProviderFailure,
   getProviderSuccess,
   getRecommendationFailure,
-  getRecommendationSuccess
+  getRecommendationSuccess,
+  getCommentSuccess,
+  getCommentsFailure,
+  addCommentSuccess
 } = AddOnSlice.actions;
 
 export default AddOnSlice.reducer;

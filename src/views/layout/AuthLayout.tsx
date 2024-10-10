@@ -45,6 +45,8 @@ const AuthLayout: React.FC = () => {
         } else if (role === UserRoles.Mssp) {
           // If not redirect to cached state
           navigate('/mssp/');
+        } else if (role === UserRoles.Auditor || role === UserRoles.ServiceProvider) {
+          navigate('/provider/');
         }
       }
     })();

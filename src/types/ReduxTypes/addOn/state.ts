@@ -1,4 +1,4 @@
-import { IAddOn, IProviders, IRecommendation } from './action';
+import { IAddOn, IComment, IProviders, IRecommendation } from './action';
 
 export interface IAddOnState {
   addOns: IAddOn[] | null;
@@ -7,4 +7,6 @@ export interface IAddOnState {
   providerLoading: boolean;
   recommendations: IRecommendation[] | null;
   recommendationLoading: boolean;
+  comments: IComment[] | null;
+  commentsLoading: boolean;
 }

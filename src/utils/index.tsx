@@ -1,4 +1,6 @@
 import moment from 'moment';
+import { siderClientMenu, siderMsspMenu, siderProviderMenu } from 'routing';
+import { UserRoles } from 'types';
 
 /**
  * Humanize coded text
@@ -29,6 +31,25 @@ export const isJsonParsable = (obj: any): boolean => {
     return false;
   }
   return true;
+};
+
+/**
+ *
+ *  User Role
+ *
+ * @param {UserRoles} role role of user
+ * @returns {ItemType[]} sider of items menu to return
+ *
+ */
+export const getSiderMenu = (role?: UserRoles | null) => {
+  if (role === UserRoles.Client) {
+    return siderClientMenu;
+  } else if (role === UserRoles.Mssp) {
+    return siderMsspMenu;
+  } else if (role === UserRoles.ServiceProvider || role === UserRoles.Auditor) {
+    return siderProviderMenu;
+  }
+  return [];
 };
 
 /**

@@ -45,6 +45,46 @@ import ProfileCog from '../assets/icons/InfoCustom.svg?react';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
+export const siderProviderRoutes: Array<SiderRoutes> = [
+  {
+    path: 'essential-eight',
+    component: AppDashboard,
+    label: 'Essential Eight',
+    id: 'essential-eight',
+    // index: true, // index will create it first route when navigating to /
+    icon: (
+      <Icon
+        className="icon active-icon"
+        component={() => {
+          return <Image src={Essential8Png} style={{ width: 32, borderRadius: 20 }} />;
+        }}
+      />
+    ),
+    authenticatedUsers: [UserRoles.Client],
+    disabled: false,
+    children: essentialEightTabs
+  },
+  {
+    path: 'comments',
+    component: Comments,
+    label: 'Comments',
+    id: 'comments',
+    // index: true,
+    icon: <CommentOutlined />,
+    authenticatedUsers: [UserRoles.Mssp],
+    disabled: false
+  },
+  {
+    path: 'settings',
+    component: Settings,
+    label: 'Settings',
+    id: 'settings',
+    // index: true,
+    icon: <SettingOutlined />,
+    authenticatedUsers: [UserRoles.Mssp],
+    disabled: false
+  }
+];
 export const siderMsspRoutes: Array<SiderRoutes> = [
   {
     path: 'users',
@@ -278,6 +318,38 @@ export const siderClientMenu: MenuItem[] = siderClientRoutes.map((route, index) 
     });
   return getItem(
     <Link id={route.id} to={`/user/${route.index ? '' : route.path}`}>
+      {route.label}
+    </Link>,
+    index.toString(),
+    route.icon,
+    null,
+    undefined,
+    route.disabled,
+    childMenu
+  );
+});
+
+export const siderProviderMenu: MenuItem[] = siderProviderRoutes.map((route, index) => {
+  // index will have default route so must be replaced
+
+  const childMenu = route.children
+    ?.filter((child) => {
+      return !child.index;
+    })
+    .map((child) => {
+      return getItem(
+        <Link
+          className={`${child.path}`}
+          id={child.id}
+          to={`/provider/${route.path}/${child.path}`}>
+          {child.label}
+        </Link>,
+        `${child.path}-${child.id}`,
+        child.icon
+      );
+    });
+  return getItem(
+    <Link id={route.id} to={`/provider/${route.index ? '' : route.path}`}>
       {route.label}
     </Link>,
     index.toString(),

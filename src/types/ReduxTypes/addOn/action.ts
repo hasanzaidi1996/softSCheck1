@@ -29,3 +29,15 @@ export interface IRecommendation {
   recommendedTo: IUser | string;
   serviceProvider: IProviders | string;
 }
+
+export interface IComment {
+  _id: string;
+  createdBy: string | IUser;
+  createdFor: string | IUser;
+  description: string;
+}
+
+export interface IAddComment {
+  description: string;
+  to: string;
+}

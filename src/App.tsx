@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AuthLayout, DashboardLayout, VerifyEmail } from 'views';
 import './App.css';
-import { siderClientRoutes, siderMsspRoutes } from './routing';
+import { siderClientRoutes, siderMsspRoutes, siderProviderRoutes } from './routing';
 import { SiderRoutes } from './routing/types';
 
 // redux
@@ -77,6 +77,15 @@ const App: React.FC = () => {
                 </RequireAuth>
               }>
               {developRoutes(siderMsspRoutes)}
+            </Route>
+            <Route
+              path="provider"
+              element={
+                <RequireAuth>
+                  <DashboardLayout />
+                </RequireAuth>
+              }>
+              {developRoutes(siderProviderRoutes)}
             </Route>
             <Route path="" element={<LandingLayout2 />}>
               <Route path="/" element={<LandingSaas />} />

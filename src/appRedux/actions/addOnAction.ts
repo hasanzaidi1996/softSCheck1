@@ -1,7 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
+  addCommentSuccess,
   getAddOnsFailure,
   getAddOnsSuccess,
+  getCommentsFailure,
+  getCommentSuccess,
   getProviderFailure,
   getProviderSuccess,
   getRecommendationFailure,
@@ -10,6 +13,7 @@ import {
 import { BackendInstance, config } from 'config';
 import { handlerError } from 'utils/ErrorHandler';
 import { updateAlert } from './alertAction';
+import { IAddComment } from 'types/ReduxTypes/addOn';
 
 /**
  * fetch all subscriptions for user
@@ -70,3 +74,45 @@ export const getProviders = createAsyncThunk('addOns/getProviders', async (_, { 
     return false;
   }
 });
+
+/**
+ * fetch all comments
+ *
+ * @returns {boolean} register
+ */
+export const getComments = createAsyncThunk('addOns/getComments', async (_, { dispatch }) => {
+  try {
+    const res = await BackendInstance.get('comment', config);
+    dispatch(getCommentSuccess(res.data.data));
+    return true;
+  } catch (err) {
+    dispatch(getCommentsFailure());
+    handlerError(err).forEach((error: string) => {
+      dispatch(updateAlert({ place: 'tc', message: error, type: 'danger' }));
+    });
+    return false;
+  }
+});
+
+/**
+ * add a comment
+ *
+ * @returns {boolean} register
+ */
+export const addComment = createAsyncThunk(
+  'addOns/addComment',
+  async (data: IAddComment, { dispatch }) => {
+    try {
+      const _body = JSON.stringify(data);
+
+      const res = await BackendInstance.post('comment', _body, config);
+      dispatch(addCommentSuccess(res.data.data));
+      return true;
+    } catch (err) {
+      handlerError(err).forEach((error: string) => {
+        dispatch(updateAlert({ place: 'tc', message: error, type: 'danger' }));
+      });
+      return false;
+    }
+  }
+);
