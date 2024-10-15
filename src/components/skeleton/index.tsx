@@ -36,3 +36,46 @@ export const SidebarSkeleton: React.FC<ISidebarSkeletonProps> = (props: ISidebar
     </>
   );
 };
+
+/**
+ * User Card skeleton
+ *
+ * @returns {React.FC} skeleton component
+ */
+export const UserCardSekeleton = () => {
+  return (
+    <>
+      <div className="flex flex-col items-center justify-start h-[25rem] shadow-xl mt-20 rounded-lg p-4 ring-1 ring-gray-400">
+        <div>
+          <Skeleton.Avatar size={100} />
+        </div>
+        <div className="flex flex-col justify-between w-full h-full">
+          <div className="mt-5 flex flex-col gap-2 w-full">
+            <div className="flex items-center justify-center gap-1 text-center">
+              <Skeleton.Input size="small" />
+              <Skeleton.Input size="small" />
+            </div>
+            <div className="flex items-center justify-center gap-1 text-sm">
+              <Skeleton.Input size="large" />
+            </div>
+            <div className="flex items-center justify-center gap-1 text-sm">
+              <Skeleton.Input size="large" />
+            </div>
+            <div className="flex items-center justify-center gap-1 text-sm">
+              <Skeleton.Input size="large" />
+            </div>
+            <div className="flex items-center justify-center gap-1 text-sm">
+              <Skeleton.Input size="large" />
+            </div>
+            <div className="flex items-center justify-center gap-1 text-sm">
+              <Skeleton.Button size="small" />
+              <Skeleton.Button size="small" />
+              <Skeleton.Button size="small" />
+              <Skeleton.Button size="small" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};

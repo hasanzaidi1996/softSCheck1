@@ -1,6 +1,5 @@
-import { CombinedState, combineReducers } from '@reduxjs/toolkit';
+import { combineReducers } from '@reduxjs/toolkit';
 import { RESET } from 'appRedux/middleware/root/events';
-import { Reducer } from 'react';
 
 // reducers
 import alertReducer, { AlertSelector } from './alertReducer';

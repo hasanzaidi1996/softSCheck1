@@ -65,3 +65,8 @@ export enum CombinedAnalyticsMode {
   SixMonths = '6months',
   Year = 'year'
 }
+
+export enum ServiceProviders {
+  SecureCohort = 'Secure Cohort Suppliers',
+  EasyAudit = 'Easy Audit Partners'
+}

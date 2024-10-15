@@ -1,7 +1,6 @@
 import { CalendarFilled, DotChartOutlined } from '@ant-design/icons';
 import { Column, Line } from '@ant-design/plots';
-import { Button, Card, Col, DatePicker, DatePickerProps, Grid, Row, Skeleton, Space } from 'antd';
-import { RangePickerProps } from 'antd/lib/date-picker';
+import { Button, Card, Col, DatePicker, Grid, Row, Skeleton, Space } from 'antd';
 import { ReportSelector } from 'appRedux/reducers';
 import { PieChart } from 'charts';
 import ColumnChart from 'charts/columChart';

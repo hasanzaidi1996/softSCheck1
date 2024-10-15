@@ -1,0 +1,75 @@
+.select.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  border: none;
+  background-color: rgb(218 220 224);
+  border-radius: 0;
+}
+
+/** White background  Start */
+.white-background-select.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  background-color: #fff;
+}
+/** White background  End*/
+
+.select.ant-select:not(.ant-select-customize-input) .ant-select-selector:hover {
+  border: 1px solid;
+  border-color: #232f5c;
+  border-radius: 2px;
+  outline: 0;
+}
+
+/** Padding Left **/
+.select.ant-select-single .ant-select-selection-item {
+  padding-left: 10px;
+}
+
+/** Placeholder Padding Left in Single Mode Select **/
+.select.ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder {
+  padding-left: 10px;
+}
+
+/** search height inside sigle custom select (only in lg)  **/
+.lg-scalable-dropdown.ant-select-single.ant-select-show-arrow .ant-select-selection-search {
+  padding-top: 5px;
+}
+
+/** on medium, the signle dropdown should have some padding **/
+.md-scalable-dropdown.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+  padding-top: 3px;
+}
+
+.lg-scalable-dropdown.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  height: 40px;
+  font-size: 16px;
+}
+
+.md-scalable-dropdown.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  height: 35px;
+  font-size: 15px;
+}
+
+.sm-scalable-dropdown.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  height: 30px;
+  font-size: 15px;
+}
+
+/* to make text vertically center (for single mode)*/
+.lg-scalable-dropdown.ant-select:not(.ant-select-customize-input)
+  .ant-select-selector
+  .ant-select-selection-item {
+  line-height: 38px;
+}
+
+/* to make placeholder vertically center*/
+.lg-scalable-dropdown.ant-select:not(.ant-select-customize-input)
+  .ant-select-selector
+  .ant-select-selection-placeholder {
+  line-height: 38px;
+}
+
+/* to make text center for multiple mode selected tags*/
+.lg-scalable-dropdown.ant-select-multiple:not(.ant-select-customize-input)
+  .ant-select-selector
+  .ant-select-selection-item {
+  line-height: 32px;
+  height: 32px;
+}
