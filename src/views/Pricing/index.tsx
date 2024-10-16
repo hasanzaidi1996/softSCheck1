@@ -26,7 +26,7 @@ const Pricing = () => {
       </div>
       {/* <LandingSubscriptions />
        */}
-      <Subscriptions />
+      <Subscriptions toSignUp />
     </div>
   );
 };

@@ -14,10 +14,11 @@ import { Provider } from 'react-redux';
 // middleware
 import { Alert } from 'components';
 import Pricing from 'views/Pricing';
+import Resources from 'views/Resources';
 import LandingSaas from 'views/landing/LandingSaas';
 import LandingLayout2 from 'views/layout/components/LandingLayout2';
+import SubscriptionPayment from 'views/subscriptions/SubscriptionPayment';
 import RequireAuth from './utils/RequireAuth';
-import Resources from 'views/Resources';
 // import { Landing } from 'views/landing/Landing';
 
 /**
@@ -77,6 +78,7 @@ const App: React.FC = () => {
                 </RequireAuth>
               }>
               {developRoutes(siderMsspRoutes)}
+              <Route path="payment/:id" element={<SubscriptionPayment />} />
             </Route>
             <Route
               path="provider"
