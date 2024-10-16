@@ -13,11 +13,15 @@ import { useNavigate } from 'react-router-dom';
 const SubscriptionCard = ({
   subscription,
   userSubscribed,
-  hasSwitch = false
+  hasSwitch = false,
+  toSignUp = false,
+  hasButton = true
 }: {
   subscription: ISubscription;
   userSubscribed?: any;
   hasSwitch?: boolean;
+  toSignUp?: boolean;
+  hasButton?: boolean;
 }) => {
   const textHighlight = 'text-xl font-medium text-red-600';
   const navigate = useNavigate();
@@ -105,23 +109,25 @@ const SubscriptionCard = ({
           </div>
         )}
       </div>
-      <Button
-        className="w-full rounded-lg mt-4"
-        type="primary"
-        onClick={() => {
-          navigate('/signup');
-        }}
-        disabled={subscription._id === userSubscribed?.subscriptionId}>
-        {subscription.validity === 'yearly' && subscription.price !== -1 ? (
-          <span className="text-sm">Subscribe for ${subscription.price}/year</span>
-        ) : subscription.validity === 'monthly' && subscription.price !== -1 ? (
-          <span className="text-sm">Subscribe for ${subscription.price}/month</span>
-        ) : subscription.price === 0 ? (
-          <span className="text-sm">Subscribe</span>
-        ) : (
-          <span className="text-sm">Request Pricing</span>
-        )}
-      </Button>
+      {hasButton && (
+        <Button
+          className="w-full rounded-lg mt-4"
+          type="primary"
+          onClick={() => {
+            toSignUp ? navigate('/signup') : navigate(`/mssp/payment/${subscription._id}`);
+          }}
+          disabled={subscription._id === userSubscribed?.subscriptionId}>
+          {subscription.validity === 'yearly' && subscription.price !== -1 ? (
+            <span className="text-sm">Subscribe for ${subscription.price}/year</span>
+          ) : subscription.validity === 'monthly' && subscription.price !== -1 ? (
+            <span className="text-sm">Subscribe for ${subscription.price}/month</span>
+          ) : subscription.price === 0 ? (
+            <span className="text-sm">Subscribe</span>
+          ) : (
+            <span className="text-sm">Request Pricing</span>
+          )}
+        </Button>
+      )}
     </div>
   );
 };

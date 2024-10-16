@@ -28,16 +28,16 @@ import AppDashboard from 'views/dashboard';
 import Subscriptions from 'views/subscriptions';
 import Users from 'views/users';
 
+import EazyAudit from 'views/eazyAudit';
 import ISODashboard from 'views/isoDashboard';
 import Recomendations from 'views/recomendations';
+import Report from 'views/report';
 import SecureCohort from 'views/secureCohort';
 import Settings from 'views/settings';
+import ProfileCog from '../assets/icons/InfoCustom.svg?react';
 import { essentialEightTabs } from './essentialEightTabs';
 import { isoTabs } from './isoTabs';
 import { SiderRoutes } from './types';
-import EazyAudit from 'views/eazyAudit';
-import Report from 'views/report';
-import ProfileCog from '../assets/icons/InfoCustom.svg?react';
 
 /**
  * Icons

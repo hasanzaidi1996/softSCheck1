@@ -2,12 +2,12 @@ import { combineReducers } from '@reduxjs/toolkit';
 import { RESET } from 'appRedux/middleware/root/events';
 
 // reducers
+import addOnReducer, { AddOnSelector } from './addOnReducer';
 import alertReducer, { AlertSelector } from './alertReducer';
 import authReducer, { AuthSelector } from './authReducer';
 import reportReducer, { ReportSelector } from './reportReducer';
 import subscriptionReducer, { SubscriptionSelector } from './subscriptionReducer';
 import usersReducer, { UserSelector } from './usersReducer';
-import addOnReducer, { AddOnSelector } from './addOnReducer';
 
 const appReducer = combineReducers({
   auth: authReducer,
@@ -19,8 +19,8 @@ const appReducer = combineReducers({
 });
 
 export {
-  AlertSelector,
   AddOnSelector,
+  AlertSelector,
   AuthSelector,
   ReportSelector,
   SubscriptionSelector,

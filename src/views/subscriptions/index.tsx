@@ -14,7 +14,7 @@ import SubscriptionCard from './SubscriptionCard';
  *
  * @returns {JSX.Element} The Subscriptions component
  */
-const Subscriptions = () => {
+const Subscriptions = ({ toSignUp = false }: { toSignUp?: boolean }) => {
   const dispatch = useAppDispatch();
   const { subscriptions, subscriptionLoading, userSubscribed } = useSelector(SubscriptionSelector);
   useEffect(() => {
@@ -70,6 +70,7 @@ const Subscriptions = () => {
                   ) : (
                     <div className="hover:transition hover:scale-[102%] hover:shadow hover:duration-200 hover:ease-in w-80 ">
                       <SubscriptionCard
+                        toSignUp={toSignUp}
                         userSubscribed={userSubscribed}
                         subscription={subscription}
                         key={index}
