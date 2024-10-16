@@ -134,7 +134,18 @@ const PatchOS: React.FC = () => {
   return (
     <>
       <Row gutter={[10, 10]}>
-        <Col lg={8} span={24}>
+        <Col span={24}>
+          <div style={containerStyle}>
+            <CustomTable
+              dataSource={tableData}
+              // search={search}
+              columns={MaturityTableCoulums()}
+              loading={false}
+              pagination={false}
+            />
+          </div>
+        </Col>
+        <Col span={24}>
           <BarChart
             palatte="cubehelixDefault"
             loading={false}
@@ -142,17 +153,7 @@ const PatchOS: React.FC = () => {
             data={maturityCount}
           />
         </Col>
-        <Col lg={16} span={24}>
-          <div style={containerStyle}>
-            <CustomTable
-              dataSource={tableData}
-              // search={search}
-              columns={MaturityTableCoulums}
-              loading={false}
-              pagination={false}
-            />
-          </div>
-        </Col>
+
         <Col lg={12} span={24}>
           <BarChart
             palatte="inferno"

@@ -1,5 +1,5 @@
-import Icon from '@ant-design/icons';
-import { Typography } from 'antd';
+import Icon, { ArrowLeftOutlined } from '@ant-design/icons';
+import { Button, Typography } from 'antd';
 import { getProviders } from 'appRedux/actions/addOnAction';
 import { AddOnSelector } from 'appRedux/reducers';
 import { useAppDispatch } from 'appRedux/store';
@@ -11,6 +11,7 @@ import UserCard from 'components/userCard/index.tsx';
 import { debounce } from 'lodash';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { InputLength, ServiceProviders } from 'types';
 import { humanize, searchInArrayOfObjectsandStrings } from 'utils';
 
@@ -20,6 +21,11 @@ import { humanize, searchInArrayOfObjectsandStrings } from 'utils';
  * @returns A JSX element representing a card with the easy audit heading.
  */
 const Recomendations = () => {
+  const queryLocation = useLocation();
+  const navigate = useNavigate();
+  const query = new URLSearchParams(queryLocation.search);
+  const level = query.get('level');
+
   const dispatch = useAppDispatch();
   const { providers, providerLoading } = useSelector(AddOnSelector);
   const [search, setSearch] = useState('');
@@ -29,6 +35,25 @@ const Recomendations = () => {
     setSearch(value);
   }, 200);
 
+  const queryFilter =
+    level !== null && parseInt(level, 10) >= 0 && parseInt(level, 10) <= 3
+      ? providers?.filter((provider) => {
+          const serviceMatchLevel = {
+            '0': ['Firewall Protection'],
+            '1': ['Data Privacy'],
+            '2': ['Vulnerability Scanning'],
+            '3': ['GDPR']
+          };
+
+          const ret = provider.expertise.split(',').some((service) => {
+            return serviceMatchLevel[String(level) as keyof typeof serviceMatchLevel].includes(
+              service.trim()
+            );
+          });
+          console.log(ret);
+          return ret;
+        })
+      : providers;
   useEffect(() => {
     if (!providers && providerLoading) {
       dispatch(getProviders());
@@ -40,12 +65,12 @@ const Recomendations = () => {
     : [];
 
   const filteredProvider = filter
-    ? providers?.filter((provider) => {
+    ? queryFilter?.filter((provider) => {
         return provider.type === filter;
       })
     : search
-    ? (providers as any[] | undefined)?.filter(searchInArrayOfObjectsandStrings(search, dataKeys))
-    : providers;
+    ? (queryFilter as any[] | undefined)?.filter(searchInArrayOfObjectsandStrings(search, dataKeys))
+    : queryFilter;
 
   const selectOptions = Object.values(ServiceProviders).map((provider) => {
     return {
@@ -55,6 +80,11 @@ const Recomendations = () => {
   });
   return (
     <div className="container ">
+      {level !== null && (
+        <Button onClick={() => navigate(-1)} icon={<ArrowLeftOutlined />}>
+          Back
+        </Button>
+      )}
       <h1 className="text-2xl my-4">Recommendations</h1>
 
       <div className="bg-tertiary  p-8 rounded-lg">

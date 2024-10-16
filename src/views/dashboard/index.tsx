@@ -5,7 +5,7 @@ import { ReportSelector } from 'appRedux/reducers';
 import { PieChart } from 'charts';
 import ColumnChart from 'charts/columChart';
 import CustomTable from 'components/table';
-import { AppHardeningMaturityTableCoulums } from 'components/tableColumn';
+import { MaturityTableCoulums } from 'components/tableColumn';
 import _ from 'lodash';
 import moment, { Moment } from 'moment';
 import React, { useEffect, useState } from 'react';
@@ -513,7 +513,7 @@ const AppDashboard: React.FC = () => {
             <CustomTable
               dataSource={tableData}
               // search={search}
-              columns={AppHardeningMaturityTableCoulums}
+              columns={MaturityTableCoulums()}
               loading={false}
               pagination={false}
             />
