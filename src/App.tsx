@@ -19,6 +19,7 @@ import LandingSaas from 'views/landing/LandingSaas';
 import LandingLayout2 from 'views/layout/components/LandingLayout2';
 import SubscriptionPayment from 'views/subscriptions/SubscriptionPayment';
 import RequireAuth from './utils/RequireAuth';
+import YouHaveBeenPhished from 'views/phishingUsers/YouHaveBeenPhished';
 // import { Landing } from 'views/landing/Landing';
 
 /**
@@ -58,6 +59,7 @@ const App: React.FC = () => {
           <Alert />
           <Routes>
             <Route path="verify-email/:tokenId" element={<VerifyEmail />} />
+            <Route path="reward-claim/:id" element={<YouHaveBeenPhished />} />
 
             <Route path="*" element={<AuthLayout />} />
 
