@@ -30,7 +30,7 @@ const Users = () => {
   }, [users]);
   console.log('@@@@', users);
 
-  const ReportColumns: ColumnsType = [
+  const UserColumns: ColumnsType = [
     {
       title: 'First Name',
       dataIndex: 'firstName'
@@ -127,7 +127,7 @@ const Users = () => {
           size="large"
           dataSource={users || []}
           // search={search}
-          columns={ReportColumns}
+          columns={UserColumns}
           // loading={props.loading || loading}
         />
       </div>

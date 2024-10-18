@@ -4,7 +4,8 @@ import Icon, {
   CopyOutlined,
   KeyOutlined,
   SettingOutlined,
-  SoundOutlined
+  SoundOutlined,
+  WarningFilled
 } from '@ant-design/icons';
 import { Image, type MenuProps } from 'antd';
 import { Link } from 'react-router-dom';
@@ -30,6 +31,7 @@ import Users from 'views/users';
 
 import EazyAudit from 'views/eazyAudit';
 import ISODashboard from 'views/isoDashboard';
+import PhishingUsers from 'views/phishingUsers';
 import Recomendations from 'views/recomendations';
 import Report from 'views/report';
 import SecureCohort from 'views/secureCohort';
@@ -93,6 +95,16 @@ export const siderMsspRoutes: Array<SiderRoutes> = [
     id: 'users',
     index: true,
     icon: <Icon className="icon active-icon" component={DashboardCustom} />,
+    authenticatedUsers: [UserRoles.Mssp],
+    disabled: false
+  },
+  {
+    path: 'phishing',
+    component: PhishingUsers,
+    label: 'Phishing Users',
+    id: 'phishing',
+    index: false,
+    icon: <WarningFilled />,
     authenticatedUsers: [UserRoles.Mssp],
     disabled: false
   },

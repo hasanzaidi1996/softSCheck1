@@ -43,8 +43,11 @@ const LandingPageAccessingApplyCyber = () => {
         <LandingHeadings heading="Accessing Apply Cyber" />
         <div className="">
           <p className="lg:text-3xl md:text-2xl text-xl text-center font-medium p-8">
-            Apply Cyber is designed for optimal viewing and interacrtion experince across all
-            devices. It is available on all major platforms such as Chrome, Firefox, Edge, etc.
+            Apply Cyber is designed for optimal viewing and interaction experience across all
+            devices. It is available on all major platforms such as Chrome, Firefox, Edge, etc. In
+            addition to this, we also offer tailored solutions specifically built for large
+            enterprises, which can be hosted on private clouds and customized to meet specific
+            security and compliance needs.
           </p>
           <div className="flex items-center justify-center mt-10 -space-x-5 ">
             <motion.div
