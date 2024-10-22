@@ -20,6 +20,7 @@ import LandingLayout2 from 'views/layout/components/LandingLayout2';
 import SubscriptionPayment from 'views/subscriptions/SubscriptionPayment';
 import RequireAuth from './utils/RequireAuth';
 import YouHaveBeenPhished from 'views/phishingUsers/YouHaveBeenPhished';
+import SubscriptionContact from 'views/subscriptions/SubscriptionContact';
 // import { Landing } from 'views/landing/Landing';
 
 /**
@@ -95,6 +96,7 @@ const App: React.FC = () => {
               <Route path="/" element={<LandingSaas />} />
               <Route path="/resources" element={<Resources />} />
               <Route path="/pricing" element={<Pricing />} />
+              <Route path="contact/:id" element={<SubscriptionContact />} />
             </Route>
 
             {/* <Route path="/users" element={<Users />} /> */}

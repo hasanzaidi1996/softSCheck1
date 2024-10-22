@@ -43,14 +43,14 @@ const SubscriptionCard = ({
         </h1>
 
         <Divider />
-        {subscription.price === -1 ? (
+        {/* {subscription.price === -1 ? (
           <p className="text-2xl font-bold text-red-600">Custom Price</p>
         ) : (
           <div className="flex gap-2 items-center">
             <p className="text-2xl font-bold text-red-600">${subscription.price}</p>
             <p>/ {subscription.validity === 'yearly' ? 'year' : 'month'}</p>
           </div>
-        )}
+        )} */}
         <p>
           <span>
             <span className={textHighlight}>
@@ -114,10 +114,14 @@ const SubscriptionCard = ({
           className="w-full rounded-lg mt-4"
           type="primary"
           onClick={() => {
-            toSignUp ? navigate('/signup') : navigate(`/mssp/payment/${subscription._id}`);
+            // toSignUp ? navigate('/signup') : navigate(`/mssp/payment/${subscription._id}`);
+            toSignUp
+              ? navigate(`/contact/${subscription._id}`)
+              : navigate(`/mssp/payment/${subscription._id}`);
           }}
           disabled={subscription._id === userSubscribed?.subscriptionId}>
-          {subscription.validity === 'yearly' && subscription.price !== -1 ? (
+          Connect Now
+          {/* {subscription.validity === 'yearly' && subscription.price !== -1 ? (
             <span className="text-sm">Subscribe for ${subscription.price}/year</span>
           ) : subscription.validity === 'monthly' && subscription.price !== -1 ? (
             <span className="text-sm">Subscribe for ${subscription.price}/month</span>
@@ -125,7 +129,7 @@ const SubscriptionCard = ({
             <span className="text-sm">Subscribe</span>
           ) : (
             <span className="text-sm">Request Pricing</span>
-          )}
+          )} */}
         </Button>
       )}
     </div>
