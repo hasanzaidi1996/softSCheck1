@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { ISubscription } from 'types/ReduxTypes/subscription';
 import SubscriptionCard from './SubscriptionCard';
+import CardSkeleton from 'components/skeleton/CardSkeleton';
 
 /**
  * Subscriptions component
@@ -47,39 +48,42 @@ const Subscriptions = ({ toSignUp = false }: { toSignUp?: boolean }) => {
       </div>
 
       <div
-        className={`grid grid-cols-1 lg:grid-cols-2  ${
-          validity === 'yearly' ? 'gap-4 xl:grid-cols-4' : 'xl:grid-cols-3 gap-8'
-        }`}>
-        {subscriptions &&
-          subscriptions
-            .filter((subscription) => {
-              return subscription?.validity === validity && subscription.name !== 'Free';
-            })
-            .map((subscription: ISubscription, index: number) => {
-              return (
-                <div key={index} className="flex justify-center">
-                  {subscription._id === userSubscribed?.subscriptionId ? (
-                    <div className="hover:transition hover:scale-[102%] hover:shadow hover:duration-200 hover:ease-in w-80 ">
-                      <Badge.Ribbon text="Subscribed" placement="end" color="red" key={index}>
+        // className={`grid grid-cols-1 lg:grid-cols-2  ${
+        //   validity === 'yearly' ? 'gap-4 xl:grid-cols-4' : 'xl:grid-cols-3 gap-4'
+        // }`}
+        className="grid grid-cols-1 lg:grid-cols-2 gap-4 xl:grid-cols-4">
+        {subscriptionLoading
+          ? Array.from({ length: 4 }, (_, index) => <CardSkeleton key={index} />)
+          : subscriptions &&
+            subscriptions
+              .filter((subscription) => {
+                return subscription?.validity === validity && subscription.name !== 'Free';
+              })
+              .map((subscription: ISubscription, index: number) => {
+                return (
+                  <div key={index} className="flex justify-center">
+                    {subscription._id === userSubscribed?.subscriptionId ? (
+                      <div className="hover:transition hover:scale-[102%] hover:shadow hover:duration-200 hover:ease-in w-80 ">
+                        <Badge.Ribbon text="Subscribed" placement="end" color="red" key={index}>
+                          <SubscriptionCard
+                            userSubscribed={userSubscribed}
+                            subscription={subscription}
+                          />
+                        </Badge.Ribbon>
+                      </div>
+                    ) : (
+                      <div className="hover:transition hover:scale-[102%] hover:shadow hover:duration-200 hover:ease-in w-80 ">
                         <SubscriptionCard
+                          toSignUp={toSignUp}
                           userSubscribed={userSubscribed}
                           subscription={subscription}
+                          key={index}
                         />
-                      </Badge.Ribbon>
-                    </div>
-                  ) : (
-                    <div className="hover:transition hover:scale-[102%] hover:shadow hover:duration-200 hover:ease-in w-80 ">
-                      <SubscriptionCard
-                        toSignUp={toSignUp}
-                        userSubscribed={userSubscribed}
-                        subscription={subscription}
-                        key={index}
-                      />
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
       </div>
     </div>
   );

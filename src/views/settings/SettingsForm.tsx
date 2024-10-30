@@ -135,7 +135,7 @@ const SettingsForm = () => {
               options={[
                 {
                   value: UserRoles.Auditor,
-                  label: 'Complience Partner'
+                  label: 'Compliance Partner'
                 },
                 {
                   value: UserRoles.Client,

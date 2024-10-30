@@ -1,38 +1,40 @@
 import { UserOutlined } from '@ant-design/icons';
-import { Button, Comment, Form, Input, List } from 'antd';
+import { Button, Comment, Form, Input } from 'antd';
+import { addComment } from 'appRedux/actions/commentAction';
 import { AuthSelector } from 'appRedux/reducers';
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const { TextArea } = Input;
 
-interface CommentItem {
-  author: string;
-  avatar: React.ReactNode;
-  content: React.ReactNode;
-  datetime: React.ReactNode;
-}
+// interface CommentItem {
+//   author: string;
+//   avatar: React.ReactNode;
+//   content: React.ReactNode;
+//   datetime: React.ReactNode;
+// }
 
 /**
  * Renders a list of comments.
  */
-const CommentList = ({ comments }: { comments: CommentItem[] }) => {
-  return (
-    <List
-      dataSource={comments}
-      itemLayout="horizontal"
-      renderItem={(props) => {
-        return <Comment {...props} />;
-      }}
-    />
-  );
-};
+// const CommentList = ({ comments }: { comments: CommentItem[] }) => {
+//   return (
+//     <List
+//       dataSource={comments}
+//       itemLayout="horizontal"
+//       renderItem={(props) => {
+//         return <Comment {...props} />;
+//       }}
+//     />
+//   );
+// };
 
 /**
  * Renders a comment editor form.
  *
  */
-const Editor = () => {
+const Editor = ({ id }: { id: string }) => {
+  const dispatch = useDispatch();
   const [submitting, setSubmitting] = useState(false);
   const [value, setValue] = useState('');
 
@@ -47,8 +49,14 @@ const Editor = () => {
    */
   const onSubmit = () => {
     if (!value) return;
+    dispatch(
+      addComment({
+        to: id,
+        description: value
+      })
+    );
 
-    setSubmitting(true);
+    // setSubmitting(true);
 
     setTimeout(() => {
       setSubmitting(false);
@@ -94,13 +102,14 @@ const Editor = () => {
  */
 const CommentsSection = ({ allComments, selected }: { allComments: any; selected: any }) => {
   const { user } = useSelector(AuthSelector);
-
+  console.log(allComments);
+  console.log(selected);
   return (
     <div>
       <div className="space-y-2">
         {allComments
           ?.filter((user: any) => {
-            return user?.id === selected;
+            return user?.createdBy?._id === selected;
           })
           ?.map((comment: any, index: number) => {
             return (
@@ -111,18 +120,18 @@ const CommentsSection = ({ allComments, selected }: { allComments: any; selected
                   }
                   content={
                     <div>
-                      <p>
-                        <b>{comment.author}</b>
+                      <p className="font-semibold text-nowrap capitalize">
+                        {comment?.createdBy?.firstName} {comment?.createdBy?.lastName}
                       </p>
-                      <p>{comment.content}</p>
+                      <p>{comment?.description}</p>
                     </div>
                   }
                 />
-                {comment.reply?.length > 0 && (
+                {/* {comment.reply?.length > 0 && (
                   <div className="ml-8">
                     <CommentList comments={comment.reply} />
                   </div>
-                )}
+                )} */}
                 <Comment
                   avatar={
                     <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
@@ -132,7 +141,7 @@ const CommentsSection = ({ allComments, selected }: { allComments: any; selected
                       <p className="font-semibold text-nowrap capitalize">
                         {user?.firstName} {user?.lastName}
                       </p>
-                      <Editor />
+                      <Editor id={comment?._id} />
                     </div>
                   }
                 />

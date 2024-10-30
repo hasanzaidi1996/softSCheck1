@@ -4,6 +4,7 @@ import { getSubscriptions, getUserSubsciption } from 'appRedux/actions/subscript
 import { AddOnSelector, SubscriptionSelector } from 'appRedux/reducers';
 
 import { useAppDispatch } from 'appRedux/store';
+import CardSkeleton from 'components/skeleton/CardSkeleton';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { IAddOn } from 'types/ReduxTypes/addOn';
@@ -67,28 +68,30 @@ const AddOns = () => {
         </b>{' '}
         Subscription
       </h1>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 gap-y-6">
-        {addOns?.map((addOn, index) => {
-          return (
-            <div key={index} className="flex justify-center">
-              {userSubscribed && userSubscribed?.addons?.includes(addOn?._id as any) ? (
-                <div
-                  className="hover:transition hover:scale-[102%] hover:shadow hover:duration-200 hover:ease-in w-80 "
-                  key={index}>
-                  <Badge.Ribbon text="Subscribed" placement="end" color="red" key={index}>
-                    <AddOnsCard key={index} addOn={addOn} userSubscribed={userSubscribed} />
-                  </Badge.Ribbon>
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 gap-y-6">
+        {addOnLoading
+          ? Array.from({ length: 4 }, (_, index) => <CardSkeleton key={index} />)
+          : addOns?.map((addOn, index) => {
+              return (
+                <div key={index} className="flex justify-center">
+                  {userSubscribed && userSubscribed?.addons?.includes(addOn?._id as any) ? (
+                    <div
+                      className="hover:transition hover:scale-[102%] hover:shadow hover:duration-200 hover:ease-in w-80 "
+                      key={index}>
+                      <Badge.Ribbon text="Subscribed" placement="end" color="red" key={index}>
+                        <AddOnsCard key={index} addOn={addOn} userSubscribed={userSubscribed} />
+                      </Badge.Ribbon>
+                    </div>
+                  ) : (
+                    <div
+                      className="hover:transition hover:scale-[102%] hover:shadow hover:duration-200 hover:ease-in w-80 "
+                      key={index}>
+                      <AddOnsCard key={index} addOn={addOn} />
+                    </div>
+                  )}
                 </div>
-              ) : (
-                <div
-                  className="hover:transition hover:scale-[102%] hover:shadow hover:duration-200 hover:ease-in w-80 "
-                  key={index}>
-                  <AddOnsCard key={index} addOn={addOn} />
-                </div>
-              )}
-            </div>
-          );
-        })}
+              );
+            })}
       </div>
     </div>
   );

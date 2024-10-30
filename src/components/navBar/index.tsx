@@ -3,7 +3,8 @@ import {
   CodeOutlined,
   DollarOutlined,
   HomeOutlined,
-  LogoutOutlined
+  LogoutOutlined,
+  SecurityScanOutlined
 } from '@ant-design/icons';
 import { AuthSelector } from 'appRedux/reducers';
 import { branding } from 'config/branding';
@@ -36,6 +37,11 @@ const NavBar = () => {
       name: 'Pricing',
       icon: DollarOutlined,
       path: '/pricing'
+    },
+    {
+      name: 'Cyber Essentials Singapore',
+      icon: SecurityScanOutlined,
+      path: '/check-compliance'
     }
   ];
   return (

@@ -1,7 +1,10 @@
-import { UserOutlined } from '@ant-design/icons';
 import { Tabs } from 'antd';
-import moment from 'moment';
-import { useState } from 'react';
+import { getComments } from 'appRedux/actions/commentAction';
+import { CommentSelector } from 'appRedux/reducers/commentReducer';
+import { useAppDispatch } from 'appRedux/store';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { IComment } from 'types/ReduxTypes/comment/action';
 import CommentIcon from '../../assets/img/comment.png';
 import CommentsSection from './CommentsSection';
 import CommentsSider from './CommentsSider';
@@ -17,178 +20,52 @@ import CommentsSider from './CommentsSider';
  */
 const Comments = () => {
   const [selected, setSelected] = useState(null);
-  const allComments = [
-    {
-      id: '1',
-      name: 'Syed Ali Hassan Zaidi',
-      organization: 'Elite IT',
-      role: 'Employee',
-      avatar: (
-        <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
-      ),
-      content:
-        'Great tool! Easy to use and really boosts security. Love the real-time alerts and user-friendly interface. A must-have for any team!',
-      datetime: moment().fromNow(),
-      reply: [
-        {
-          id: '2',
-          name: 'Syed Ali Hassan Zaidi',
-          organization: 'Elite IT',
-          role: 'Employee',
-          avatar: (
-            <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
-          ),
-          content:
-            'Absolutely agree! The real-time alerts are a game changer for staying proactive.',
-          datetime: moment().fromNow()
-        },
-        {
-          id: '3',
-          name: 'Syed Ali Hassan Zaidi',
-          organization: 'Elite IT',
-          role: 'Employee',
-          avatar: (
-            <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
-          ),
-          content:
-            'I’ve found it super helpful for streamlining our security processes. What features do you use the most?',
-          datetime: moment().fromNow()
-        },
-        {
-          id: '3',
-          name: 'Syed Ali Hassan Zaidi',
-          organization: 'Elite IT',
-          role: 'Employee',
-          avatar: (
-            <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
-          ),
-          content:
-            'Totally! It makes managing threats so much simpler. Have you tried the latest updates?',
-          datetime: moment().fromNow()
-        },
 
-        {
-          id: '3',
-          name: 'Syed Ali Hassan Zaidi',
-          organization: 'Elite IT',
-          role: 'Employee',
-          avatar: (
-            <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
-          ),
-          content:
-            'Yes! The updates have been fantastic. They really improved the interface and added useful features!',
-          datetime: moment().fromNow()
-        }
-      ]
-    },
-    {
-      id: '4',
-      name: 'Anand Kumar',
-      organization: 'Connecting Dots',
-      role: 'Employee',
-      avatar: 'https://joeschmoe.io/api/v1/random',
-      content:
-        'Secure Cohort is impressive! It enhances collaboration while keeping data safe. The encryption features are top-notch. Perfect for team projects!',
-      datetime: moment().fromNow(),
-      reply: [
-        {
-          id: '5',
-          name: 'Syed Ali Hassan Zaidi',
-          organization: 'Elite IT',
-          role: 'Employee',
-          avatar: (
-            <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
-          ),
-          content:
-            'Totally agree! The encryption really gives peace of mind. Have you tried it for remote teams?',
-          datetime: moment().fromNow()
-        },
-        {
-          id: '5',
-          name: 'Syed Ali Hassan Zaidi',
-          organization: 'Elite IT',
-          role: 'Employee',
-          avatar: (
-            <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
-          ),
-          content:
-            'Yes! It’s great for collaboration. I love how user-friendly it is while maintaining strong security.',
-          datetime: moment().fromNow()
-        }
-      ]
-    },
-    {
-      id: '6',
-      name: 'Sir Sarwanan',
-      organization: 'Apply Cyber',
-      role: 'Employee',
-      avatar: 'https://joeschmoe.io/api/v1/random',
-      content:
-        'Secure Cohort is a game changer! The seamless integration with existing tools makes it so convenient. Plus, the security features are robust—definitely a must for any organization!',
-      datetime: moment().fromNow(),
-      reply: [
-        {
-          name: 'Sir Sarwanan',
-          organization: 'Apply Cyber',
-          role: 'Employee',
-          avatar: (
-            <UserOutlined className="bg-gray-300 p-2 rounded-full size-10 flex justify-center items-center" />
-          ),
-          content:
-            'Absolutely! The integration is so smooth, it makes onboarding a breeze. Have you noticed any specific benefits for your team?',
-          datetime: moment().fromNow()
-        }
-      ]
-    },
-    {
-      id: '7',
-      name: 'Talha Talreja',
-      organization: 'USquare',
-      role: 'Auditor',
-      avatar: 'https://joeschmoe.io/api/v1/random',
-      content:
-        'The overall system is highly efficient and user-friendly! It streamlines processes while ensuring top-notch security. Great balance between functionality and safety!',
-      datetime: moment().fromNow()
-    },
-    {
-      id: '8',
-      name: 'Sarmad Ali',
-      organization: 'The Consultants',
-      role: 'Service Provider',
-      avatar: 'https://joeschmoe.io/api/v1/random',
-      content:
-        'The overall system is highly efficient and user-friendly! It streamlines processes while ensuring top-notch security. Great balance between functionality and safety!',
-      datetime: moment().fromNow()
+  const dispatch = useAppDispatch();
+  const { comments, commentsLoading } = useSelector(CommentSelector);
+  useEffect(() => {
+    if (!comments && commentsLoading) {
+      dispatch(getComments());
     }
-  ];
+  }, [comments]);
+  console.log('@@@@', comments);
+  const users: IComment[] = [];
+
+  comments?.forEach((comment) => {
+    // @ts-ignore
+    if (!users.find((user) => user?.createdBy?._id === comment?.createdBy?._id)) {
+      users.push(comment);
+    }
+  });
   const commentsTabs = [
     {
       label: 'All Comments',
       value: 'all',
-      data: allComments
-    },
-    {
-      label: 'Employees',
-      value: 'employees',
-      data: allComments.filter((comment) => {
-        return comment?.role === 'Employee';
-      })
-    },
-    {
-      label: 'Auditors',
-      value: 'auditor',
-      data: allComments.filter((comment) => {
-        return comment?.role === 'Auditor';
-      })
-    },
-    {
-      label: 'Service Providers',
-      value: 'service-provider',
-      data: allComments.filter((comment) => {
-        return comment?.role === 'Service Provider';
-      })
+      data: users
     }
+    // {
+    //   label: 'Employees',
+    //   value: 'employees',
+    //   data: allComments.filter((comment) => {
+    //     return comment?.role === 'Employee';
+    //   })
+    // },
+    // {
+    //   label: 'Auditors',
+    //   value: 'auditor',
+    //   data: allComments.filter((comment) => {
+    //     return comment?.role === 'Auditor';
+    //   })
+    // },
+    // {
+    //   label: 'Service Providers',
+    //   value: 'service-provider',
+    //   data: allComments.filter((comment) => {
+    //     return comment?.role === 'Service Provider';
+    //   })
+    // }
   ];
+
   return (
     <div className="container">
       <h1 className="text-2xl my-4">All Comments</h1>
@@ -205,7 +82,7 @@ const Comments = () => {
               label: tab.label,
               key: tab.value,
               children: (
-                <div className="flex items-start justify-start gap-4">
+                <div className="flex items-start justify-start gap-4" key={i}>
                   <div className="h-[70vh]">
                     <CommentsSider data={tab.data} selected={selected} setSelected={setSelected} />
                   </div>
@@ -218,7 +95,7 @@ const Comments = () => {
                         </h1>
                       </div>
                     ) : (
-                      <CommentsSection allComments={tab.data} selected={selected} />
+                      <CommentsSection allComments={comments} selected={selected} />
                     )}
                   </div>
                 </div>

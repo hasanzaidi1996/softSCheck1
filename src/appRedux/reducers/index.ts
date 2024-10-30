@@ -9,6 +9,7 @@ import reportReducer, { ReportSelector } from './reportReducer';
 import subscriptionReducer, { SubscriptionSelector } from './subscriptionReducer';
 import usersReducer, { UserSelector } from './usersReducer';
 import phishingReducer, { PhishingSelector } from './phishingReducer';
+import commentReducer, { CommentSelector } from './commentReducer';
 
 const appReducer = combineReducers({
   auth: authReducer,
@@ -17,7 +18,8 @@ const appReducer = combineReducers({
   report: reportReducer,
   subscription: subscriptionReducer,
   user: usersReducer,
-  phishing: phishingReducer
+  phishing: phishingReducer,
+  comment: commentReducer
 });
 
 export {
@@ -27,7 +29,8 @@ export {
   ReportSelector,
   SubscriptionSelector,
   UserSelector,
-  PhishingSelector
+  PhishingSelector,
+  CommentSelector
 };
 
 export type RootState = ReturnType<typeof appReducer>;

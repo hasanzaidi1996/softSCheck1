@@ -21,6 +21,8 @@ import SubscriptionPayment from 'views/subscriptions/SubscriptionPayment';
 import RequireAuth from './utils/RequireAuth';
 import YouHaveBeenPhished from 'views/phishingUsers/YouHaveBeenPhished';
 import SubscriptionContact from 'views/subscriptions/SubscriptionContact';
+import SoftSCheck from 'views/softSCheck';
+import Dashboard from 'views/softSCheck/Dashboard';
 // import { Landing } from 'views/landing/Landing';
 
 /**
@@ -61,6 +63,8 @@ const App: React.FC = () => {
           <Routes>
             <Route path="verify-email/:tokenId" element={<VerifyEmail />} />
             <Route path="reward-claim/:id" element={<YouHaveBeenPhished />} />
+            <Route path="check-compliance" element={<SoftSCheck />} />
+            <Route path="check-compliance-dashboard" element={<Dashboard />} />
 
             <Route path="*" element={<AuthLayout />} />
 
